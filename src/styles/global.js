@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
+import { device } from '../breakpoints/devices';
 
 export default createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
   :root {
     font-size: 62.5%;
@@ -11,11 +17,18 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
+  /* mobile */
   body, input, button, textarea {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
     outline: none;
-    color: #fff;
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
 
-`;
+  @media ${device.tablet} { 
+    body, input, button, textarea {
+      font-size: 1.6rem;
+    }
+  }
+`;  

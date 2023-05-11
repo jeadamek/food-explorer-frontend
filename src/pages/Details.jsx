@@ -1,8 +1,15 @@
+import { Stepper } from '../components/Stepper';
+import { Button } from '../components/Button';
+import { Footer } from '../components/Footer';
+
+import receipt from '../assets/icons/receipt.svg';
+
 export function Details() {
   return(
     <>
-      <h1>Hello world!</h1>
-      <p>teste de fonte</p>
+      <Stepper />
+      <Button title="pedir ∙ R$ 25,00" icon={receipt}/>
+      <Footer />
     </>
   )
 }

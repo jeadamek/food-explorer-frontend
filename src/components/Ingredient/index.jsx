@@ -2,7 +2,7 @@ import { Container } from "./styles";
 import PropTypes from 'prop-types';
 
 
-export function TagIngredient({title}) {
+export function Ingredient({title}) {
   return(
     <Container>
       {title}
@@ -10,6 +10,6 @@ export function TagIngredient({title}) {
   )
 }
 
-TagIngredient.propTypes = {
+Ingredient.propTypes = {
   title: PropTypes.string.isRequired,
 }

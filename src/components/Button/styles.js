@@ -5,7 +5,6 @@ export const Container = styled.button`
   width: 100%;
   height: 4rem;
   
-  background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   line-height: 1.6;
@@ -25,21 +24,12 @@ export const Container = styled.button`
     height: 1.5rem;
   }
 
-  &:hover {
-    background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
-  }
-
-  &:active {
-    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
-  }
-
-  &:disabled {
-    background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
-    cursor: auto;
-  }
-
   @media ${device.tablet} { 
+    width: fit-content;
     height: 4.8rem;
+
+    padding: 1.2rem 2.4rem;
+
     >img {
       height: 2.2rem;
     }

@@ -17,6 +17,40 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
+  button.primary {
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+
+      &:hover {
+        background-color: ${({ theme }) => theme.COLORS.TOMATO_200};
+      }
+
+      &:active {
+        background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+      }
+
+      &:disabled {
+        background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
+        cursor: auto;
+      }
+  }
+
+  button.secondary {
+    background-color: ${({ theme }) => theme.COLORS.DARK_800};
+
+    &:hover {
+    background-color: ${({ theme }) => theme.COLORS.DARK_900};
+    }
+
+    &:active {
+      background-color: ${({ theme }) => theme.COLORS.DARK_800};
+    }
+
+    &:disabled {
+      background-color: ${({ theme }) => theme.COLORS.LIGHT_700};
+      cursor: auto;
+    }
+  }
+
   /* mobile */
   body, input, button, textarea {
     font-family: 'Poppins', sans-serif;

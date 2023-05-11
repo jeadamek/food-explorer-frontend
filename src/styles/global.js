@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { device } from '../breakpoints/devices';
+// import { device } from '../breakpoints/devices';
 
 export default createGlobalStyle`
   * {
@@ -22,13 +22,8 @@ export default createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     line-height: 2.4rem;
+    font-weight: 500;
     outline: none;
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
-  }
-
-  @media ${device.tablet} { 
-    body, input, button, textarea {
-      font-size: 1.6rem;
-    }
   }
 `;  

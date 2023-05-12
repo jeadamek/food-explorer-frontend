@@ -11,7 +11,7 @@ import arrowLeft from '../assets/icons/caretLeft.svg';
 export function Details() {
   return(
     <>
-      <Header />
+      <Header orders={2}/>
       <TextButton title="voltar" icon={arrowLeft} />
       <Ingredient title="alface"/>
       <Stepper />

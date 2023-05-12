@@ -7,7 +7,7 @@ import { Select } from "../../components/Select";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 import { Textarea } from "../../components/Textarea";
-import { Ingredient } from "../../components/Ingredient";
+import { DishItem } from "../../components/DishItem";
 import { TextButton } from "../../components/TextButton";
 import { CurrencyInput } from "../../components/CurrencyInput";
 
@@ -44,13 +44,8 @@ export function AddDish() {
           <div className="ingredients">
             <span>Ingredientes</span>
             <div>
-              <Ingredient title="pão naan"/>
-              <Ingredient title="pão"/>
-              <Ingredient title="pão"/>
-              <Ingredient title="pão naan"/>
-              <Ingredient title="pão naan"/>
-              <Ingredient title="pão naan"/>
-              <Ingredient title="pão naan"/>
+              <DishItem value="pão naan"/>
+              <DishItem isNew placeholder="Adicionar"/>
             </div>
           </div>
 

@@ -15,7 +15,8 @@ export const Container = styled.div`
     grid-area: content;
     padding: 1.6rem 1rem 5.6rem;
 
-    width: 36.4rem;
+    width: 100%;
+    max-width: 55rem;
     margin: 0 auto;
 
     header > h1 {

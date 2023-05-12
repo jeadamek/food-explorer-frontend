@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { device } from "../../breakpoints/devices";
 
-export const Container = styled.div`
+export const Container = styled.footer`
+  grid-area: footer;
+
   width: 100%;
   height: 7.7rem;
 

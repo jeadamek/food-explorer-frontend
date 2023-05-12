@@ -2,9 +2,12 @@ import styled from "styled-components";
 import { device } from "../../breakpoints/devices";
 
 
-export const Container = styled.div`
+export const Container = styled.header`
+  grid-area: header;
+  
   background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
+  height: 11.4rem;
   padding: 5.6rem 2.8rem 2.4rem;
 
   display: flex;

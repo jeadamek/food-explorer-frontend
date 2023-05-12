@@ -3,7 +3,7 @@ import { device } from '../../breakpoints/devices';
 
 export const Container = styled.button`
   width: 100%;
-  height: 4rem;
+  height: 4.8rem;
   
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
@@ -21,12 +21,11 @@ export const Container = styled.button`
   justify-content: center;
 
   >img {
-    height: 1.5rem;
+    height: 15px;
   }
 
-  @media ${device.tablet} { 
+  @media ${device.laptop} { 
     width: fit-content;
-    height: 4.8rem;
 
     padding: 1.2rem 2.4rem;
 

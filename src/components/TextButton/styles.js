@@ -16,7 +16,7 @@ export const Container = styled.button`
   cursor: pointer;
 
   > img {
-    height: 2.2rem;
+    height: 2 rem;
   }
 
   :hover {

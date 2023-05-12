@@ -23,6 +23,10 @@ export const Container = styled.select`
 
   background-repeat: no-repeat;
   background-position: right 8px top 50%;
+
+  &:focus {
+    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
+  }
 `;
 
 export const Option = styled.option`

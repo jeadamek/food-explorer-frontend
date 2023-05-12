@@ -13,10 +13,15 @@ export const Container = styled.div`
 
   > main {
     grid-area: content;
-    padding: 1.6rem 0 5.6rem;
+    padding: 1.6rem 1rem 5.6rem;
 
     width: 36.4rem;
     margin: 0 auto;
+
+    header > h1 {
+      margin-top: 2.2rem;
+      margin-bottom: 3.6rem;
+    }
   }
 `;
 

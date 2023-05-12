@@ -44,6 +44,7 @@ export default createGlobalStyle`
   h1 {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
+    font-size: 3.2rem;
     font-weight: 500;
     line-height: 140%;
   }

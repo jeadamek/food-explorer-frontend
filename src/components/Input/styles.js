@@ -16,6 +16,14 @@ export const Container = styled.div`
   
   position: relative;
 
+  .hasIcon {
+    padding: 1.4px 50px;
+
+    &:focus {
+      padding: 14px 49px;
+    }
+  }
+
   > input {
     background: transparent;
     border: 0;
@@ -23,10 +31,9 @@ export const Container = styled.div`
     width: 100%;
     height: 4.8rem;
 
-    padding: 14px 50px;
+    padding: 14px;
 
     border-radius: .5rem;
-
 
     &:placeholder {
       color: ${({ theme }) => theme.COLORS.LIGHT_500};
@@ -34,7 +41,7 @@ export const Container = styled.div`
 
     &:focus {
       border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
-      padding: 14px 49px;
+      padding: 14px 13px;
     }
   }
 

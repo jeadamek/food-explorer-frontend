@@ -20,7 +20,7 @@ export function DishDetails() {
 
         <Content> 
           <DishPhoto>
-            <img src='../../../public/Salada Ravanello.png' alt="Foto do prato"/>
+            <img src='/public/Salada Ravanello.png' alt="Foto do prato"/>
           </DishPhoto>  
 
           <DishInfo>

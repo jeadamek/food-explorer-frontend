@@ -2,9 +2,10 @@ import { Container } from "./styles";
 import PropTypes from 'prop-types';
 
 export function TextButton({title, icon}) {
+  const altImage = `icone ${title}`
   return(
     <Container>
-      {icon && <img src={icon} alt="icone ${title}" />}
+      {icon && <img src={icon} alt={altImage} />}
       <span>{title}</span>
     </Container>
   ) 

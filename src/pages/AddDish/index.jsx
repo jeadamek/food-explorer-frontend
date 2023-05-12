@@ -1,12 +1,15 @@
-import { Container, Content } from "./styles";
+import { Container, Form } from "./styles";
 
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
 import { Header } from "../../components/Header";
-import { Footer } from "../../components/Footer";
 import { Select } from "../../components/Select";
-import { CurrencyInput } from "../../components/CurrencyInput";
+import { Button } from "../../components/Button";
+import { Footer } from "../../components/Footer";
+import { Textarea } from "../../components/Textarea";
+import { Ingredient } from "../../components/Ingredient";
 import { TextButton } from "../../components/TextButton";
+import { CurrencyInput } from "../../components/CurrencyInput";
 
 import arrowLeft from '../../assets/icons/caretLeft.svg';
 
@@ -28,7 +31,7 @@ export function AddDish() {
           <h1>Novo Prato</h1>
         </header>
 
-        <Content>
+        <Form>
           <Label htmlFor="imagem-prato" title="Imagem do prato" />
           <Input type="file" id="imagem-prato" />
 
@@ -37,6 +40,19 @@ export function AddDish() {
 
           <Label htmlFor="categoria-prato" title="Categoria" />
           <Select name="categoria-prato" id="categoria-prato" options={options} />
+
+          <div className="ingredients">
+            <span>Ingredientes</span>
+            <div>
+              <Ingredient title="pão naan"/>
+              <Ingredient title="pão"/>
+              <Ingredient title="pão"/>
+              <Ingredient title="pão naan"/>
+              <Ingredient title="pão naan"/>
+              <Ingredient title="pão naan"/>
+              <Ingredient title="pão naan"/>
+            </div>
+          </div>
 
 
           <Label htmlFor="preco-prato" title="Preço" />
@@ -49,10 +65,11 @@ export function AddDish() {
             id="preco-prato" />
 
           <Label htmlFor="descricao-prato" title="Descrição" />
+          <Textarea id="descricao-prato" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
           
-          
+          <Button title="Salvar alterações" className="primary" />
 
-          </Content>
+        </Form>
       </main>
 
 

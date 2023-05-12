@@ -25,7 +25,38 @@ export const Container = styled.div`
   }
 `;
 
+export const Form = styled.form`
+  > button {
+    margin-top: 2.4rem
+  }
 
-export const Content = styled.form`
-  
+  .ingredients{
+    > span {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.6rem;
+      line-height: 100%;
+      font-weight: 400;
+      outline: none;
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      margin-bottom: 1.6rem;
+    }
+
+    > div {
+      width: 100%;
+      
+      margin-top: 1.2rem;
+      margin-bottom: 2.4rem;
+
+      background-color: ${({ theme }) => theme.COLORS.DARK_900};
+
+      border-radius: .5rem;
+
+      padding: .8rem;
+
+      display: flex;
+      column-gap: 1.6rem;
+      row-gap: .8rem;
+      flex-wrap: wrap;
+    }
+  }
 `;

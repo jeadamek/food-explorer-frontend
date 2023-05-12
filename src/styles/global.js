@@ -32,7 +32,7 @@ export default createGlobalStyle`
     line-height: 100%;
     font-weight: 400;
     outline: none;
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
   }
 
   select {

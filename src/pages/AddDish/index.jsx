@@ -3,7 +3,6 @@ import { Container, Form } from "./styles";
 import { FiUpload } from "react-icons/fi";
 import { SlArrowLeft } from "react-icons/sl";
 
-
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
 import { Header } from "../../components/Header";

@@ -1,5 +1,8 @@
 import { Container, Content, DishPhoto, DishInfo} from './styles';
 
+import { SlArrowLeft } from "react-icons/sl";
+
+
 import { Ingredient } from '../../components/Ingredient';
 import { TextButton } from '../../components/TextButton';
 import { Stepper } from '../../components/Stepper';
@@ -7,8 +10,8 @@ import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
 
-import receipt from '../../assets/icons/receipt.svg';
-import arrowLeft from '../../assets/icons/caretLeft.svg';
+import { Receipt } from '../../assets/icons/Receipt';
+
 
 export function DishDetails() {
   return(
@@ -16,11 +19,11 @@ export function DishDetails() {
       <Header orders={2}/>
 
       <main>
-        <TextButton title="voltar" icon={arrowLeft} />
+        <TextButton title="voltar" icon={SlArrowLeft} />
 
         <Content> 
           <DishPhoto>
-            <img src='/public/Salada Ravanello.png' alt="Foto do prato"/>
+            <img src='/public/saladaRavanello.png' alt="Foto do prato"/>
           </DishPhoto>  
 
           <DishInfo>
@@ -39,7 +42,7 @@ export function DishDetails() {
             {/* USER */}
             <div className="buttons">
               <Stepper />
-              <Button title="pedir ∙ R$ 25,00" icon={receipt} className="primary" />
+              <Button title="pedir ∙ R$ 25,00" icon={Receipt} className="primary" />
             </div>
 
             {/* ADMIN */}

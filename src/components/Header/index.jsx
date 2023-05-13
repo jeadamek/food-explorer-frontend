@@ -21,14 +21,14 @@ export function Header({ orders }) {
       </Brand>
 
       <MobileOrder>
-        <Receipt size={"26"} />
+        <Receipt size={26} />
         <div><span>{ orders ? orders : 0 }</span></div>
       </MobileOrder>
 
       <Input placeholder="Busque por pratos ou ingredientes" icon={GoSearch} className="input-header" />
 
       <ButtonHeader className="primary">
-        <Receipt size={"26"}/>
+        <Receipt size={26}/>
         Pedidos({ orders ? orders : 0 })
       </ButtonHeader>
 

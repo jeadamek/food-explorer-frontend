@@ -22,15 +22,11 @@ export const Container = styled.div`
   }
 
   @media ${device.laptop} {
-    > main {
-      width: 98rem;
-      padding: 2.4rem 0 15.5rem;
-    }
-  }
+    grid-template-rows: 9.6rem auto 7.7rem;
 
-  @media ${device.desktop} {
     > main {
-      width: 112.4rem;
+      max-width: 112.4rem;
+      padding: 2.4rem 3rem 15.5rem;
     }
   }
 `

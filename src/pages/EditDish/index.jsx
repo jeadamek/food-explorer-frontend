@@ -1,6 +1,7 @@
+import { Container, Form } from "./styles";
+
 import { FiUpload } from "react-icons/fi";
 import { SlArrowLeft } from "react-icons/sl";
-import { Container, Form } from "./styles";
 
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
@@ -13,7 +14,6 @@ import { DishItem } from "../../components/DishItem";
 import { TextButton } from "../../components/TextButton";
 import { CurrencyInput } from "../../components/CurrencyInput";
 
-// import arrowLeft from '../../assets/icons/caretLeft.svg';
 
 export function EditDish() {
 

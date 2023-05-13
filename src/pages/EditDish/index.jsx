@@ -1,5 +1,5 @@
-import { Container, Form } from "./styles";
 import { FiUpload } from "react-icons/fi";
+import { Container, Form } from "./styles";
 
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
@@ -15,7 +15,7 @@ import { CurrencyInput } from "../../components/CurrencyInput";
 import arrowLeft from '../../assets/icons/caretLeft.svg';
 
 
-export function AddDish() {
+export function EditDish() {
 
   const options = [
     { value: 'default', label: 'Selecione uma opção'},
@@ -30,7 +30,7 @@ export function AddDish() {
       <main>
         <header>
           <TextButton title="voltar" icon={arrowLeft} />
-          <h1>Novo Prato</h1>
+          <h1>Editar Prato</h1>
         </header>
 
         <Form>
@@ -88,10 +88,15 @@ export function AddDish() {
             <Textarea id="description" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
           </div>
           
-          <Button title="Salvar alterações" className="primary" />
+          <div className="buttons">
+            <Button title="Excluir prato" className="secondary" />
+            <Button title="Salvar alterações" className="primary" />
+          </div>
 
         </Form>
       </main>
+
+
 
       <Footer />
     </Container>

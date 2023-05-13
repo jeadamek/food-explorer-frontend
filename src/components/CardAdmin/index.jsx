@@ -2,34 +2,25 @@ import { Container } from "./styles";
 
 import PropTypes from "prop-types";
 
-import { Button } from "../Button";
-import { Stepper } from "../Stepper";
+import { TbPencil } from "react-icons/tb";
 
-import { IoMdHeartEmpty } from 'react-icons/io'
-import { IoMdHeart } from 'react-icons/io'
-
-export function CardUser({ img, title, description, price, favorite }) {
+export function CardAdmin({ img, title, description, price}) {
   const priceInCurrency = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
   return(
     <Container>
-      <button>{favorite ? <IoMdHeart size={24} /> : <IoMdHeartEmpty size={24} />}</button>
+      <TbPencil size={26} />
       <img src={img} alt={`imagem de ${title}`}/>
       <h3>{`${title} >`}</h3>
       <p>{description}</p>
       <span>{priceInCurrency}</span>  
-      <div className="add-cart">
-        <Stepper />
-        <Button title="incluir" className="primary" />
-      </div>
     </Container>
   )
 }
 
-CardUser.propTypes = {
+CardAdmin.propTypes = {
   img: PropTypes.any.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  favorite: PropTypes.bool.isRequired
 }

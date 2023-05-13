@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { device } from "../../breakpoints/devices";
 
 export const Container = styled.a`
-  height: 318px;
+  height: 292px;
   width: 210px;
   
   padding: 2.4rem;
@@ -15,33 +15,33 @@ export const Container = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1.2rem;
 
   border-radius: .5rem;
 
   cursor: pointer;
 
-  > button {
-    background: none;
-    border: none;
-
-    width: fit-content;
-    height: fit-content;
-    
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
-
+  > svg {
     position: absolute;
     right: 16px;
     top: 16px;
 
     cursor: pointer;
+
+    > path {
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 
   > img {
     width: 88px;
   }
 
-  
   h3:hover {
     opacity: 0.5;
   }
@@ -67,16 +67,6 @@ export const Container = styled.a`
     color: ${({ theme }) => theme.COLORS.CAKE_200};
   }
 
-  .add-cart {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-  }
-
   &:hover {
     filter: drop-shadow(0px 0px 8px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY});
     border: solid 0.5px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY};  
@@ -86,7 +76,7 @@ export const Container = styled.a`
     height: 462px;
     width: 304px;
 
-    padding: 2.4rem;
+    padding: 5.6rem 2.4rem;
     
     > img {
       width: 176px;
@@ -99,12 +89,6 @@ export const Container = styled.a`
     > span {
       font-size: 3.2rem;
       line-height: 160%;
-    }
-
-    .add-cart {
-      flex-direction: row;
-      align-items: center;
-      gap: 1.6rem;
     }
   }
 `;

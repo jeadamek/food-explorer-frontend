@@ -30,7 +30,7 @@ export function AddDish() {
       <main>
         <header>
           <TextButton title="voltar" icon={arrowLeft} />
-          <h1>Novo Prato</h1>
+          <h1>Adicionar Prato</h1>
         </header>
 
         <Form>

@@ -19,7 +19,7 @@ export const Container = styled.header`
   }
 
   @media ${device.laptop} {
-    height: 104px;
+    height: 96px;
 
     padding: 2.4rem 8rem;
     align-items: center;

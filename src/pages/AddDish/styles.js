@@ -24,10 +24,14 @@ export const Container = styled.div`
       margin-top: 2.2rem;
       margin-bottom: 3.6rem;
     }
+  }
 
-    @media ${device.laptop} {
+  @media ${device.laptop} {
+    grid-template-rows: 9.6rem auto 7.7rem;
+
+    > main {
       max-width: 112rem;
-       padding: 1.6rem 3rem 5.6rem;
+      padding: 2.4rem 3rem 12rem;
     }
   }
 `;

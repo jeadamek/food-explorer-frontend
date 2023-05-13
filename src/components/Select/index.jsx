@@ -4,13 +4,18 @@ import PropTypes from "prop-types";
 
 export function Select({ options, ...rest }) {
   return(
-    <Container {...rest}>
+    <Container {...rest} defaultValue={'default'}>
       {options.map((option) => (
-        <Option key={option.value} value={option.value}>
+
+        option.value == 'default' ? 
+          <Option key={option.value} value={option.value} disabled>
           {option.label}
-        </Option>
+          </Option>
+        :
+          <Option key={option.value} value={option.value}>
+            {option.label}
+          </Option>
       ))}
-        <Option value="empty" disabled selected>Selecione uma opção</Option>
     </Container>
   )
 }

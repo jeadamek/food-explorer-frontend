@@ -1,4 +1,5 @@
 import { Container, Form } from "./styles";
+import { FiUpload } from "react-icons/fi";
 
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
@@ -17,9 +18,10 @@ import arrowLeft from '../../assets/icons/caretLeft.svg';
 export function AddDish() {
 
   const options = [
-    { value: 'refeicao', label: 'Refeição' },
-    { value: 'sobremesa', label: 'Sobremesa' },
-    { value: 'bebida', label: 'Bebida' },
+    { value: 'default', label: 'Selecione uma opção', disabled: true},
+    { value: 'refeicao', label: 'Refeição', disabled: false},
+    { value: 'sobremesa', label: 'Sobremesa', disabled: false},
+    { value: 'bebida', label: 'Bebida', disabled: false},
   ];
   return(
     <Container>
@@ -32,35 +34,59 @@ export function AddDish() {
         </header>
 
         <Form>
-          <Label htmlFor="imagem-prato" title="Imagem do prato" />
-          <Input type="file" id="imagem-prato" />
+          <div className="wrapper">
+            <div className="dish-image">
+              <label>
+                Imagem do prato
+                <div>
+                  <FiUpload size={24}/>
+                  Selecionar Imagem
+                  <input 
+                    type="file" 
+                    id="image"
+                    name="image"
+                  />
+                </div>
+              </label>
+            </div>
 
-          <Label htmlFor="nome-prato" title="Nome" />
-          <Input placeholder="Ex.: Salada Ceasar" id="nome-prato" />
-
-          <Label htmlFor="categoria-prato" title="Categoria" />
-          <Select name="categoria-prato" id="categoria-prato" options={options} />
-
-          <div className="ingredients">
-            <span>Ingredientes</span>
-            <div>
-              <DishItem value="pão naan"/>
-              <DishItem isNew placeholder="Adicionar"/>
+            <div className="dish-name">
+              <Label htmlFor="name" title="Nome" />
+              <Input placeholder="Ex.: Salada Ceasar" id="name" />
+            </div>
+            
+            <div className="dish-category">
+              <Label htmlFor="category" title="Categoria" />
+              <Select name="category" id="category" options={options} />
             </div>
           </div>
 
+          <div className="wrapper">
+            <div className="dish-ingredients">
+              <span>Ingredientes</span>
+              <div>
+                <DishItem value="pão naan"/>
+                <DishItem isNew placeholder="Adicionar"/>
+              </div>
+            </div>
 
-          <Label htmlFor="preco-prato" title="Preço" />
-          <CurrencyInput 
-            placeholder="R$ 00,00" 
-            prefix="R$ "
-            decimalsLimit={2}
-            decimalSeparator=","
-            groupSeparator="."
-            id="preco-prato" />
-
-          <Label htmlFor="descricao-prato" title="Descrição" />
-          <Textarea id="descricao-prato" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+            <div className="dish-price">
+              <Label htmlFor="price" title="Preço" />
+              <CurrencyInput 
+                placeholder="R$ 00,00" 
+                prefix="R$ "
+                decimalsLimit={2}
+                decimalSeparator=","
+                groupSeparator="."
+                id="price"
+              />
+            </div>
+          </div>
+          
+          <div className="dish-description">
+            <Label htmlFor="description" title="Descrição" />
+            <Textarea id="description" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+          </div>
           
           <Button title="Salvar alterações" className="primary" />
 

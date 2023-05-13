@@ -10,6 +10,6 @@ export function Label({ title, ...rest }) {
 }
 
 Label.propTypes = {
-  title: PropTypes.any.isRequired
+  title: PropTypes.string.isRequired
 }
 

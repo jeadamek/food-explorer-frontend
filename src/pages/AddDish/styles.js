@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../breakpoints/devices";
 
 export const Container = styled.div`
   width: 100%;
@@ -23,15 +24,56 @@ export const Container = styled.div`
       margin-top: 2.2rem;
       margin-bottom: 3.6rem;
     }
+
+    @media ${device.laptop} {
+      max-width: 112rem;
+       padding: 1.6rem 3rem 5.6rem;
+    }
   }
 `;
 
 export const Form = styled.form`
-  > button {
-    margin-top: 2.4rem
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
   }
 
-  .ingredients{
+  .dish-image {
+    > label > div {
+      width: 100%;
+      height: 4.8rem;
+
+      padding: 12px 32px;
+      margin-top: 1.2rem;
+
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 24px;
+
+      background-color: ${({ theme }) => theme.COLORS.DARK_900};
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+      border-radius: .5rem;
+
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+
+      cursor: pointer;
+      
+      > input {
+        display: none;
+      }
+    }
+  }
+
+  .dish-ingredients{
     > span {
       font-family: 'Roboto', sans-serif;
       font-size: 1.6rem;
@@ -46,7 +88,6 @@ export const Form = styled.form`
       width: 100%;
       
       margin-top: 1.2rem;
-      margin-bottom: 2.4rem;
 
       background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
@@ -58,6 +99,46 @@ export const Form = styled.form`
       column-gap: 1.6rem;
       row-gap: .8rem;
       flex-wrap: wrap;
+    }
+  }
+
+  @media ${device.laptop} {
+    gap: 3.2rem;
+
+    .wrapper {
+      display: flex;
+      flex-direction: row; 
+      gap: 3.2rem;
+    }
+
+    .dish-image {
+      label > div {
+        width: 240px;  
+      }
+    }
+
+    .dish-name {
+      width: 100%;
+    }
+
+    .dish-category {
+      > select {
+        width: 36.4rem;
+      }
+    }
+
+    .dish-ingredients {
+      width: 100%;
+    }
+
+    .dish-price {
+      > div {
+        width: 251px;
+      }
+    }
+
+    > button {
+      align-self: flex-end;
     }
   }
 `;

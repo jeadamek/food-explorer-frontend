@@ -12,6 +12,8 @@ export const Container = styled.textarea`
   padding: 16px; 
   border-radius: .5rem;
 
+  margin-top: 1.2rem;
+
   &:focus {
     border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
   }

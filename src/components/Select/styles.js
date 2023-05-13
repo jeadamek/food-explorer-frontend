@@ -5,7 +5,6 @@ export const Container = styled.select`
   height: 4.8rem;
 
   margin-top: 1.2rem;
-  margin-bottom: 2.4rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
@@ -35,7 +34,7 @@ export const Option = styled.option`
   background-color: ${({ theme }) => theme.COLORS.CAKE_200};
 
   &:disabled {
-    color: ${({ theme }) => theme.COLORS.LIGHT_500};
-    background-color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    color: ${({ theme }) => theme.COLORS.LIGHT_200};
+    background-color: ${({ theme }) => theme.COLORS.LIGHT_400};
   }
 `;

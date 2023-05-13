@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { device } from '../breakpoints/devices';
 // import { device } from '../breakpoints/devices';
 
 export default createGlobalStyle`
@@ -41,12 +42,24 @@ export default createGlobalStyle`
   }
   /* FONT STYLES */
 
-  h1 {
+  h1, h2, h3, h4 {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
-    font-size: 3.2rem;
     font-weight: 500;
-    line-height: 140%;
+    line-height: 140%;  
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 20px;  
+  }
+
+  h3 {
+    font-size: 14px;  
+    line-height: 170%;  
   }
 
   p {
@@ -75,9 +88,11 @@ export default createGlobalStyle`
 
   button.secondary {
     background-color: ${({ theme }) => theme.COLORS.DARK_800};
+    border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_800};
 
     &:hover {
-    background-color: ${({ theme }) => theme.COLORS.DARK_900};
+      background-color: ${({ theme }) => theme.COLORS.DARK_900};
+      border: solid 0.5px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY}; 
     }
 
     &:active {
@@ -110,5 +125,16 @@ export default createGlobalStyle`
     background-color: ${({ theme }) => theme.COLORS.CAKE_100};
     border-radius: 1rem;
     border: none;
+  }
+
+  @media ${device.laptop} {
+    h1 {
+
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 24px;
+    }
   }
 `;  

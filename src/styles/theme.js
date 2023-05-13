@@ -29,5 +29,7 @@ export default {
 
   CAKE_200: "#82F3FF",
   CAKE_100: "#065E7C",
+  
+  CAKE_200_TRANSPARENCY: "rgba(130,243,255,.4)",
   }
 }

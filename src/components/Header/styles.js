@@ -134,15 +134,12 @@ export const Logout = styled.button`
 
     border: none;
     background: none;
-    text-align: right;
-    height: 48px;
-    min-width: 40px;
+
+    width: 32px;
+    height: 32px;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
     cursor: pointer;
-
-    > svg > path {
-      fill: pink;
-    }
 
     &:hover {
       opacity: 0.5;

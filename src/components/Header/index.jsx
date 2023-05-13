@@ -2,42 +2,42 @@ import PropTypes from 'prop-types';
 
 import { Container, Brand, Hamburguer, MobileOrder, ButtonHeader, Logout } from "./styles";
 import { Input } from '../Input';
+import { Receipt } from "../../assets/icons/Receipt";
 
 import { GoSearch } from "react-icons/go";
 import { FiMenu } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 
 import logoImg from "../../assets/logo-user.svg";
-import receipt from "../../assets/icons/receipt.svg";
-import logout from "../../assets/icons/logout.svg";
 
 export function Header({ orders }) {
   return(
     <Container>
       <Hamburguer>
-        <FiMenu size={24}/>
+        <FiMenu size={26}/>
       </Hamburguer>
       <Brand>
         <img src={logoImg} alt="Logo Food Explorer"/>
       </Brand>
 
       <MobileOrder>
-        <img src={receipt} alt="Icone Pedidos" />
-        <div><span>{orders ? orders : 0}</span></div>
+        <Receipt size={26} />
+        <div><span>{ orders ? orders : 0 }</span></div>
       </MobileOrder>
 
       <Input placeholder="Busque por pratos ou ingredientes" icon={GoSearch} className="input-header" />
 
-      {/* <ButtonHeader className="primary">
-        <img src={receipt} alt="Icone Pedidos" />
-        Pedidos({orders})
-      </ButtonHeader> */}
-
       <ButtonHeader className="primary">
-        Novo prato
+        <Receipt size={26}/>
+        Pedidos({ orders ? orders : 0 })
       </ButtonHeader>
 
+      {/* <ButtonHeader className="primary">
+        Novo prato
+      </ButtonHeader> */}
+
       <Logout>
-        <img src={logout} alt="Sair do aplicativo" />
+        <FiLogOut size={24} />
       </Logout>
     </Container>
   )

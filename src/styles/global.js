@@ -17,6 +17,29 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
+  body, input, button, textarea {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    font-weight: 500;
+    outline: none;
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+  }
+
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  p {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+  }
+
   button.primary {
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 
@@ -51,13 +74,25 @@ export default createGlobalStyle`
     }
   }
 
-  /* mobile */
-  body, input, button, textarea {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.4rem;
-    line-height: 2.4rem;
-    font-weight: 500;
-    outline: none;
-    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    /* SCROLLBAR STYLE */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: ${({ theme }) => theme.COLORS.CAKE_100} ${({ theme }) => theme.COLORS.DARK_100};
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: .6rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.CAKE_100};
+    border-radius: 1rem;
+    border: none;
   }
 `;  

@@ -4,7 +4,7 @@ import { device } from "../../breakpoints/devices";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 700;

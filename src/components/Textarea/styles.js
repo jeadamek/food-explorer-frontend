@@ -5,6 +5,7 @@ export const Container = styled.textarea`
   min-height: 17.2rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
+  border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_900};
   
   border: none;
   resize: none;
@@ -15,6 +16,6 @@ export const Container = styled.textarea`
   margin-top: 1.2rem;
 
   &:focus {
-    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
+    border: solid 0.5px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY}; 
   }
 `;

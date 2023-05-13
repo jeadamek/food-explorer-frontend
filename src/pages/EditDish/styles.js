@@ -11,7 +11,7 @@ export const Container = styled.div`
     'header'
     'content'
     'footer';
-
+  
   > main {
     grid-area: content;
     padding: 1.6rem 1rem 5.6rem;
@@ -106,6 +106,14 @@ export const Form = styled.form`
     }
   }
 
+  .buttons {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    gap: 3.2rem
+  }
+
   @media ${device.laptop} {
     gap: 3.2rem;
 
@@ -141,8 +149,9 @@ export const Form = styled.form`
       }
     }
 
-    > button {
-      align-self: flex-end;
+    .buttons {
+      width: fit-content;
+      align-self: self-end;
     }
   }
 `;

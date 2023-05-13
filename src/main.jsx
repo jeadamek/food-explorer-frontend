@@ -7,6 +7,7 @@ import theme from './styles/theme';
 
 // import { DishDetails } from './pages/DishDetails'
 import { AddDish } from './pages/AddDish'
+// import { EditDish } from './pages/EditDish'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

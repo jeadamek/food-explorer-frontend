@@ -10,13 +10,13 @@ export const Container = styled.button`
   align-items: center;
   gap: 1.1rem;
 
-  font-size: 2.4rem;
+  font-size: 2rem;
   line-height: 140%;
 
   cursor: pointer;
 
   > img {
-    height: 2.2rem;
+    height: 2 rem;
   }
 
   :hover {

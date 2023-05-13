@@ -17,7 +17,7 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  body, input, button, textarea {
+  body, button, textarea {
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     line-height: 2.4rem;
@@ -26,9 +26,25 @@ export default createGlobalStyle`
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
 
+  label, input, select, textarea {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    line-height: 100%;
+    font-weight: 400;
+    outline: none;
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+  }
+
+  select {
+    line-height: 160%;
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+  }
+  /* FONT STYLES */
+
   h1 {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
+    font-size: 3.2rem;
     font-weight: 500;
     line-height: 140%;
   }

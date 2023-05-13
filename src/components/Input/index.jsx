@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 export function Input({ icon: Icon, className , ...rest }) {
   return(
     <Container className={className}>
-      <input {...rest} />
       {Icon && <Icon size={20} />}
+      <input {...rest} className={Icon && "hasIcon"}/>
     </Container>
   )
 }

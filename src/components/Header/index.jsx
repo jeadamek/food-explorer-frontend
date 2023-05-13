@@ -2,18 +2,19 @@ import PropTypes from 'prop-types';
 
 import { Container, Brand, Hamburguer, MobileOrder, ButtonHeader, Logout } from "./styles";
 import { Input } from '../Input';
+
 import { GoSearch } from "react-icons/go";
+import { FiMenu } from "react-icons/fi";
 
 import logoImg from "../../assets/logo-user.svg";
 import receipt from "../../assets/icons/receipt.svg";
 import logout from "../../assets/icons/logout.svg";
-import menuHamburguer from "../../assets/icons/menu.svg";
 
 export function Header({ orders }) {
   return(
     <Container>
       <Hamburguer>
-        <img src={menuHamburguer} alt="Menu"/>
+        <FiMenu size={24}/>
       </Hamburguer>
       <Brand>
         <img src={logoImg} alt="Logo Food Explorer"/>

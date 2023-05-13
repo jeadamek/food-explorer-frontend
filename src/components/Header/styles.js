@@ -40,9 +40,6 @@ export const Hamburguer = styled.button`
   background: none;
   border: none;
 
-  width: 2.4rem;
-  height: 2.6rem;
-
   display: flex;
   align-items: center;
 

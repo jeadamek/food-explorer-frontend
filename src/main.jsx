@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <HomeUser />
+      <EditDish />
     </ThemeProvider>
   </React.StrictMode>,
 )

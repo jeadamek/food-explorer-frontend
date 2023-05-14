@@ -7,8 +7,8 @@ export const Container = styled.a`
   
   padding: 2.4rem;
 
-  background-color: ${({ theme }) => theme.COLORS.DARK_300};
-  border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_300};  
+  background-color: ${({ theme }) => theme.COLORS.DARK_500};
+  border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_500};  
 
   position: relative;
 
@@ -18,8 +18,6 @@ export const Container = styled.a`
   gap: 1.2rem;
 
   border-radius: .5rem;
-
-  cursor: pointer;
 
   > button {
     background: none;
@@ -35,15 +33,15 @@ export const Container = styled.a`
     top: 16px;
 
     cursor: pointer;
+
+    &:hover {
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+      filter: brightness(5);
+    }
   }
 
   > img {
     width: 88px;
-  }
-
-  
-  h3:hover {
-    opacity: 0.5;
   }
 
   > p { 
@@ -88,6 +86,11 @@ export const Container = styled.a`
 
     padding: 2.4rem;
     
+    > button {
+      right: 20px;
+      top: 20px;
+    }
+
     > img {
       width: 176px;
     }

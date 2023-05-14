@@ -8,15 +8,15 @@ import { Stepper } from "../Stepper";
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { IoMdHeart } from 'react-icons/io'
 
-export function CardUser({ img, title, description, price, favorite }) {
-  const priceInCurrency = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+export function CardUser({ dish }) {
+  const priceInCurrency = dish.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
   return(
     <Container>
-      <button>{favorite ? <IoMdHeart size={24} /> : <IoMdHeartEmpty size={24} />}</button>
-      <img src={img} alt={`imagem de ${title}`}/>
-      <h3>{`${title} >`}</h3>
-      <p>{description}</p>
+      <button>{dish.favorite ? <IoMdHeart size={28} /> : <IoMdHeartEmpty size={28} />}</button>
+      <img src={dish.img} alt={`imagem de ${dish.title}`}/>
+      <h3>{`${dish.title} >`}</h3>
+      <p>{dish.description}</p>
       <span>{priceInCurrency}</span>  
       <div className="add-cart">
         <Stepper />
@@ -27,9 +27,5 @@ export function CardUser({ img, title, description, price, favorite }) {
 }
 
 CardUser.propTypes = {
-  img: PropTypes.any.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  favorite: PropTypes.bool.isRequired
+  dish: PropTypes.object.isRequired
 }

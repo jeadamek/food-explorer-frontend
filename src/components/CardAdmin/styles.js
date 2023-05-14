@@ -7,8 +7,8 @@ export const Container = styled.a`
   
   padding: 2.4rem;
 
-  background-color: ${({ theme }) => theme.COLORS.DARK_300};
-  border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_300};  
+  background-color: ${({ theme }) => theme.COLORS.DARK_500};
+  border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_500};  
 
   position: relative;
 
@@ -19,8 +19,6 @@ export const Container = styled.a`
   gap: 1.2rem;
 
   border-radius: .5rem;
-
-  cursor: pointer;
 
   > svg {
     position: absolute;
@@ -78,6 +76,11 @@ export const Container = styled.a`
 
     padding: 5.6rem 2.4rem;
     
+    > button {
+      right: 20px;
+      top: 20px;
+    }
+
     > img {
       width: 176px;
     }

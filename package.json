@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "framer-motion": "^10.12.10",
     "npm": "^9.6.6",
     "react": "^18.2.0",
     "react-currency-input-field": "^3.6.10",

@@ -132,6 +132,10 @@ export default createGlobalStyle`
 
     }
 
+    h2 {
+      font-size: 32px;
+    }
+
     h3 {
       font-weight: 700;
       font-size: 24px;

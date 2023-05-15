@@ -17,7 +17,8 @@ export const Container = styled.div`
     padding: 4rem 2rem;
 
     width: 100%;
-    /* max-width: 40rem; */
+    max-width: 70rem;
+    min-width: 40rem;
 
     margin: 0 auto;
 
@@ -27,12 +28,6 @@ export const Container = styled.div`
       > h2 {
         margin-bottom: 2.4rem;
       }
-    }
-  }
-
-  @media ${device.tablet} {
-    > main{
-      max-width: 75rem;
     }
   }
 

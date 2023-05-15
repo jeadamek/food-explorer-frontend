@@ -26,7 +26,7 @@ export function HomeUser() {
             </div>
           </Banner>
 
-{/*         
+        
         <section>
           <h2>Refeições</h2>
           <Carousel items={dishes} />
@@ -40,7 +40,7 @@ export function HomeUser() {
         <section>
           <h2>Bebidas</h2>
           <Carousel items={dishes} />
-        </section> */}
+        </section>
 
       </main>
       <Footer />

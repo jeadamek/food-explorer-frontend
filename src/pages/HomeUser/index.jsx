@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Banner, Container } from "./styles";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -12,8 +12,21 @@ export function HomeUser() {
     <Container>
       <Header />
       <main>
-        <h1>BANNER</h1>
-        
+          
+          <Banner>
+            <div className="banner">
+              <img src="/src/assets/banner.png" alt="Banner: foto de macarons de cores variadas, framboesas, mirtilos e folhas como se estivessem flutuando no ar" />
+
+              <div className="banner-info">
+                <div className="banner-title">
+                  <h1>Sabores inigualáveis</h1>
+                  <span>Sinta o cuidado do preparo com ingredientes selecionados.</span>
+                </div>
+              </div>
+            </div>
+          </Banner>
+
+{/*         
         <section>
           <h2>Refeições</h2>
           <Carousel items={dishes} />
@@ -27,7 +40,7 @@ export function HomeUser() {
         <section>
           <h2>Bebidas</h2>
           <Carousel items={dishes} />
-        </section>
+        </section> */}
 
       </main>
       <Footer />

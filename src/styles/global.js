@@ -69,6 +69,13 @@ export default createGlobalStyle`
     line-height: 140%;
   }
 
+  span {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+  }
+
   button.primary {
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 

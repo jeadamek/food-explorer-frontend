@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 100%;
   height: 4.8rem;
 
-  margin-top: 1.2rem;
+  margin-top: .8rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
   border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_900};

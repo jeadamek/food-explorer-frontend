@@ -36,7 +36,7 @@ export function EditDish() {
         <Form>
           <div className="wrapper">
             <div className="dish-image">
-              <label>
+              <label htmlFor="image" >
                 Imagem do prato
                 <div>
                   <FiUpload size={24}/>

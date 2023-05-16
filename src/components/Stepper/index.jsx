@@ -1,14 +1,14 @@
 import { Container } from "../Stepper/styles";
-import iconPlus from "../../assets/icons/plus.svg";
-import iconMinus from "../../assets/icons/minus.svg";
 
+import { FiPlus } from "react-icons/fi";
+import { FiMinus } from "react-icons/fi";
 
 export function Stepper(){
   return (
     <Container>
-      <button><img src={iconPlus} alt="Adicionar prato" /></button>
+      <button><FiMinus size={24} /></button>
       <span>01</span>
-      <button><img src={iconMinus} alt="Remover prato" /></button>
+      <button><FiPlus size={24} /></button>
     </Container>
   )
 }

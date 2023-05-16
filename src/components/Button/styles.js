@@ -20,18 +20,10 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
 
-  >img {
-    height: 15px;
-  }
-
   @media ${device.laptop} { 
     width: fit-content;
 
     padding: 1.2rem 2.4rem;
-
-    >img {
-      height: 2.2rem;
-    }
   }
 
 `;

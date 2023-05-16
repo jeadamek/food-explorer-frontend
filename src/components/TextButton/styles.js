@@ -5,10 +5,11 @@ export const Container = styled.button`
   border: none;
   background: none;
 
-  height: 3.4rem;
+  height: 2.2rem;
   display: flex;
   align-items: center;
-  gap: 1.1rem;
+  justify-content: flex-start;
+  gap: .5rem;
 
   font-size: 2rem;
   line-height: 140%;

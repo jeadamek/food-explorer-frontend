@@ -1,14 +1,14 @@
 import { Container } from "./styles"
 import PropTypes from 'prop-types';
 
-export function Button({ title, loading=false, icon, ...rest}) {
+export function Button({ title, loading=false, icon: Icon, ...rest}) {
   return(
     <Container 
       type="button"
       disabled={loading}
       {...rest}
       >
-      {icon && <img src={icon} />}
+      {Icon && <Icon size={22} />}
       {loading ? "Carregando" : title}
     </Container>
   )

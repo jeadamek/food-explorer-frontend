@@ -1,5 +1,7 @@
-import { FiUpload } from "react-icons/fi";
 import { Container, Form } from "./styles";
+
+import { FiUpload } from "react-icons/fi";
+import { SlArrowLeft } from "react-icons/sl";
 
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
@@ -11,8 +13,6 @@ import { Textarea } from "../../components/Textarea";
 import { DishItem } from "../../components/DishItem";
 import { TextButton } from "../../components/TextButton";
 import { CurrencyInput } from "../../components/CurrencyInput";
-
-import arrowLeft from '../../assets/icons/caretLeft.svg';
 
 
 export function EditDish() {
@@ -29,7 +29,7 @@ export function EditDish() {
 
       <main>
         <header>
-          <TextButton title="voltar" icon={arrowLeft} />
+          <TextButton title="voltar" icon={SlArrowLeft} />
           <h1>Editar Prato</h1>
         </header>
 

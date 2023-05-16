@@ -2,41 +2,88 @@ import PropTypes from 'prop-types';
 
 import { Container, Brand, Hamburguer, MobileOrder, ButtonHeader, Logout } from "./styles";
 import { Input } from '../Input';
+import { Receipt } from "../../assets/icons/Receipt";
+
 import { GoSearch } from "react-icons/go";
+import { FiMenu, FiX, FiLogOut } from "react-icons/fi";
 
 import logoImg from "../../assets/logo-user.svg";
-import receipt from "../../assets/icons/receipt.svg";
-import logout from "../../assets/icons/logout.svg";
-import menuHamburguer from "../../assets/icons/menu.svg";
 
 export function Header({ orders }) {
+
+
+  function disableScroll() {
+    document.body.classList.add("no-scroll");
+  }
+  
+  function enableScroll() {
+    document.body.classList.remove("no-scroll");
+  }
+
+  function handleModal() {
+    document.getElementById('nav-mobile').classList.toggle('active');
+  }
+
   return(
     <Container>
-      <Hamburguer>
-        <img src={menuHamburguer} alt="Menu"/>
+      
+      <Hamburguer id="hamburguer" onClick={() => {
+          handleModal()
+          disableScroll()
+        }}
+      >
+        <FiMenu size={26}/>
       </Hamburguer>
+
+
+      <div id="nav-mobile">
+        <header>
+          <FiX size={26} onClick={() => {
+              handleModal()
+              enableScroll()
+            }}
+          />
+          Menu
+        </header>
+
+        <nav>
+          <Input
+            type="text"
+            placeholder="Busque por pratos ou ingredientes"
+            icon={GoSearch}
+            className="input-header"
+          />
+          <ul>
+            <li><a>Historico de Pedidos</a></li>
+            <li><a>Meus favoritos</a></li>
+            <li><a>Meu perfil</a></li>
+            <li><a>Sair</a></li>
+          </ul>
+        </nav>
+      </div>
+
       <Brand>
         <img src={logoImg} alt="Logo Food Explorer"/>
       </Brand>
 
       <MobileOrder>
-        <img src={receipt} alt="Icone Pedidos" />
-        <div><span>{orders ? orders : 0}</span></div>
+        <Receipt size={26} />
+        <div><span>{ orders ? orders : 0 }</span></div>
       </MobileOrder>
 
-      <Input placeholder="Busque por pratos ou ingredientes" icon={GoSearch} className="input-header" />
-
-      {/* <ButtonHeader className="primary">
-        <img src={receipt} alt="Icone Pedidos" />
-        Pedidos({orders})
-      </ButtonHeader> */}
+      <Input placeholder="Busque por pratos ou ingredientes" icon={GoSearch} className="desktop-search" />
 
       <ButtonHeader className="primary">
-        Novo prato
+        <Receipt size={26}/>
+        Pedidos({ orders ? orders : 0 })
       </ButtonHeader>
 
+      {/* <ButtonHeader className="primary">
+        Novo prato
+      </ButtonHeader> */}
+
       <Logout>
-        <img src={logout} alt="Sair do aplicativo" />
+        <FiLogOut size={24} />
       </Logout>
     </Container>
   )

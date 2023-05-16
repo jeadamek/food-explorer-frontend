@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { device } from "../../breakpoints/devices";
 
-
 export const Container = styled.header`
   grid-area: header;
   
@@ -14,7 +13,84 @@ export const Container = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  .input-header {
+  #nav-mobile {
+    width: 100%;
+    height: 100vh;
+
+    display: grid;
+    grid-template-rows: 114px auto;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 9999;
+
+    transition: transform .5s ease-in-out;
+    transform: translateX(-100%);
+
+    > header {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+
+      padding: 2.8rem 2.8rem 0;
+
+      background-color: ${({ theme }) => theme.COLORS.DARK_700};
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 25px;
+
+      > svg {
+        cursor: pointer;
+      }
+    }
+
+    > nav {
+      padding: 2.8rem;
+
+      background-color: ${({ theme }) => theme.COLORS.DARK_400};
+
+      > div {
+        margin-bottom: 3.6rem;
+      }
+
+      > ul {
+        list-style: none;
+
+        li {
+          padding: 1rem;
+          border-bottom: solid 1px ${({ theme }) => theme.COLORS.DARK_1000};
+
+          > a {
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 140%;
+
+            display: block;
+            cursor: pointer;
+
+            &:hover {
+              color: ${({ theme }) => theme.COLORS.CAKE_200};;
+            }
+          }
+        }
+      }
+    }
+
+    @media ${device.laptop} {
+      display: none;
+    }
+  }
+
+  #nav-mobile.active {
+    transform: translateX(0);
+  }
+
+  .desktop-search {
     display: none;
   }
 
@@ -25,7 +101,7 @@ export const Container = styled.header`
     align-items: center;
     gap: 3.2rem;
 
-    .input-header {
+    .desktop-search {
       margin: 0;
       display: flex;
     }
@@ -39,9 +115,6 @@ export const Container = styled.header`
 export const Hamburguer = styled.button`
   background: none;
   border: none;
-
-  width: 2.4rem;
-  height: 2.6rem;
 
   display: flex;
   align-items: center;
@@ -137,15 +210,12 @@ export const Logout = styled.button`
 
     border: none;
     background: none;
-    text-align: right;
-    height: 48px;
-    min-width: 40px;
+
+    width: 32px;
+    height: 32px;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
     cursor: pointer;
-
-    > svg > path {
-      fill: pink;
-    }
 
     &:hover {
       opacity: 0.5;

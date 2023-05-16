@@ -8,6 +8,7 @@ export const Container = styled.div`
   margin-top: 1.2rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
+  border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_900};
   color: ${({ theme }) => theme.COLORS.LIGHT_500};
 
   display: flex;
@@ -32,7 +33,6 @@ export const Input = styled(CurrencyInput)`
   }
 
   &:focus {
-    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
-    padding: 14px 13px;
+    border: solid 0.5px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY}; 
   }
 `;

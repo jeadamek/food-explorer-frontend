@@ -4,19 +4,19 @@ import { device } from "../../breakpoints/devices";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   line-height: 160%;
 
   > button {
     background: transparent;
     border: none;
 
-    width: 3.6rem;
-    height: 3.6rem;
+    width: 2.4rem;
+    height: 2.4rem;
 
     display: flex;
     align-items: center;
@@ -24,37 +24,18 @@ export const Container = styled.div`
 
     cursor: pointer;
 
-    :hover {
+    &:hover {
       opacity: 0.5;
     }
 
-    :active {
+    &:active {
       background-color: ${({ theme }) => theme.COLORS.DARK_1000};
       opacity: 1;
-    }
-
-    > img {
-      width: 2.2rem;
-      height: 2.2rem;
     }
   }
 
   @media ${device.laptop} {
-    height: 3.2rem;
+    gap: 1.6rem;
     font-size: 2rem;
-
-    >button {
-      height: 3.2rem;
-      width: 3.2rem;
-
-      > img {
-        width: 1.8rem;
-        height: 1.8rem;
-      }
-    }
-
-    /* >span {
-      font-size: 2rem;
-    } */
   }
 `;

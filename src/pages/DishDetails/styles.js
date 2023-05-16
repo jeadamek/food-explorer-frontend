@@ -14,23 +14,20 @@ export const Container = styled.div`
 
   > main {
     grid-area: content;
-    padding: 3.6rem 1rem 6rem;
+    padding: 3.6rem 2rem 6rem;
 
     width: 100%;
-    max-width: 55rem;
+    max-width: 70rem;
+
     margin: 0 auto;
   }
 
   @media ${device.laptop} {
-    > main {
-      width: 98rem;
-      padding: 2.4rem 0 15.5rem;
-    }
-  }
+    grid-template-rows: 9.6rem auto 7.7rem;
 
-  @media ${device.desktop} {
     > main {
-      width: 112.4rem;
+      max-width: 112.4rem;
+      padding: 2.4rem 3rem 15.5rem;
     }
   }
 `

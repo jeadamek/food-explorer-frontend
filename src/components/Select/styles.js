@@ -7,6 +7,7 @@ export const Container = styled.select`
   margin-top: 1.2rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
+  border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_900};
 
   display: flex;
   align-items: center;
@@ -25,7 +26,7 @@ export const Container = styled.select`
   background-position: right 8px top 50%;
 
   &:focus {
-    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
+    border: solid 0.5px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY}; 
   }
 `;
 

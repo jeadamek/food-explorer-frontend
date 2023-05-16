@@ -6,7 +6,7 @@ import { Footer } from "../../components/Footer";
 import { Carousel } from "../../components/Carousel";
 import { dishes } from "./dishes";
 
-export function HomeUser() {
+export function Home() {
 
   return(
     <Container>

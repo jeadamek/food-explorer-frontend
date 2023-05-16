@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { device } from "../../breakpoints/devices";
 
-
 export const Container = styled.header`
   grid-area: header;
   

@@ -11,6 +11,15 @@ import logoImg from "../../assets/logo-user.svg";
 
 export function Header({ orders }) {
 
+
+  function disableScroll() {
+    document.body.classList.add("no-scroll");
+  }
+  
+  function enableScroll() {
+    document.body.classList.remove("no-scroll");
+  }
+
   function handleModal() {
     document.getElementById('nav-mobile').classList.toggle('active');
   }
@@ -18,14 +27,22 @@ export function Header({ orders }) {
   return(
     <Container>
       
-      <Hamburguer id="hamburguer" onClick={handleModal}>
+      <Hamburguer id="hamburguer" onClick={() => {
+          handleModal()
+          disableScroll()
+        }}
+      >
         <FiMenu size={26}/>
       </Hamburguer>
 
 
       <div id="nav-mobile">
         <header>
-          <FiX size={26} onClick={handleModal}/>
+          <FiX size={26} onClick={() => {
+              handleModal()
+              enableScroll()
+            }}
+          />
           Menu
         </header>
 

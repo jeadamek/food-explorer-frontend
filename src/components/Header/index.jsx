@@ -5,17 +5,46 @@ import { Input } from '../Input';
 import { Receipt } from "../../assets/icons/Receipt";
 
 import { GoSearch } from "react-icons/go";
-import { FiMenu } from "react-icons/fi";
-import { FiLogOut } from "react-icons/fi";
+import { FiMenu, FiX, FiLogOut } from "react-icons/fi";
 
 import logoImg from "../../assets/logo-user.svg";
 
 export function Header({ orders }) {
+
+  function handleModal() {
+    document.getElementById('nav-mobile').classList.toggle('active');
+  }
+
   return(
     <Container>
-      <Hamburguer>
+      
+      <Hamburguer id="hamburguer" onClick={handleModal}>
         <FiMenu size={26}/>
       </Hamburguer>
+
+
+      <div id="nav-mobile">
+        <header>
+          <FiX size={26} onClick={handleModal}/>
+          Menu
+        </header>
+
+        <nav>
+          <Input
+            type="text"
+            placeholder="Busque por pratos ou ingredientes"
+            icon={GoSearch}
+            className="input-header"
+          />
+          <ul>
+            <li><a>Historico de Pedidos</a></li>
+            <li><a>Meus favoritos</a></li>
+            <li><a>Meu perfil</a></li>
+            <li><a>Sair</a></li>
+          </ul>
+        </nav>
+      </div>
+
       <Brand>
         <img src={logoImg} alt="Logo Food Explorer"/>
       </Brand>
@@ -25,7 +54,7 @@ export function Header({ orders }) {
         <div><span>{ orders ? orders : 0 }</span></div>
       </MobileOrder>
 
-      <Input placeholder="Busque por pratos ou ingredientes" icon={GoSearch} className="input-header" />
+      <Input placeholder="Busque por pratos ou ingredientes" icon={GoSearch} className="desktop-search" />
 
       <ButtonHeader className="primary">
         <Receipt size={26}/>

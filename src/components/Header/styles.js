@@ -15,14 +15,14 @@ export const Container = styled.header`
 
   #nav-mobile {
     width: 100%;
-    height: 100vh;
+    height: 100%;
 
     display: grid;
     grid-template-rows: 114px auto;
 
     position: fixed;
     top: 0;
-    left: 0;
+    left: 0;  
 
     z-index: 9999;
 

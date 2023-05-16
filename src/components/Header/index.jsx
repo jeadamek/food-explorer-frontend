@@ -11,7 +11,6 @@ import logoImg from "../../assets/logo-user.svg";
 
 export function Header({ orders }) {
 
-
   function disableScroll() {
     document.body.classList.add("no-scroll");
   }

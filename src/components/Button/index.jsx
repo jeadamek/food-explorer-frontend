@@ -1,4 +1,5 @@
 import { Container } from "./styles"
+import { Loading } from "../Loading";
 import PropTypes from 'prop-types';
 
 export function Button({ title, loading=false, icon: Icon, ...rest}) {
@@ -9,7 +10,7 @@ export function Button({ title, loading=false, icon: Icon, ...rest}) {
       {...rest}
       >
       {Icon && <Icon size={22} />}
-      {loading ? "Carregando" : title}
+      {loading ? <Loading /> : title}
     </Container>
   )
 }

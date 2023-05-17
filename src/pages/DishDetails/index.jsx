@@ -12,14 +12,23 @@ import { Footer } from '../../components/Footer';
 
 import { Receipt } from '../../assets/icons/Receipt';
 
+import { useNavigate } from 'react-router-dom';
+
 
 export function DishDetails() {
+  const navegate = useNavigate();
+
+
+  function handleBack(){
+    navegate(-1);
+  }
+
   return(
     <Container>
       <Header orders={2}/>
 
       <main>
-        <TextButton title="voltar" icon={SlArrowLeft} />
+      <TextButton title="voltar" icon={SlArrowLeft} onClick={handleBack}/>
 
         <Content> 
           <DishPhoto>

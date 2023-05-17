@@ -76,7 +76,7 @@ export default createGlobalStyle`
     line-height: 100%;
   }
 
-  button.primary {
+  .primary {
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 
       &:hover {
@@ -93,7 +93,7 @@ export default createGlobalStyle`
       }
   }
 
-  button.secondary {
+  .secondary {
     background-color: ${({ theme }) => theme.COLORS.DARK_800};
     border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_800};
 

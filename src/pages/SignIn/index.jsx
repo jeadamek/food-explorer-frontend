@@ -4,7 +4,7 @@ import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Logo from "../../assets/logo-user.svg"
 
@@ -38,9 +38,10 @@ export function SignIn() {
 
         <Button title="Entrar" className="primary" />
 
-        <a href="/register">
+        <Link to="/register">
           Criar uma conta
-        </a>
+        </Link>
+        
       </Form>
     </Container>
   )

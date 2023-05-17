@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Container, Brand, Hamburguer, MobileOrder, ButtonHeader, Logout } from "./styles";
+import { Container, Brand, Hamburguer, MobileOrder, NavHeader, Logout } from "./styles";
 import { Input } from '../Input';
 import { Receipt } from "../../assets/icons/Receipt";
 
@@ -8,6 +8,7 @@ import { GoSearch } from "react-icons/go";
 import { FiMenu, FiX, FiLogOut } from "react-icons/fi";
 
 import logoImg from "../../assets/logo-user.svg";
+import { Link } from 'react-router-dom';
 
 export function Header({ orders }) {
 
@@ -26,15 +27,6 @@ export function Header({ orders }) {
   return(
     <Container>
       
-      <Hamburguer id="hamburguer" onClick={() => {
-          handleModal()
-          disableScroll()
-        }}
-      >
-        <FiMenu size={26}/>
-      </Hamburguer>
-
-
       <div id="nav-mobile">
         <header>
           <FiX size={26} onClick={() => {
@@ -53,15 +45,29 @@ export function Header({ orders }) {
             className="input-header"
           />
           <ul>
-            <li><a>Historico de Pedidos</a></li>
-            <li><a>Meus favoritos</a></li>
-            <li><a>Meu perfil</a></li>
-            <li><a>Sair</a></li>
+            <li><Link to="/new">Novo Prato</Link></li>
+            <li><Link>Pedidos</Link></li>
+            <li><Link>Sair</Link></li>
           </ul>
+
+          {/* <ul>
+            <li><Link>Historico de Pedidos</Link></li>
+            <li><Link>Meus favoritos</Link></li>
+            <li><Link>Meu perfil</Link></li>
+            <li><Link>Sair</Link></li>
+          </ul> */}
         </nav>
       </div>
 
-      <Brand>
+      <Hamburguer id="hamburguer" onClick={() => {
+          handleModal()
+          disableScroll()
+        }}
+      >
+        <FiMenu size={26}/>
+      </Hamburguer>
+
+      <Brand to="/">
         <img src={logoImg} alt="Logo Food Explorer"/>
       </Brand>
 
@@ -72,17 +78,17 @@ export function Header({ orders }) {
 
       <Input placeholder="Busque por pratos ou ingredientes" icon={GoSearch} className="desktop-search" />
 
-      <ButtonHeader className="primary">
+      {/* <NavHeader className="primary">
         <Receipt size={26}/>
         Pedidos({ orders ? orders : 0 })
-      </ButtonHeader>
+      </NavHeader> */}
 
-      {/* <ButtonHeader className="primary">
+      <NavHeader to="/new" className="primary">
         Novo prato
-      </ButtonHeader> */}
+      </NavHeader>
 
       <Logout>
-        <FiLogOut size={24} />
+        <FiLogOut size={26} />
       </Logout>
     </Container>
   )

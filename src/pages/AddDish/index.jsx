@@ -14,8 +14,10 @@ import { DishItem } from "../../components/DishItem";
 import { TextButton } from "../../components/TextButton";
 import { CurrencyInput } from "../../components/CurrencyInput";
 
+import { useNavigate } from "react-router-dom";
 
 export function AddDish() {
+  const navegate = useNavigate();
 
   const options = [
     { value: 'default', label: 'Selecione uma opção'},
@@ -23,13 +25,18 @@ export function AddDish() {
     { value: 'sobremesa', label: 'Sobremesa'},
     { value: 'bebida', label: 'Bebida'},
   ];
+
+  function handleBack(){
+    navegate(-1);
+  }
+
   return(
     <Container>
       <Header />
 
       <main>
         <header>
-          <TextButton title="voltar" icon={SlArrowLeft} />
+          <TextButton title="voltar" icon={SlArrowLeft} onClick={handleBack}/>
           <h1>Adicionar Prato</h1>
         </header>
 

@@ -54,7 +54,7 @@ export const Form = styled.form`
       height: 4.8rem;
 
       padding: 12px 32px;
-      margin-top: 1.2rem;
+      margin-top: .8rem;
 
       font-family: 'Poppins', sans-serif;
       font-weight: 500;
@@ -86,13 +86,13 @@ export const Form = styled.form`
       font-weight: 400;
       outline: none;
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
-      margin-bottom: 1.6rem;
+      margin-bottom: .8rem;
     }
 
     > div {
       width: 100%;
       
-      margin-top: 1.2rem;
+      margin-top: .8rem;
 
       background-color: ${({ theme }) => theme.COLORS.DARK_900};
 

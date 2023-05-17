@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 
 import { TbPencil } from "react-icons/tb";
 
-export function CardAdmin({ dish }) {
+export function CardAdmin({ dish, ...rest }) {
   const priceInCurrency = dish.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
   return(
-    <Container>
+    <Container {...rest}>
       <TbPencil size={28} />
       <img src={dish.img} alt={`imagem de ${dish.title}`}/>
       <h3>{`${dish.title} >`}</h3>

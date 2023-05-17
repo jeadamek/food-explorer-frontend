@@ -1,6 +1,6 @@
+import 'react-toastify/dist/ReactToastify.css'; 
 import { createGlobalStyle } from 'styled-components';
 import { device } from '../breakpoints/devices';
-// import { device } from '../breakpoints/devices';
 
 export default createGlobalStyle`
   * {

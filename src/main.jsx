@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { ToastContainer} from 'react-toastify';
 import { ThemeProvider } from 'styled-components';
 
 import GlobalStyles from './styles/global';
@@ -11,6 +12,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
+      <ToastContainer 
+        autoClose={4000}
+        theme='colored'
+      />
       <Routes />
     </ThemeProvider>
   </React.StrictMode>,

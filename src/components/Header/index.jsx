@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 
 import { Container, Brand, Hamburguer, MobileOrder, NavHeader, Logout } from "./styles";
+
 import { Input } from '../Input';
 import { Receipt } from "../../assets/icons/Receipt";
 
@@ -8,9 +12,15 @@ import { GoSearch } from "react-icons/go";
 import { FiMenu, FiX, FiLogOut } from "react-icons/fi";
 
 import logoImg from "../../assets/logo-user.svg";
-import { Link } from 'react-router-dom';
 
 export function Header({ orders }) {
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
+
+  function handleSignOut() {
+    navigate("/");
+    signOut();
+  }
 
   function disableScroll() {
     document.body.classList.add("no-scroll");
@@ -47,14 +57,14 @@ export function Header({ orders }) {
           <ul>
             <li><Link to="/new">Novo Prato</Link></li>
             <li><Link>Pedidos</Link></li>
-            <li><Link>Sair</Link></li>
+            <li><Link onClick={handleSignOut}>Sair</Link></li>
           </ul>
 
           {/* <ul>
             <li><Link>Historico de Pedidos</Link></li>
             <li><Link>Meus favoritos</Link></li>
             <li><Link>Meu perfil</Link></li>
-            <li><Link>Sair</Link></li>
+            <li><Link onClick={handleSignOut}>Sair</Link></li>
           </ul> */}
         </nav>
       </div>
@@ -87,7 +97,7 @@ export function Header({ orders }) {
         Novo prato
       </NavHeader>
 
-      <Logout>
+      <Logout onClick={handleSignOut}>
         <FiLogOut size={26} />
       </Logout>
     </Container>

@@ -1,7 +1,7 @@
 import { Container, Input } from "./styles";
 import PropTypes from "prop-types";
 
-export function CurrencyInput({ onChange, value, ...rest }) {
+export function CurrencyInput({ value, ...rest }) {
   return(
     <Container>
       <Input
@@ -9,7 +9,6 @@ export function CurrencyInput({ onChange, value, ...rest }) {
         decimalsLimit={2}
         decimalSeparator=","
         groupSeparator="."
-        onValueChange={onChange}
         value={value}
         {...rest}
       />

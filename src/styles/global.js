@@ -112,11 +112,7 @@ export default createGlobalStyle`
     }
   }
 
-  .no-scroll {
-    overflow: hidden;
-  }
-
-    /* SCROLLBAR STYLE */
+  /* SCROLLBAR STYLE */
   /* Firefox */
   * {
     scrollbar-width: thin;

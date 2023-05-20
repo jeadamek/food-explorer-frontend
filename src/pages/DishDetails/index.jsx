@@ -1,7 +1,11 @@
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useAuth } from '../../hooks/auth';
+
+import { api } from '../../services/api';
+
 import { Container, Content, DishPhoto, DishInfo} from './styles';
-
-import { SlArrowLeft } from "react-icons/sl";
-
 
 import { Ingredient } from '../../components/Ingredient';
 import { TextButton } from '../../components/TextButton';
@@ -11,17 +15,40 @@ import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
 
 import { Receipt } from '../../assets/icons/Receipt';
-
-import { useNavigate } from 'react-router-dom';
+import { SlArrowLeft } from "react-icons/sl";
 
 
 export function DishDetails() {
+  const { user } = useAuth();
+  
+  const [data, setData] = useState({});
+
+  const [image, setImage] = useState("");
+
+  const params = useParams();
   const navegate = useNavigate();
 
+  // function formatCurrency(value) {
+  //   const formatedValue = value.toLocaleString('pt-br', {minimumFractionDigits: 2});
+
+  //   return formatedValue;
+  // }
 
   function handleBack(){
     navegate(-1);
   }
+
+  useEffect(() => {
+    async function fetchDish(){
+      const response = await api.get(`/dishes/${params.id}`)
+      setData(response.data);
+      
+      const imageUrl = `${api.defaults.baseURL}/files/${response.data.image}`
+      setImage(imageUrl)
+    }
+
+    fetchDish();
+  },[params.id]);
 
   return(
     <Container>
@@ -32,32 +59,55 @@ export function DishDetails() {
 
         <Content> 
           <DishPhoto>
-            <img src='/public/saladaRavanello.png' alt="Foto do prato"/>
+            <img src={image} alt={`Foto de ${data.name}`} />
           </DishPhoto>  
 
           <DishInfo>
-            <h1>Salada Ravanello</h1>
-            <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
+            <h1>{data.name}</h1>
+            <p>{data.description}</p>
 
-            <div className="ingredients">
-              <Ingredient title="alface"/>
-              <Ingredient title="cebola"/>
-              <Ingredient title="pão naan"/>
-              <Ingredient title="pepino"/>
-              <Ingredient title="rabanete"/>
-              <Ingredient title="tomate"/>
-            </div>
+            
+            {
+              data.ingredients &&
+              <div className="ingredients">
+                {
+                  data.ingredients.map(ingredient => (
+                    <Ingredient 
+                      key={String(ingredient.id)}
+                      title={ingredient.name}
+                    />
+                  ))
+                }
+              </div>
+            }
 
-            {/* USER */}
+{/* 
+            USER
             <div className="buttons">
               <Stepper />
-              <Button title="pedir ∙ R$ 25,00" icon={Receipt} className="primary" />
+              <Button title={`incluir ∙ R$ ${data.price}`} icon={Receipt} className="primary" />
             </div>
 
             {/* ADMIN */}
-            <div className="buttons">
+            {/* <div className="buttons">
               <Button title="Editar Prato" className="primary" />
             </div>
+ */} 
+
+
+            {
+              user.isAdmin ?
+              // ADMIN
+              <div className="buttons">
+                <Button title="Editar Prato" className="primary" />
+              </div>
+              :
+              // USER
+              <div className="buttons">
+                <Stepper />
+                <Button title={`incluir ∙ R$ ${data.price}`} icon={Receipt} className="primary" />
+              </div>
+            }
           </DishInfo>
           
         </Content>

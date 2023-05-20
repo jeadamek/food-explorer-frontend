@@ -71,7 +71,7 @@ export const DishPhoto = styled.div`
   }
 
   @media ${device.laptop} {
-    margin: 4.2rem auto;
+    margin: 4.2rem 0;
 
     > img {
       width: 39rem;

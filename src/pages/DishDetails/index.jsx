@@ -11,6 +11,7 @@ import { Ingredient } from '../../components/Ingredient';
 import { TextButton } from '../../components/TextButton';
 import { Stepper } from '../../components/Stepper';
 import { Header } from '../../components/Header';
+import { ButtonLink } from '../../components/ButtonLink';
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
 
@@ -81,25 +82,15 @@ export function DishDetails() {
               </div>
             }
 
-{/* 
-            USER
-            <div className="buttons">
-              <Stepper />
-              <Button title={`incluir ∙ R$ ${data.price}`} icon={Receipt} className="primary" />
-            </div>
-
-            {/* ADMIN */}
-            {/* <div className="buttons">
-              <Button title="Editar Prato" className="primary" />
-            </div>
- */} 
-
-
             {
               user.isAdmin ?
               // ADMIN
               <div className="buttons">
-                <Button title="Editar Prato" className="primary" />
+                <ButtonLink 
+                  to={`/edit/${data.id}`}
+                  title="Editar Prato" 
+                  className="primary" 
+                />
               </div>
               :
               // USER

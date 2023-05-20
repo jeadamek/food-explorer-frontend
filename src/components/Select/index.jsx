@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 export function Select({ options, ...rest }) {
   return(
-    <Container {...rest} defaultValue={'default'}>
+    <Container {...rest}>
       {options.map((option) => (
 
         option.value == 'default' ? 

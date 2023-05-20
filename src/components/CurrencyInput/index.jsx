@@ -17,6 +17,5 @@ export function CurrencyInput({ value, ...rest }) {
 }
 
 CurrencyInput.propTypes = {
-  onChange: PropTypes.func,
-  value: PropTypes.number
+  value: PropTypes.string
 }

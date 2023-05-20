@@ -183,7 +183,11 @@ export function AddDish() {
                 decimalSeparator=","
                 groupSeparator="."
                 id="price"
-                onValueChange={value => setPrice(value)}
+                onValueChange={(value) => {
+                  const formattedValue = value.replace(',', '.');
+                  const valueAsFloat = parseFloat(formattedValue)
+                  setPrice(valueAsFloat)
+                }}
               />
             </div>
           </div>

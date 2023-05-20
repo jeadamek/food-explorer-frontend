@@ -1,7 +1,9 @@
-import { Container, Form } from "./styles";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { FiUpload } from "react-icons/fi";
-import { SlArrowLeft } from "react-icons/sl";
+import { api } from "../../services/api";
+
+import { Container, Form } from "./styles";
 
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
@@ -14,10 +16,16 @@ import { DishItem } from "../../components/DishItem";
 import { TextButton } from "../../components/TextButton";
 import { CurrencyInput } from "../../components/CurrencyInput";
 
-import { useNavigate } from "react-router-dom";
+import { FiUpload } from "react-icons/fi";
+import { SlArrowLeft } from "react-icons/sl";
 
 
 export function EditDish() {
+  const [data, setData] = useState({});
+  const [image, setImage] = useState("");
+
+
+  const params = useParams();
   const navegate = useNavigate();
 
   const options = [
@@ -30,6 +38,18 @@ export function EditDish() {
   function handleBack(){
     navegate(-1);
   }
+
+  useEffect(() => {
+    async function fetchDish() {
+      const response = await api.get(`/dishes/${params.id}`);
+      setData(response.data);
+
+      const imageUrl = `${api.defaults.baseURL}/files/${response.data.image}`
+      setImage(imageUrl);
+    }
+
+    fetchDish();
+  },[params.id])
 
   return(
     <Container>
@@ -48,7 +68,7 @@ export function EditDish() {
                 Imagem do prato
                 <div>
                   <FiUpload size={24}/>
-                  Selecionar Imagem
+                  {image ? data.image : "Selecionar Imagem"}
                   <input 
                     type="file" 
                     id="image"
@@ -60,12 +80,21 @@ export function EditDish() {
 
             <div className="dish-name">
               <Label htmlFor="name" title="Nome" />
-              <Input placeholder="Ex.: Salada Ceasar" id="name" />
+              <Input 
+                placeholder="Ex.: Salada Ceasar" 
+                id="name"
+                // value={data.name}
+              />
             </div>
             
             <div className="dish-category">
               <Label htmlFor="category" title="Categoria" />
-              <Select name="category" id="category" options={options} />
+              <Select 
+                name="category" 
+                id="category" 
+                options={options} 
+                value={data.category}
+              />
             </div>
           </div>
 
@@ -87,13 +116,18 @@ export function EditDish() {
                 decimalSeparator=","
                 groupSeparator="."
                 id="price"
+                value={data.price}
               />
             </div>
           </div>
           
           <div className="dish-description">
             <Label htmlFor="description" title="Descrição" />
-            <Textarea id="description" placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" />
+            <Textarea 
+              id="description" 
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" 
+              value={data.description}  
+            />
           </div>
           
           <div className="buttons">

@@ -12,10 +12,14 @@ import { GoSearch } from "react-icons/go";
 import { FiMenu, FiX, FiLogOut } from "react-icons/fi";
 
 import logoImg from "../../assets/logo-user.svg";
+import logoImgAdmin from "../../assets/logo-admin-desktop.svg"; 
+import logoImgAdminMobile from "../../assets/logo-admin-mobile.svg"; 
 
 export function Header({ orders }) {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
   const navigate = useNavigate();
+
+  const mobile = window.innerWidth <= 768;
 
   function handleSignOut() {
     navigate("/");
@@ -45,18 +49,23 @@ export function Header({ orders }) {
             icon={GoSearch}
             className="input-header"
           />
-          <ul>
-            <li><Link to="/new">Novo Prato</Link></li>
-            <li><Link>Pedidos</Link></li>
-            <li><Link onClick={handleSignOut}>Sair</Link></li>
-          </ul>
 
-          {/* <ul>
-            <li><Link>Historico de Pedidos</Link></li>
-            <li><Link>Meus favoritos</Link></li>
-            <li><Link>Meu perfil</Link></li>
-            <li><Link onClick={handleSignOut}>Sair</Link></li>
-          </ul> */}
+          {
+            user.isAdmin ?
+              <ul>
+                <li><Link to="/new">Novo Prato</Link></li>
+                <li><Link>Pedidos</Link></li>
+                <li><Link to={"/"} onClick={handleSignOut}>Sair</Link></li>
+              </ul>
+            :
+              <ul>
+                <li><Link>Meu perfil</Link></li>
+                <li><Link>Meus favoritos</Link></li>
+                <li><Link>Historico de Pedidos</Link></li>
+                <li><Link to={"/"} onClick={handleSignOut}>Sair</Link></li>
+              </ul>
+          }
+
         </nav>
       </div>
 
@@ -68,7 +77,17 @@ export function Header({ orders }) {
       </Hamburguer>
 
       <Brand to="/">
-        <img src={logoImg} alt="Logo Food Explorer"/>
+        {
+          user.isAdmin ? (
+            mobile ? (
+              <img src={logoImgAdminMobile} alt="Logo Food Explorer"/>
+            ) : (
+              <img src={logoImgAdmin} alt="Logo Food Explorer"/>
+            )
+          ) : (
+            <img src={logoImg} alt="Logo Food Explorer"/>
+          )
+        }
       </Brand>
 
       <MobileOrder>
@@ -77,15 +96,20 @@ export function Header({ orders }) {
       </MobileOrder>
 
       <Input placeholder="Busque por pratos ou ingredientes" icon={GoSearch} className="desktop-search" />
+      
+      {
+        user.isAdmin ?
+          <NavHeader to="/new" className="primary">
+            Novo prato
+          </NavHeader>
+        :
+          <NavHeader className="primary">
+            <Receipt size={26}/>
+            Pedidos({ orders ? orders : 0 })
+          </NavHeader>
+      }
 
-      {/* <NavHeader className="primary">
-        <Receipt size={26}/>
-        Pedidos({ orders ? orders : 0 })
-      </NavHeader> */}
 
-      <NavHeader to="/new" className="primary">
-        Novo prato
-      </NavHeader>
 
       <Logout onClick={handleSignOut}>
         <FiLogOut size={26} />

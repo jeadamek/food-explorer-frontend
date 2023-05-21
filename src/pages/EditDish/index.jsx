@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -21,19 +22,97 @@ import { SlArrowLeft } from "react-icons/sl";
 
 
 export function EditDish() {
-  const [data, setData] = useState({});
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState(null);
+  const [description, setDescription] = useState("");
+
+  const [newIngredient, setNewIngredient] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+
   const [image, setImage] = useState("");
+  const [imageFile, setImageFile] = useState(null);
 
-
-  const params = useParams();
+  const { id } = useParams();
   const navegate = useNavigate();
 
   const options = [
     { value: 'default', label: 'Selecione uma opção'},
-    { value: 'refeicao', label: 'Refeição'},
+    { value: 'refeição', label: 'Refeição'},
     { value: 'sobremesa', label: 'Sobremesa'},
     { value: 'bebida', label: 'Bebida'},
   ];
+
+  function handleNewIngredient() {
+    if (!newIngredient) {
+      return toast.warn("Digite um ingrediente antes de adicioná-lo")
+    }
+
+    setIngredients(prevState => [...prevState, newIngredient]);
+    setNewIngredient("");
+  }
+
+  function handleRemoveIngredient(deleted) {
+    setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
+  }
+
+  async function handleRemoveDish() {
+    const confirm = window.confirm("Deseja realmente remover este prato?");
+
+    if (confirm) {
+      await api.delete(`/dishes/${id}`);
+      toast.success("Prato removido com sucesso!");
+
+      navegate("/");
+    }
+  }
+
+  async function handleUpdate() {
+    if(!image) {
+      return toast.warn("Faça upload da foto do prato");
+    } 
+    
+    if(!name || !category || !price || !description) {
+      return toast.warn("Todos os campos devem ser preenchidos");
+    }
+
+    if(ingredients.length == 0) {
+      return toast.warn("Adicione os ingredientes do prato");
+    }
+
+    if(newIngredient) {
+      return toast.warn(`Clique em "+" para adicionar o ingrediente: ${newIngredient}, ou deixe o campo vázio.`);
+    }
+
+    const formattedPrice = typeof price == 'string' ? parseFloat(price.replace(",", ".")) : price
+
+    try {
+      await api.put(`/dishes/${id}`, {
+        name,
+        category,
+        price: formattedPrice,
+        description,
+        ingredients
+      });
+
+      if (imageFile) {
+        const fileUploadForm = new FormData();
+
+        fileUploadForm.append("image", imageFile);
+
+        await api.patch(`/dishes/image/${id}`, fileUploadForm);
+      }
+
+      toast.success("Prato atualizado!");
+
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Não foi possível atualizar o prato.");
+      }
+    }
+  }
 
   function handleBack(){
     navegate(-1);
@@ -41,15 +120,19 @@ export function EditDish() {
 
   useEffect(() => {
     async function fetchDish() {
-      const response = await api.get(`/dishes/${params.id}`);
-      setData(response.data);
+      const response = await api.get(`/dishes/${id}`);
+      const { name, category, price, description, ingredients, image } = response.data;
 
-      const imageUrl = `${api.defaults.baseURL}/files/${response.data.image}`
-      setImage(imageUrl);
+      setName(name);
+      setCategory(category);
+      setPrice(price.toFixed(2));
+      setDescription(description); 
+      setIngredients(ingredients.map(ingredient => ingredient.name));
+      setImage(image);
     }
 
     fetchDish();
-  },[params.id])
+  },[id])
 
   return(
     <Container>
@@ -67,12 +150,13 @@ export function EditDish() {
               <label htmlFor="image" >
                 Imagem do prato
                 <div>
-                  <FiUpload size={24}/>
-                  {image ? data.image : "Selecionar Imagem"}
+                  <FiUpload size={26}/>
+                  <span>{imageFile ? imageFile.name : image }</span>
                   <input 
                     type="file" 
                     id="image"
                     name="image"
+                    onChange={e => setImageFile(e.target.files[0])}
                   />
                 </div>
               </label>
@@ -83,7 +167,8 @@ export function EditDish() {
               <Input 
                 placeholder="Ex.: Salada Ceasar" 
                 id="name"
-                // value={data.name}
+                value={name}
+                onChange={e => setName(e.target.value)}
               />
             </div>
             
@@ -93,7 +178,8 @@ export function EditDish() {
                 name="category" 
                 id="category" 
                 options={options} 
-                value={data.category}
+                value={category}
+                onChange={e => setCategory(e.target.value)}
               />
             </div>
           </div>
@@ -101,22 +187,39 @@ export function EditDish() {
           <div className="wrapper">
             <div className="dish-ingredients">
               <span>Ingredientes</span>
-              <div>
-                <DishItem value="pão naan"/>
-                <DishItem isNew placeholder="Adicionar"/>
-              </div>
+                {
+                  ingredients &&
+                  <div>
+                    {
+                      ingredients.map((ingredient, index) => (
+                          <DishItem 
+                            key={String(index)}
+                            value={ingredient} 
+                            size={ingredient.length}
+                            onClick={() => handleRemoveIngredient(ingredient)}
+                          />
+                      ))
+                    }
+                    <DishItem 
+                      isNew 
+                      placeholder="Adicionar"
+                      value={newIngredient}
+                      size={9} 
+                      onChange={e => setNewIngredient(e.target.value)}
+                      onClick={handleNewIngredient}
+                    />  
+                  </div>
+                }
             </div>
 
             <div className="dish-price">
               <Label htmlFor="price" title="Preço" />
               <CurrencyInput 
+                type="text"
                 placeholder="R$ 00,00" 
-                prefix="R$ "
-                decimalsLimit={2}
-                decimalSeparator=","
-                groupSeparator="."
                 id="price"
-                value={data.price}
+                value={price}
+                onValueChange={(value) => setPrice(value)}
               />
             </div>
           </div>
@@ -126,19 +229,26 @@ export function EditDish() {
             <Textarea 
               id="description" 
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" 
-              value={data.description}  
+              value={description}  
+              onChange={e => setDescription(e.target.value)}
             />
           </div>
           
           <div className="buttons">
-            <Button title="Excluir prato" className="secondary" />
-            <Button title="Salvar alterações" className="primary" />
+            <Button 
+              title="Excluir prato" 
+              className="secondary"
+              onClick={handleRemoveDish} 
+            />
+            <Button 
+              title="Salvar alterações" 
+              className="primary" 
+              onClick={handleUpdate}
+            />
           </div>
 
         </Form>
       </main>
-
-
 
       <Footer />
     </Container>

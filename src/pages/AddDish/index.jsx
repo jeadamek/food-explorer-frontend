@@ -28,7 +28,7 @@ export function AddDish() {
   const [image, setImage] = useState(null);
 
   const [ingredients, setIngredients] = useState([]);
-  const [newIngredient, setnewIngredient] = useState("");
+  const [newIngredient, setNewIngredient] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
   const navegate = useNavigate();
@@ -41,8 +41,12 @@ export function AddDish() {
   ];
 
   function handleNewIngredient() {
+    if (!newIngredient) {
+      return toast.warn("Digite um ingrediente antes de adicioná-lo")
+    }
+    
     setIngredients(prevState => [...prevState, newIngredient]);
-    setnewIngredient("");
+    setNewIngredient("");
   }
 
   function handleRemoveIngredient(deleted) {
@@ -75,7 +79,6 @@ export function AddDish() {
     formData.append("price", price);
     formData.append("description", description);
 
-    ingredients.length
     ingredients.map(ingredient => (
       formData.append("ingredients", ingredient)
     ))
@@ -167,7 +170,8 @@ export function AddDish() {
                   isNew 
                   placeholder="Adicionar"
                   value={newIngredient}
-                  onChange={e => setnewIngredient(e.target.value)}
+                  size={9} 
+                  onChange={e => setNewIngredient(e.target.value)}
                   onClick={handleNewIngredient} 
                 />
               </div>

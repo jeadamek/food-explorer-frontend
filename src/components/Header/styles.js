@@ -136,12 +136,14 @@ export const Brand = styled(Link)`
   align-items: center;
 
   > img {
-    width: 16rem;
+    width: auto;
+    height: 2.5rem;
   }
 
   @media ${device.laptop} {
     > img {
       width: 18.6rem;
+      height: auto;
     }
   }
 `;

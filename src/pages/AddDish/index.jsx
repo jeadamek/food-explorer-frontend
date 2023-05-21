@@ -34,7 +34,7 @@ export function AddDish() {
   const navegate = useNavigate();
 
   const options = [
-    { value: '', label: 'Selecione uma opção'},
+    { value: 'default', label: 'Selecione uma opção'},
     { value: 'refeição', label: 'Refeição'},
     { value: 'sobremesa', label: 'Sobremesa'},
     { value: 'bebida', label: 'Bebida'},

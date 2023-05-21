@@ -9,6 +9,7 @@ export function CurrencyInput({ value, ...rest }) {
         decimalsLimit={2}
         decimalSeparator=","
         groupSeparator="."
+        allowNegativeValue={false}
         value={value}
         {...rest}
       />

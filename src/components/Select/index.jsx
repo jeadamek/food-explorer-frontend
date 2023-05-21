@@ -2,9 +2,9 @@ import { Container, Option } from "./styles";
 import PropTypes from "prop-types";
 
 
-export function Select({ options, ...rest }) {
+export function Select({ options, value='default', ...rest }) {
   return(
-    <Container {...rest}>
+    <Container {...rest} value={value}>
       {options.map((option) => (
 
         option.value == 'default' ? 
@@ -21,5 +21,6 @@ export function Select({ options, ...rest }) {
 }
 
 Select.propTypes = {
-  options: PropTypes.array.isRequired
+  options: PropTypes.array.isRequired,
+  value: PropTypes.string
 }

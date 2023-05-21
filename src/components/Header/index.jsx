@@ -66,16 +66,18 @@ export function Header({ orders }) {
           {
             user.isAdmin ?
               <ul>
+                <li><Link to="/">Home</Link></li>
                 <li><Link to="/new">Novo Prato</Link></li>
                 <li><Link>Pedidos</Link></li>
-                <li><Link to={"/"} onClick={handleSignOut}>Sair</Link></li>
+                <li><Link to="/" onClick={handleSignOut}>Sair</Link></li>
               </ul>
             :
               <ul>
+                <li><Link to="/">Home</Link></li>
                 <li><Link>Meu perfil</Link></li>
                 <li><Link>Meus favoritos</Link></li>
                 <li><Link>Historico de Pedidos</Link></li>
-                <li><Link to={"/"} onClick={handleSignOut}>Sair</Link></li>
+                <li><Link to="/" onClick={handleSignOut}>Sair</Link></li>
               </ul>
           }
 

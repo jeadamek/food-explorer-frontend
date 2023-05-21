@@ -35,7 +35,7 @@ export function AddDish() {
 
   const options = [
     { value: '', label: 'Selecione uma opção'},
-    { value: 'refeicao', label: 'Refeição'},
+    { value: 'refeição', label: 'Refeição'},
     { value: 'sobremesa', label: 'Sobremesa'},
     { value: 'bebida', label: 'Bebida'},
   ];

@@ -112,6 +112,10 @@ export default createGlobalStyle`
     }
   }
 
+  .no-scroll{
+    overflow: hidden;
+  }
+
   /* SCROLLBAR STYLE */
   /* Firefox */
   * {

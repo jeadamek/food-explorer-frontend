@@ -1,6 +1,7 @@
+import { useState, useEffect  } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from '../../hooks/auth';
 
 import { Container, Brand, Hamburguer, MobileOrder, NavHeader, Logout } from "./styles";
@@ -17,6 +18,8 @@ import logoImgAdminMobile from "../../assets/logo-admin-mobile.svg";
 
 export function Header({ orders }) {
   const { signOut, user } = useAuth();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const mobile = window.innerWidth <= 768;
@@ -28,7 +31,17 @@ export function Header({ orders }) {
 
   function handleModal() {
     document.getElementById('nav-mobile').classList.toggle('active');
+    handleToggleMenu();
   }
+
+  function handleToggleMenu() {
+    setIsMenuOpen(!isMenuOpen);
+    document.body.classList.toggle('no-scroll', !isMenuOpen);
+  }
+  
+  useEffect(() => {
+    document.body.classList.remove('no-scroll');
+  }, []);
 
   return(
     <Container>

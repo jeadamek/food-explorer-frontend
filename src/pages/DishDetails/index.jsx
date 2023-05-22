@@ -23,17 +23,10 @@ export function DishDetails() {
   const { user } = useAuth();
   
   const [data, setData] = useState({});
-
   const [image, setImage] = useState("");
 
   const params = useParams();
   const navegate = useNavigate();
-
-  // function formatCurrency(value) {
-  //   const formatedValue = value.toLocaleString('pt-br', {minimumFractionDigits: 2});
-
-  //   return formatedValue;
-  // }
 
   function handleBack(){
     navegate(-1);
@@ -66,7 +59,6 @@ export function DishDetails() {
           <DishInfo>
             <h1>{data.name}</h1>
             <p>{data.description}</p>
-
             
             {
               data.ingredients &&

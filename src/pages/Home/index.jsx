@@ -21,7 +21,7 @@ export function Home() {
   
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get(`/dishes/admin?name=${name}&${ingredient}`);
+      const response = await api.get(`/dishes?name=${name}&${ingredient}`);
       const dishes = response.data;
 
       const mealItems = dishes.filter((dish) => {

@@ -16,15 +16,16 @@ export const Container = styled.button`
 
   cursor: pointer;
 
-  > img {
-    height: 2 rem;
-  }
-
   :hover {
     opacity: 0.5;
   }
 
   @media ${device.laptop} {
-    font-weight: 700;
+    span {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      line-height: 140%;
+    }
   }
 `;

@@ -27,7 +27,7 @@ export const Container = styled.div`
 
     > main {
       max-width: 112.4rem;
-      padding: 2.4rem 3rem 15.5rem;
+      padding: 3.2rem 3rem 15.5rem;
     }
   }
 `

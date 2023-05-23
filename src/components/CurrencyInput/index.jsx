@@ -5,6 +5,7 @@ export function CurrencyInput({ value, ...rest }) {
   return(
     <Container>
       <Input
+        autoComplete="off"
         prefix="R$ "
         decimalsLimit={2}
         decimalSeparator=","

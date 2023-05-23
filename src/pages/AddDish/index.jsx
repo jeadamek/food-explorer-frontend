@@ -22,7 +22,7 @@ import { SlArrowLeft } from "react-icons/sl";
 
 export function AddDish() {
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("default");
   const [price, setPrice] = useState(null);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
@@ -39,6 +39,12 @@ export function AddDish() {
     { value: 'sobremesa', label: 'Sobremesa'},
     { value: 'bebida', label: 'Bebida'},
   ];
+
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      handleNewIngredient();
+    }
+  }
 
   function handleNewIngredient() {
     if (!newIngredient) {
@@ -58,7 +64,7 @@ export function AddDish() {
       return toast.warn("Faça upload da foto do prato");
     } 
     
-    if(!name || !category || !price || !description) {
+    if(!name || category == "default" || !price || !description) {
       return toast.warn("Todos os campos devem ser preenchidos");
     }
 
@@ -138,6 +144,7 @@ export function AddDish() {
                 placeholder="Ex.: Salada Ceasar" 
                 id="name"
                 onChange={e => setName(e.target.value)}
+                autoFocus
               />
             </div>
             
@@ -146,6 +153,7 @@ export function AddDish() {
               <Select 
                 name="category" 
                 id="category" 
+                value={category}
                 options={options}
                 onChange={e => setCategory(e.target.value)}
               />
@@ -173,6 +181,7 @@ export function AddDish() {
                   size={9} 
                   onChange={e => setNewIngredient(e.target.value)}
                   onClick={handleNewIngredient} 
+                  onKeyDown={handleKeyDown}
                 />
               </div>
             </div>

@@ -34,6 +34,8 @@ export function EditDish() {
   const [imageFile, setImageFile] = useState(null);
 
   const { id } = useParams();
+  const [isLoadingUpdate, setIsLoadingUpdate] = useState(false);
+  const [isLoadingRemove, setIsLoadingRemove] = useState(false);
   const navegate = useNavigate();
 
   const options = [
@@ -42,6 +44,12 @@ export function EditDish() {
     { value: 'sobremesa', label: 'Sobremesa'},
     { value: 'bebida', label: 'Bebida'},
   ];
+
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      handleNewIngredient();
+    }
+  }
 
   function handleNewIngredient() {
     if (!newIngredient) {
@@ -60,9 +68,11 @@ export function EditDish() {
     const confirm = window.confirm("Deseja realmente remover este prato?");
 
     if (confirm) {
+      setIsLoadingRemove(true);
       await api.delete(`/dishes/${id}`);
       toast.success("Prato removido com sucesso!");
 
+      setIsLoadingRemove(false);
       navegate("/");
     }
   }
@@ -87,6 +97,8 @@ export function EditDish() {
     const formattedPrice = typeof price == 'string' ? parseFloat(price.replace(",", ".")) : price
 
     try {
+      setIsLoadingUpdate(true);
+
       await api.put(`/dishes/${id}`, {
         name,
         category,
@@ -111,6 +123,8 @@ export function EditDish() {
       } else {
         toast.error("Não foi possível atualizar o prato.");
       }
+    } finally {
+      setIsLoadingUpdate(false);
     }
   }
 
@@ -207,6 +221,7 @@ export function EditDish() {
                       size={9} 
                       onChange={e => setNewIngredient(e.target.value)}
                       onClick={handleNewIngredient}
+                      onKeyDown={handleKeyDown}
                     />  
                   </div>
                 }
@@ -238,11 +253,13 @@ export function EditDish() {
             <Button 
               title="Excluir prato" 
               className="secondary"
+              loading={isLoadingRemove}
               onClick={handleRemoveDish} 
             />
             <Button 
               title="Salvar alterações" 
               className="primary" 
+              loading={isLoadingUpdate}
               onClick={handleUpdate}
             />
           </div>

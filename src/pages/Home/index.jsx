@@ -8,20 +8,21 @@ import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 
 import { Carousel } from "../../components/Carousel";
-// import { dishes } from "./dishes";
 
 export function Home() {
-  const [name, setName] = useState("");
-  const [ingredient, setIngredient] = useState("");
-
+  const [search, setSearch] = useState("");
   const [mealCategory, setMealCategory] = useState([]);
-  const [dessertCategory, setDessertCategory] = useState([]);
   const [drinkCategory, setDrinkCategory] = useState([]);
+  const [dessertCategory, setDessertCategory] = useState([]);
+
+  function handleSearch(searchValue) {
+    setSearch(searchValue)
+  }
 
   
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get(`/dishes?name=${name}&${ingredient}`);
+      const response = await api.get(`/dishes?name=${search}&ingredients=${search}`);
       const dishes = response.data;
 
       const mealItems = dishes.filter((dish) => {
@@ -42,11 +43,11 @@ export function Home() {
     }
 
     fetchDishes();
-  },[]);
+  },[search]);
 
   return(
     <Container>
-      <Header />
+      <Header onSearch={handleSearch}/>
       <main>
           
           <Banner>

@@ -16,10 +16,12 @@ import logoImg from "../../assets/logo-user.svg";
 import logoImgAdmin from "../../assets/logo-admin-desktop.svg"; 
 import logoImgAdminMobile from "../../assets/logo-admin-mobile.svg"; 
 
-export function Header({ orders }) {
+export function Header({ orders, onSearch }) {
   const { signOut, user } = useAuth();
-
+  
+  const [search, setSearch] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const navigate = useNavigate();
 
   const mobile = window.innerWidth <= 768;
@@ -39,6 +41,18 @@ export function Header({ orders }) {
     document.body.classList.toggle('no-scroll', !isMenuOpen);
   }
   
+  function handleSearch(event) {
+    const value = event.target.value;
+    setSearch(value);
+    onSearch(value);
+  }
+
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      handleModal();
+    }
+  }
+
   useEffect(() => {
     document.body.classList.remove('no-scroll');
   }, []);
@@ -61,6 +75,9 @@ export function Header({ orders }) {
             placeholder="Busque por pratos ou ingredientes"
             icon={GoSearch}
             className="input-header"
+            value={search}
+            onChange={handleSearch}
+            onKeyDown={handleKeyDown}
           />
 
           {
@@ -110,7 +127,13 @@ export function Header({ orders }) {
         <div><span>{ orders ? orders : 0 }</span></div>
       </MobileOrder>
 
-      <Input placeholder="Busque por pratos ou ingredientes" icon={GoSearch} className="desktop-search" />
+      <Input 
+        placeholder="Busque por pratos ou ingredientes" 
+        icon={GoSearch} 
+        className="desktop-search" 
+        value={search}
+        onChange={handleSearch}
+      />
       
       {
         user.isAdmin ?
@@ -134,5 +157,6 @@ export function Header({ orders }) {
 }
 
 Header.propTypes = {
-  orders: PropTypes.number
+  orders: PropTypes.number,
+  onSearch: PropTypes.func
 };

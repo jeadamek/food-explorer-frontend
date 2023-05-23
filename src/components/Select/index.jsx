@@ -2,13 +2,13 @@ import { Container, Option } from "./styles";
 import PropTypes from "prop-types";
 
 
-export function Select({ options, ...rest }) {
+export function Select({ options, value, ...rest }) {
   return(
-    <Container {...rest} defaultValue={'default'}>
+    <Container {...rest} value={value}>
       {options.map((option) => (
 
         option.value == 'default' ? 
-          <Option key={option.value} value={option.value} disabled>
+          <Option key={option.value} value={option.value} active disabled>
           {option.label}
           </Option>
         :
@@ -21,5 +21,6 @@ export function Select({ options, ...rest }) {
 }
 
 Select.propTypes = {
-  options: PropTypes.array.isRequired
+  options: PropTypes.array.isRequired,
+  value: PropTypes.string
 }

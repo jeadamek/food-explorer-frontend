@@ -10,10 +10,10 @@ export const Container = styled.textarea`
   border: none;
   resize: none;
   
-  padding: 16px; 
+  padding: 1.6rem; 
   border-radius: .5rem;
 
-  margin-top: 1.2rem;
+  margin-top: .8rem;
 
   &:focus {
     border: solid 0.5px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY}; 

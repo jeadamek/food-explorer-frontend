@@ -27,7 +27,7 @@ export const Container = styled.div`
 
     > main {
       max-width: 112.4rem;
-      padding: 2.4rem 3rem 15.5rem;
+      padding: 3.2rem 3rem 15.5rem;
     }
   }
 `
@@ -71,7 +71,7 @@ export const DishPhoto = styled.div`
   }
 
   @media ${device.laptop} {
-    margin: 4.2rem auto;
+    margin: 4.2rem 0;
 
     > img {
       width: 39rem;

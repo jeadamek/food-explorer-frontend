@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { device } from "../../breakpoints/devices";
+import { Link } from "react-router-dom";
 
-export const Container = styled.a`
+export const Container = styled(Link)`
   height: 318px;
   width: 210px;
   
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
   padding: 2.4rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_500};

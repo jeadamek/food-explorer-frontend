@@ -54,12 +54,7 @@ export const Form = styled.form`
       height: 4.8rem;
 
       padding: 12px 32px;
-      margin-top: 1.2rem;
-
-      font-family: 'Poppins', sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 24px;
+      margin-top: .8rem;
 
       background-color: ${({ theme }) => theme.COLORS.DARK_900};
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
@@ -71,7 +66,19 @@ export const Form = styled.form`
       gap: .8rem;
 
       cursor: pointer;
-      
+
+      > span {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 24px;
+
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
       > input {
         display: none;
       }
@@ -86,13 +93,13 @@ export const Form = styled.form`
       font-weight: 400;
       outline: none;
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
-      margin-bottom: 1.6rem;
+      margin-bottom: .8rem;
     }
 
     > div {
       width: 100%;
       
-      margin-top: 1.2rem;
+      margin-top: .8rem;
 
       background-color: ${({ theme }) => theme.COLORS.DARK_900};
 
@@ -127,6 +134,10 @@ export const Form = styled.form`
     .dish-image {
       label > div {
         width: 240px;  
+
+        span {
+          max-width: 16ch;
+        }
       }
     }
 

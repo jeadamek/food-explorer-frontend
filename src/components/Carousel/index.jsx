@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 
 import { Container, PrevButton, NextButton } from "./styles";
 
-import { CardUser } from "../CardUser";
-// import { CardAdmin } from "../CardAdmin";
+// import { CardUser } from "../CardUser";
+import { CardAdmin } from "../CardAdmin";
 
 import PropTypes from "prop-types";
 
@@ -32,10 +32,10 @@ export function Carousel({ items }) {
       >
         {items.map(item => (
           <motion.div className="item" key={item.id}>
-            <CardUser dish={item} />
+            <CardAdmin to={`/edit/${item.id}`} dish={item} />
           </motion.div>
         ))}
-      </motion.div>
+      </motion.div> 
 
       <PrevButton><SlArrowLeft size={28} /></PrevButton>
       <NextButton><SlArrowRight size={28} /></NextButton>

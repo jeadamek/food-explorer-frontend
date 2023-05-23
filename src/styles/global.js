@@ -1,6 +1,6 @@
+import 'react-toastify/dist/ReactToastify.css'; 
 import { createGlobalStyle } from 'styled-components';
 import { device } from '../breakpoints/devices';
-// import { device } from '../breakpoints/devices';
 
 export default createGlobalStyle`
   * {
@@ -76,7 +76,7 @@ export default createGlobalStyle`
     line-height: 100%;
   }
 
-  button.primary {
+  .primary {
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 
       &:hover {
@@ -93,7 +93,7 @@ export default createGlobalStyle`
       }
   }
 
-  button.secondary {
+  .secondary {
     background-color: ${({ theme }) => theme.COLORS.DARK_800};
     border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_800};
 
@@ -112,11 +112,11 @@ export default createGlobalStyle`
     }
   }
 
-  .no-scroll {
+  .no-scroll{
     overflow: hidden;
   }
 
-    /* SCROLLBAR STYLE */
+  /* SCROLLBAR STYLE */
   /* Firefox */
   * {
     scrollbar-width: thin;

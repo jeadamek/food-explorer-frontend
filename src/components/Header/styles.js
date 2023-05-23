@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { device } from "../../breakpoints/devices";
+import { Link } from "react-router-dom";
 
 export const Container = styled.header`
   grid-area: header;
@@ -26,7 +27,7 @@ export const Container = styled.header`
 
     z-index: 9999;
 
-    transition: transform .5s ease-in-out;
+    transition: transform .3s ease-in-out;
     transform: translateX(-100%);
 
     > header {
@@ -69,6 +70,9 @@ export const Container = styled.header`
             font-weight: 300;
             font-size: 24px;
             line-height: 140%;
+
+            text-decoration: none;
+            color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
             display: block;
             cursor: pointer;
@@ -126,18 +130,20 @@ export const Hamburguer = styled.button`
   }
 `
 
-export const Brand = styled.div`
+export const Brand = styled(Link)`
   width: fit-content;
   display: flex;
   align-items: center;
 
   > img {
-    width: 16rem;
+    width: auto;
+    height: 2.5rem;
   }
 
   @media ${device.laptop} {
     > img {
       width: 18.6rem;
+      height: auto;
     }
   }
 `;
@@ -185,9 +191,11 @@ export const MobileOrder = styled.button`
   }
 `;
 
-export const ButtonHeader = styled.button`
+export const NavHeader = styled(Link)`
   display: none;
-  border: none;
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+  text-decoration: none;
   
   min-width: 216px;
   height: 4.8rem;

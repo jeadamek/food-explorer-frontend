@@ -1,15 +1,16 @@
 import { Container, Input } from "./styles";
 import PropTypes from "prop-types";
 
-export function CurrencyInput({ onChange, value, ...rest }) {
+export function CurrencyInput({ value, ...rest }) {
   return(
     <Container>
       <Input
+        autoComplete="off"
         prefix="R$ "
         decimalsLimit={2}
         decimalSeparator=","
         groupSeparator="."
-        onValueChange={onChange}
+        allowNegativeValue={false}
         value={value}
         {...rest}
       />
@@ -18,6 +19,5 @@ export function CurrencyInput({ onChange, value, ...rest }) {
 }
 
 CurrencyInput.propTypes = {
-  onChange: PropTypes.func,
-  value: PropTypes.number
+  value: PropTypes.any
 }

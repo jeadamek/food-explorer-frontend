@@ -51,6 +51,7 @@ export const Form = styled.form`
 
   > a {
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    text-decoration: none;
 
     font-family: 'Poppins', sans-serif;
     font-weight: 500;

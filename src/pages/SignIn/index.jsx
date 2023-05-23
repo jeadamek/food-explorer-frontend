@@ -1,14 +1,43 @@
+import { toast } from 'react-toastify';
+
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { useAuth } from '../../hooks/auth';
+
 import { Container, Form } from "./styles";
 
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
-// import { Link } from 'react-router-dom';
-
 import Logo from "../../assets/logo-user.svg"
 
 export function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { signIn } = useAuth();
+
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      handleSignIn();
+    }
+  }
+
+  function handleSignIn() {
+    if (!email, !password) {
+      return toast.warn("Preencha todos os campos!");
+    }
+
+    setIsLoading(true);
+
+    signIn({ email, password });
+
+    setIsLoading(false);
+  }
+
   return(
     <Container>
       <img src={Logo} alt="Logo Food Explorer" />
@@ -23,6 +52,7 @@ export function SignIn() {
             placeholder="Exemplo: exemplo@exemplo.com.br"
             id="email"
             name="email"
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
 
@@ -33,14 +63,22 @@ export function SignIn() {
             placeholder="No mínimo 6 caracteres"
             id="password"
             name="password"
+            onChange={e => setpassword(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </div>
 
-        <Button title="Entrar" className="primary" />
+        <Button 
+          title="Entrar" 
+          className="primary"
+          loading={isLoading}
+          onClick={handleSignIn}
+        />
 
-        <a href="/register">
+        <Link to="/register">
           Criar uma conta
-        </a>
+        </Link>
+        
       </Form>
     </Container>
   )

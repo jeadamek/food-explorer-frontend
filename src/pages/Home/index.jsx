@@ -22,7 +22,7 @@ export function Home() {
   
   useEffect(() => {
     async function fetchDishes() {
-      const response = await api.get(`/dishes?name=${search}&ingredients=${search}`);
+      const response = await api.get(`/dishes?search=${search}`);
       const dishes = response.data;
 
       const mealItems = dishes.filter((dish) => {

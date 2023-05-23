@@ -21,6 +21,12 @@ export function SignUp() {
 
   const navegate = useNavigate();
 
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      handleSignUp();
+    }
+  }
+  
   async function handleSignUp() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -93,6 +99,7 @@ export function SignUp() {
             id="password"
             name="password"
             onChange={e => setPassword(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </div>
 

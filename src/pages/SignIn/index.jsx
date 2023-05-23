@@ -20,6 +20,11 @@ export function SignIn() {
 
   const { signIn } = useAuth();
 
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      handleSignIn();
+    }
+  }
 
   function handleSignIn() {
     if (!email, !password) {
@@ -31,8 +36,6 @@ export function SignIn() {
     signIn({ email, password });
 
     setIsLoading(false);
-
-
   }
 
   return(
@@ -61,6 +64,7 @@ export function SignIn() {
             id="password"
             name="password"
             onChange={e => setpassword(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </div>
 

@@ -19,7 +19,6 @@ export function Home() {
     setSearch(searchValue)
   }
 
-  
   useEffect(() => {
     async function fetchDishes() {
       const response = await api.get(`/dishes?search=${search}`);
@@ -49,35 +48,63 @@ export function Home() {
     <Container>
       <Header onSearch={handleSearch}/>
       <main>
-          
-          <Banner>
-            <div className="banner">
-              <img src="/src/assets/banner.png" alt="Banner: foto de macarons de cores variadas, framboesas, mirtilos e folhas como se estivessem flutuando no ar" />
-
-              <div className="banner-info">
-                <div className="banner-title">
-                  <h1>Sabores inigualáveis</h1>
-                  <span>Sinta o cuidado do preparo com ingredientes selecionados.</span>
+          {
+            !search &&
+            (
+              <Banner>
+                <div className="banner">
+                  <img src="/src/assets/banner.png" alt="Banner: foto de macarons de cores variadas, framboesas, mirtilos e folhas como se estivessem flutuando no ar" />
+    
+                  <div className="banner-info">
+                    <div className="banner-title">
+                      <h1>Sabores inigualáveis</h1>
+                      <span>Sinta o cuidado do preparo com ingredientes selecionados.</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </Banner>
+              </Banner>
+            )
+          }
 
-        
-        <section>
-          <h2>Refeições</h2>
-          <Carousel items={mealCategory} />
-        </section>
-        
-        <section>
-          <h2>Sobremesas</h2>
-          <Carousel items={dessertCategory} />
-        </section>
+        {
+          mealCategory.length !== 0 &&
+          (
+            <section>
+              <h2>Refeições</h2>
+              <Carousel items={mealCategory} />
+            </section>
+          )
+        }
 
-        <section>
-          <h2>Bebidas</h2>
-          <Carousel items={drinkCategory} />
-        </section>
+        {
+          dessertCategory.length !== 0 &&
+          (
+            <section>
+              <h2>Sobremesas</h2>
+              <Carousel items={dessertCategory} />
+            </section>
+          )
+        }
+
+        {
+          drinkCategory.length !== 0 &&
+          (
+            <section>
+            <h2>Bebidas</h2>
+            <Carousel items={drinkCategory} />
+          </section>
+          )
+        }
+        
+        {
+          drinkCategory.length === 0 && mealCategory.length === 0 && dessertCategory.length === 0 &&
+          (
+            <p className="dish-not-found">Prato não encontrado.</p>
+          )
+        }
+
+
+
 
       </main>
       <Footer />

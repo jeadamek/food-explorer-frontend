@@ -44,6 +44,10 @@ export const Container = styled(Link)`
     width: 88px;
   }
 
+  h3 {
+    text-align: center;
+  }
+
   h3:hover {
     opacity: 0.5;
   }

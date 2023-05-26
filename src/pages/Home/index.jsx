@@ -97,7 +97,9 @@ export function Home() {
         }
         
         {
-          drinkCategory.length === 0 && mealCategory.length === 0 && dessertCategory.length === 0 &&
+          drinkCategory.length === 0 && 
+          mealCategory.length === 0 && 
+          dessertCategory.length === 0 &&
           (
             <p className="dish-not-found">Prato não encontrado.</p>
           )

@@ -99,6 +99,10 @@ export const Container = styled(Link)`
       width: 176px;
     }
 
+    > h3 {
+      text-align: center;
+    }
+
     > p {
       display: block;
     }

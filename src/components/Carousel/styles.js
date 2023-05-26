@@ -1,19 +1,16 @@
 import styled from "styled-components";
+
+// import 'swiper/swiper-bundle.css';
+
 import { device } from "../../breakpoints/devices";
 
+
 export const Container = styled.div`
-  position: relative;
-  cursor: grab;
-  overflow: hidden;
 
 
-  .wrapper-items {
-    display: flex;
-    gap: 1.6rem
-  }
 `;
 
-const Button = styled.button`
+const Button = styled.div`
   display: none;
   position: absolute;
   top: 50%;

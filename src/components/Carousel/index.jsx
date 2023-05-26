@@ -1,46 +1,63 @@
-import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useRef, useEffect } from 'react';
+import { register } from 'swiper/element/bundle';
 
-import { Container, PrevButton, NextButton } from "./styles";
 
-// import { CardUser } from "../CardUser";
+import { useAuth } from "../../hooks/auth";
+
+import { Container } from "./styles";
+
+import { CardUser } from "../CardUser";
 import { CardAdmin } from "../CardAdmin";
 
 import PropTypes from "prop-types";
 
-import { SlArrowLeft } from "react-icons/sl";
-import { SlArrowRight } from "react-icons/sl";
+// import { SlArrowLeft } from "react-icons/sl";
+// import { SlArrowRight } from "react-icons/sl";
 
-
+register();
 export function Carousel({ items }) {
-  const carousel = useRef();
-  const [carouselWidth, setCarouselWidth] = useState(0);
+  const { user } = useAuth();
+  const swiperRef = useRef(null);
 
   useEffect(() => {
-    setCarouselWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
-  }, [carouselWidth]);
+    const swiperContainer = swiperRef.current;
+    const params = {
+      navigation: true,
+      pagination: true,
+      injectStyles: [
+        `
+        .swiper-button-next,
+        .swiper-button-prev {
+          background: linear-gradient(to left, #091E26 0%, #00131C 100%);
+          color: white;
+        }
+      `,
+      ],
+    };
+
+     Object.assign(swiperContainer, params);
+    swiperContainer.initialize();
+  }, []); 
 
   return(
     <Container>
-      
-      <motion.div 
-        ref={carousel}
-        className="wrapper-items" 
-        whileTap={{ cursor: "grabbing" }} 
-        drag="x"
-        dragConstraints={{ right: 0, left: - carouselWidth}}
+      <swiper-container
+        ref={swiperRef}
+        init="false"
+        slides-per-view="3.5"
       >
         {items.map(item => (
-          <motion.div className="item" key={item.id}>
-            <CardAdmin to={`/edit/${item.id}`} dish={item} />
-          </motion.div>
+          <swiper-slide key={item.id}>
+            {
+              user.isAdmin ?
+                <CardAdmin to={`/details/${item.id}`} dish={item} />
+              : 
+                <CardUser to={`/details/${item.id}`} dish={item} />
+            }
+          </swiper-slide>
         ))}
-      </motion.div> 
-
-      <PrevButton><SlArrowLeft size={28} /></PrevButton>
-      <NextButton><SlArrowRight size={28} /></NextButton>
-
-    </Container>  
+      </swiper-container>  
+    </Container>
   )
 }
 

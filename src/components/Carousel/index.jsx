@@ -23,14 +23,35 @@ export function Carousel({ items }) {
     const swiperContainer = swiperRef.current;
     const params = {
       navigation: true,
-      pagination: true,
       injectStyles: [
         `
+        swiper-container {
+          cursor: drab;
+        }
+
         .swiper-button-next,
         .swiper-button-prev {
-          background: linear-gradient(to left, #091E26 0%, #00131C 100%);
+          position: absolute;
+          top: 22px;
+          height: 100%; 
+          width: 10rem;
           color: white;
         }
+
+        .swiper-button-next {
+          right: 0;
+          background: linear-gradient(90deg, transparent, #000A0F);
+        }
+
+        .swiper-button-prev {
+          left: 0;
+          background: linear-gradient(90deg, #000A0F, transparent);
+        }
+
+        .swiper-button-disabled {
+          display: none;
+        }
+        
       `,
       ],
     };
@@ -44,6 +65,7 @@ export function Carousel({ items }) {
       <swiper-container
         ref={swiperRef}
         init="false"
+        pagination="false"
         slides-per-view="3.5"
       >
         {items.map(item => (

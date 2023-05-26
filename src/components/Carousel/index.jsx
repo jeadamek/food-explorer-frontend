@@ -41,11 +41,15 @@ export function Carousel({ items }) {
         .swiper-button-next {
           right: 0;
           background: linear-gradient(90deg, transparent, #000A0F);
+          justify-content: flex-end;
+          padding-right: 1.6rem;
         }
 
         .swiper-button-prev {
           left: 0;
           background: linear-gradient(90deg, #000A0F, transparent);
+          justify-content: flex-start;
+          padding-left: 1.6rem;
         }
 
         .swiper-button-disabled {
@@ -54,6 +58,23 @@ export function Carousel({ items }) {
         
       `,
       ],
+      breakpoints: {
+        320: {
+          slidesPerView: 1.60,
+        },
+        375: {
+          slidesPerView: 1.20,
+        },
+        425: {
+          slidesPerView: 2.75,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 3.1,
+        },
+      }
     };
 
      Object.assign(swiperContainer, params);
@@ -66,8 +87,7 @@ export function Carousel({ items }) {
         ref={swiperRef}
         init="false"
         pagination="false"
-        slides-per-view="3.5"
-      >
+      > 
         {items.map(item => (
           <swiper-slide key={item.id}>
             {

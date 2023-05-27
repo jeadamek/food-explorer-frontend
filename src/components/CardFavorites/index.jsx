@@ -8,7 +8,7 @@ export function CardFavorites({ dish, ...rest}) {
   const imageUrl = `${api.defaults.baseURL}/files/${dish.image}`
 
   return (
-    <Container {...rest} >
+    <Container to={`/details/${dish.id}`} {...rest} >
       <img src={imageUrl} alt={`imagem de ${dish.name}`}/>
       <div className="dish-info">
         <h3>{`${dish.name}`}</h3>

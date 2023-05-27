@@ -14,12 +14,16 @@ export function Favorites() {
   function handleSearch() {
     alert("search");
   }
+
+  function handleRemoveFavorite(id) {
+    const newFavorites = favorites.filter(favorite => favorite.id !== id);
+    setFavorites(newFavorites);
+  }
   
   useEffect(() => {
     async function fetchFavorites() {
       const response = await api.get(`/favorites`);
       setFavorites(response.data);
-      console.log(response.data)
     }
 
     fetchFavorites();
@@ -34,7 +38,11 @@ export function Favorites() {
           <div className="favorite-items">
             {
               favorites.map(favorite => (
-                <CardFavorites key={String(favorite.id)} dish={favorite} />
+                <CardFavorites 
+                  key={String(favorite.id)} 
+                  dish={favorite} 
+                  onRemoveFavorite={handleRemoveFavorite}
+                />
               ))
             }
           </div>

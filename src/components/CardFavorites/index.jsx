@@ -5,8 +5,8 @@ import { api } from "../../services/api";
 
 import { Container } from "./styles";
 
-export function CardFavorites({ dish, onRemoveFavorite, ...rest}) {
-  const imageUrl = `${api.defaults.baseURL}/files/${dish.image}`
+export function CardFavorites({ favorite, onRemoveFavorite, ...rest}) {
+  const imageUrl = `${api.defaults.baseURL}/files/${favorite.image}`
 
   async function handleRemoveFavorite(idFav) {
     await api.delete(`/favorites/${idFav}`)
@@ -24,13 +24,13 @@ export function CardFavorites({ dish, onRemoveFavorite, ...rest}) {
   }
 
   return (
-    <Container to={`/details/${dish.id}`} {...rest} >
-      <img src={imageUrl} alt={`imagem de ${dish.name}`}/>
+    <Container to={`/details/${favorite.dish_id}`} {...rest} >
+      <img src={imageUrl} alt={`imagem de ${favorite.name}`}/>
       <div className="dish-info">
-        <h3>{`${dish.name}`}</h3>
+        <h3>{`${favorite.name}`}</h3>
         <span onClick={(e) => {
           e.preventDefault();
-          handleRemoveFavorite(dish.id);
+          handleRemoveFavorite(favorite.id);
         }}>
         Remover dos Favoritos</span>
       </div>
@@ -39,6 +39,6 @@ export function CardFavorites({ dish, onRemoveFavorite, ...rest}) {
 }
 
 CardFavorites.propTypes = {
-  dish: PropTypes.object.isRequired,
+  favorite: PropTypes.object.isRequired,
   onRemoveFavorite: PropTypes.func
 }

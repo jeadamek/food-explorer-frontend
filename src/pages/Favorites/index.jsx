@@ -40,7 +40,7 @@ export function Favorites() {
               favorites.map(favorite => (
                 <CardFavorites 
                   key={String(favorite.id)} 
-                  dish={favorite} 
+                  favorite={favorite} 
                   onRemoveFavorite={handleRemoveFavorite}
                 />
               ))

@@ -6,9 +6,7 @@ import { Container } from "./styles";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-import { CardUser } from "../../components/CardUser";
-
-
+import { CardFavorites } from "../../components/CardFavorites";
 
 
 export function Favorites() {
@@ -21,7 +19,6 @@ export function Favorites() {
     async function fetchFavorites() {
       const response = await api.get(`/favorites`);
       setFavorites(response.data);
-      console.log(response.data)
     }
 
     fetchFavorites();
@@ -32,12 +29,10 @@ export function Favorites() {
       <Header onSearch={handleSearch}/>
       <main>
         <section>
-          <h2>Favoritos</h2>
-          {
-            favorites.map(favorite => (
-              <CardUser key={String(favorite.id)} item={favorite} />
-            ))
-          }
+          <h2>Meus favoritos</h2>
+          <div className="favorite-items">
+            {/* FAVORITE CARDS GO HERE */}
+          </div>
         </section>
       </main>
       <Footer />

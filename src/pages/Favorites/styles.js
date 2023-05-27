@@ -22,9 +22,15 @@ export const Container = styled.div`
 
     > section {
       > h2 {
-        margin-bottom: 2.4rem;
+        margin-bottom: 2.8rem;
         font-size: 3.2rem;
       }
+    }
+
+    .favorite-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3.2rem;
     }
   } 
 
@@ -32,7 +38,13 @@ export const Container = styled.div`
     grid-template-rows: 9.6rem auto 7.7rem;
 
     > main {
-      padding: 2.4rem 8rem;
+      padding: 3.4rem 8rem;
+
+      > section {
+        > h2 {
+          margin-bottom: 3.8rem;
+        }
+      }
     }
   }
 `;

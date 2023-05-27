@@ -14,10 +14,17 @@ export const Container = styled.div`
   }
 
   .dish-info {
+    width: 23rem;
+    
     h3 {
       font-weight: 500;
       font-size: 20px;
       line-height: 160%;
+
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
     }
 
     span {

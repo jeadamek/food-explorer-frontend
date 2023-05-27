@@ -3,6 +3,8 @@ import { register } from 'swiper/element/bundle';
 
 
 import { useAuth } from "../../hooks/auth";
+import { device } from "../../breakpoints/devices";
+
 
 import { Container } from "./styles";
 
@@ -31,6 +33,7 @@ export function Carousel({ items }) {
 
         .swiper-button-next,
         .swiper-button-prev {
+          display: none;
           position: absolute;
           top: 22px;
           height: 100%; 
@@ -52,28 +55,43 @@ export function Carousel({ items }) {
           padding-left: 1.6rem;
         }
 
-        .swiper-button-disabled {
-          display: none;
+        @media ${device.laptop} {
+          .swiper-button-next,
+          .swiper-button-prev {
+            display: flex;
+          }
+
+          .swiper-button-disabled {
+            display: none;
+          }
         }
-        
       `,
       ],
       breakpoints: {
         320: {
           slidesPerView: 1.60,
+          spaceBetween: 8,
         },
         375: {
-          slidesPerView: 1.20,
+          slidesPerView: 1.60,
+          spaceBetween: 8,
         },
         425: {
-          slidesPerView: 2.75,
+          slidesPerView: 2,
+          spaceBetween: 16,
         },
         768: {
           slidesPerView: 3,
+          spaceBetween: 16,
         },
         1024: {
-          slidesPerView: 3.1,
+          slidesPerView: 3,
+          spaceBetween: 27,
         },
+        1440: {
+          slidesPerView: 3.5,
+          spaceBetween: 27,
+        }
       }
     };
 

@@ -150,6 +150,7 @@ export default createGlobalStyle`
     h3 {
       font-weight: 700;
       font-size: 24px;
+      line-height: 140%;
     }
   }
 `;  

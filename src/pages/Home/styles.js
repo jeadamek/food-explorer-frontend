@@ -29,6 +29,12 @@ export const Container = styled.div`
         margin-bottom: 2.4rem;
       }
     }
+
+    .dish-not-found {
+      font-size: 2.4rem;
+      text-align: center;
+      margin-top: 5rem;
+    }
   }
 
   @media ${device.laptop} {

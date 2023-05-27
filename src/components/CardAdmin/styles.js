@@ -44,8 +44,20 @@ export const Container = styled(Link)`
     width: 88px;
   }
 
-  h3:hover {
-    opacity: 0.5;
+  > h3 {
+    text-align: center;
+    max-width: 18ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &::after {
+      content: ' >';
+    }
+    
+    &:hover {
+      opacity: 0.5;
+    }
   }
 
   > p { 
@@ -57,6 +69,8 @@ export const Container = styled(Link)`
     line-height: 160%;
 
     text-align: center;
+
+    min-height: 4.5rem;
   }
 
   > span {
@@ -90,7 +104,11 @@ export const Container = styled(Link)`
     }
 
     > p {
-      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
 
     > span {

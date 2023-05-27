@@ -32,6 +32,10 @@ export function Carousel({ items }) {
           height: 100%; 
           width: 10rem;
           color: white;
+
+          > svg {
+            height: 27px;
+          }
         }
 
         .swiper-button-next {

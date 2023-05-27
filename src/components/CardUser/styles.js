@@ -48,6 +48,22 @@ export const Container = styled(Link)`
     width: 88px;
   }
 
+  > h3 {
+    text-align: center;
+    max-width: 18ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &::after {
+      content: ' >';
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
   > p { 
     display: none;
     
@@ -57,6 +73,8 @@ export const Container = styled(Link)`
     line-height: 160%;
 
     text-align: center;
+
+    min-height: 4.5rem;
   }
 
   > span {
@@ -76,7 +94,8 @@ export const Container = styled(Link)`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.6rem;
+    margin-top: 1.2rem;
   }
 
   &:hover {
@@ -99,12 +118,12 @@ export const Container = styled(Link)`
       width: 176px;
     }
 
-    > h3 {
-      text-align: center;
-    }
-
     > p {
-      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
 
     > span {
@@ -115,7 +134,6 @@ export const Container = styled(Link)`
     .add-cart {
       flex-direction: row;
       align-items: center;
-      gap: 1.6rem;
     }
   }
 `;

@@ -32,7 +32,7 @@ export function CardUser({ dish, ...rest }) {
     <Container {...rest}>
       <button>{dish.favorite ? <IoMdHeart size={28} /> : <IoMdHeartEmpty size={28} />}</button>
       <img src={imageUrl} alt={`imagem de ${dish.name}`}/>
-      <h3>{`${dish.name} >`}</h3>
+      <h3>{`${dish.name}`}</h3>
       <p>{dish.description}</p>
       <span>{priceInCurrency}</span>  
       <div className="add-cart">

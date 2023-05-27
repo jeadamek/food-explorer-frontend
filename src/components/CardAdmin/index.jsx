@@ -22,7 +22,7 @@ export function CardAdmin({ dish, ...rest }) {
     <Container {...rest}>
       <TbPencil size={28} onClick={handleEdit}/>
       <img src={imageUrl} alt={`imagem de ${dish.name}`}/>
-      <h3>{`${dish.name} >`}</h3>
+      <h3>{`${dish.name}`}</h3>
       <p>{dish.description}</p>
       <span>{priceInCurrency}</span>  
     </Container>

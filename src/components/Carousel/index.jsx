@@ -1,20 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { register } from 'swiper/element/bundle';
 
-
 import { useAuth } from "../../hooks/auth";
 import { device } from "../../breakpoints/devices";
-
-
-import { Container } from "./styles";
 
 import { CardUser } from "../CardUser";
 import { CardAdmin } from "../CardAdmin";
 
 import PropTypes from "prop-types";
-
-// import { SlArrowLeft } from "react-icons/sl";
-// import { SlArrowRight } from "react-icons/sl";
 
 register();
 export function Carousel({ items }) {
@@ -77,10 +70,22 @@ export function Carousel({ items }) {
           spaceBetween: 8,
         },
         425: {
-          slidesPerView: 2,
+          slidesPerView: 1.80,
           spaceBetween: 16,
         },
-        768: {
+        500: {
+          slidesPerView: 2.1,
+          spaceBetween: 16,
+        },
+        600: {
+          slidesPerView: 2.5,
+          spaceBetween: 16,
+        },
+        680: {
+          slidesPerView: 2.80,
+          spaceBetween: 16,
+        },
+        750: {
           slidesPerView: 3,
           spaceBetween: 16,
         },
@@ -100,7 +105,6 @@ export function Carousel({ items }) {
   }, []); 
 
   return(
-    <Container>
       <swiper-container
         ref={swiperRef}
         init="false"
@@ -117,7 +121,6 @@ export function Carousel({ items }) {
           </swiper-slide>
         ))}
       </swiper-container>  
-    </Container>
   )
 }
 

@@ -19,6 +19,7 @@ export function Favorites() {
     async function fetchFavorites() {
       const response = await api.get(`/favorites`);
       setFavorites(response.data);
+      console.log(response.data)
     }
 
     fetchFavorites();
@@ -31,7 +32,11 @@ export function Favorites() {
         <section>
           <h2>Meus favoritos</h2>
           <div className="favorite-items">
-            {/* FAVORITE CARDS GO HERE */}
+            {
+              favorites.map(favorite => (
+                <CardFavorites key={String(favorite.id)} dish={favorite} />
+              ))
+            }
           </div>
         </section>
       </main>

@@ -10,8 +10,10 @@ export function CardFavorites({ dish, ...rest}) {
   return (
     <Container {...rest} >
       <img src={imageUrl} alt={`imagem de ${dish.name}`}/>
-      <h3>{`${dish.name}`}</h3>
-      <span>Remover dos Favoritos</span>
+      <div className="dish-info">
+        <h3>{`${dish.name}`}</h3>
+        <span>Remover dos Favoritos</span>
+      </div>
     </Container>
   )
 }

@@ -59,7 +59,6 @@ export default createGlobalStyle`
 
   h3 {
     font-size: 14px;  
-    line-height: 170%;  
   }
 
   p {

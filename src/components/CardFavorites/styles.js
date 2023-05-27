@@ -9,18 +9,14 @@ export const Container = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
-  transition: opacity 0.3s ease;
+  transition: filter 0.3s ease;
 
   img {
     width: 75px;
   }
 
   &:hover{
-    opacity: 0.9;
-  }
-
-  &:hover + .dish-info> span{
-    opacity: 1;
+    filter: brightness(1.3);
   }
 
   .dish-info {
@@ -42,7 +38,8 @@ export const Container = styled(Link)`
       cursor: pointer;
 
       &:hover {
-        opacity: 1;
+        filter: brightness(1.2);
+        text-decoration: underline;
       }
     }
   }

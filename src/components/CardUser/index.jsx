@@ -11,23 +11,53 @@ import { IoMdHeartEmpty } from 'react-icons/io'
 import { IoMdHeart } from 'react-icons/io'
 import { useState } from "react";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export function CardUser({ dish, ...rest }) {
   const [isFavorite, setIsFavorite] = useState();
   const [idFavorite, setIdFavorite] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+
   const priceInCurrency = dish.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
   const imageUrl = `${api.defaults.baseURL}/files/${dish.image}`
   
   async function handleFavorite(event) {
     event.preventDefault();
+    
     if (isFavorite) {
-      await api.delete(`/favorites/${idFavorite}`);
-      setIsFavorite(false);
+      await api.delete(`/favorites/${idFavorite}`)
+        .then(() => {
+          setIsLoading(true);
+          setIsFavorite(false);
+        })
+        .catch((error) => {
+          if (error.response) {
+            return toast.error(error.response.data.message);
+          } else {
+            return toast.error("Erro ao criar o prato!");
+          }
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     } else {
-      const id = await api.post("/favorites/", { dish_id: dish.id });
-      setIsFavorite(true);
-      setIdFavorite(id);
+      await api.post("/favorites/", { dish_id: dish.id })
+        .then((id) => {
+          setIsLoading(true);
+          setIsFavorite(true);
+          setIdFavorite(id.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            return toast.error(error.response.data.message);
+          } else {
+            return toast.error("Erro ao criar o prato!");
+          }
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   }
 
@@ -48,7 +78,7 @@ export function CardUser({ dish, ...rest }) {
 
   return(
     <Container {...rest}>
-      <button onClick={handleFavorite}>
+      <button disabled={isLoading} onClick={handleFavorite}>
         {isFavorite ? <IoMdHeart size={28} /> : <IoMdHeartEmpty size={28} />}
       </button>
       <img src={imageUrl} alt={`imagem de ${dish.name}`}/>

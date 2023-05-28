@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 
 import { useAuth } from '../../hooks/auth';
 
-import { Container, Brand, Hamburguer, MobileOrder, NavHeader, Logout } from "./styles";
+import { Container, Brand, Hamburguer, MobileOrder, NavHeaderUser, NavHeaderAdmin, NavButton, Logout } from "./styles";
 
 import { Input } from '../Input';
 import { Receipt } from "../../assets/icons/Receipt";
 
 import { GoSearch } from "react-icons/go";
-import { FiMenu, FiX, FiLogOut } from "react-icons/fi";
+import { FiMenu, FiX, FiLogOut, FiUser } from "react-icons/fi";
 
 import logoImg from "../../assets/logo-user.svg";
 import logoImgAdmin from "../../assets/logo-admin-desktop.svg"; 
@@ -92,7 +92,7 @@ export function Header({ orders, onSearch }) {
               <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link>Meu perfil</Link></li>
-                <li><Link>Meus favoritos</Link></li>
+                <li><Link to="/favorites">Meus favoritos</Link></li>
                 <li><Link>Historico de Pedidos</Link></li>
                 <li><Link to="/" onClick={handleSignOut}>Sair</Link></li>
               </ul>
@@ -135,16 +135,31 @@ export function Header({ orders, onSearch }) {
         onChange={handleSearch}
       />
       
+      {/* DESKTOP NAVIGATION */}
       {
         user.isAdmin ?
-          <NavHeader to="/new" className="primary">
-            Novo prato
-          </NavHeader>
+          <NavHeaderAdmin>
+            <NavButton to="/new" className="primary">
+              Novo prato
+            </NavButton>
+          </NavHeaderAdmin>
         :
-          <NavHeader className="primary">
-            <Receipt size={26}/>
-            Pedidos({ orders ? orders : 0 })
-          </NavHeader>
+          <NavHeaderUser>
+            <NavButton className="primary">
+              <Receipt size={26}/>
+              Pedidos({ orders ? orders : 0 })
+            </NavButton>
+            <div className="dropdown">
+              <button>
+                <FiUser size={32} />
+              </button>
+              <div className="dropdown-content">
+                <Link>Meu perfil</Link>
+                <Link to="/favorites">Meus favoritos</Link>
+                <Link>Historico de Pedidos</Link>
+              </div>
+            </div>
+          </NavHeaderUser>
       }
 
 

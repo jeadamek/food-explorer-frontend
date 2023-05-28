@@ -191,7 +191,75 @@ export const MobileOrder = styled.button`
   }
 `;
 
-export const NavHeader = styled(Link)`
+export const NavHeaderAdmin = styled.nav`
+`;
+
+export const NavHeaderUser = styled.nav`
+  display: none;
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+
+    button {
+      background: none;
+      border: none;
+      
+      height: 48px;
+      display: flex;
+      align-items: center;
+
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+
+      cursor: pointer;
+    }
+  }
+
+  .dropdown-content {
+    display: none;
+    flex-direction: column;
+    
+    width: 20rem;
+    
+    position: absolute;
+    left: -50px;
+
+    background-color: ${({ theme }) => theme.COLORS.DARK_500};
+  
+    border: solid 1px ${({ theme }) => theme.COLORS.DARK_900};
+    
+    border-radius: .5rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+    }
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+
+  .dropdown-content:hover {
+    display: flex;
+  }
+
+  @media ${device.laptop} {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+  }
+`
+
+export const NavButton = styled(Link)`
   display: none;
   color: ${({ theme }) => theme.COLORS.LIGHT_300};
 

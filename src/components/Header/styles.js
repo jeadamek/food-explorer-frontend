@@ -314,7 +314,7 @@ export const Logout = styled.button`
     cursor: pointer;
 
     &:hover {
-      opacity: 0.5;
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
     }
     
     @media ${device.laptop} {

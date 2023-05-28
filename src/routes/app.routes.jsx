@@ -3,8 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import { useAuth } from '../hooks/auth';
 
 import { Home } from '../pages/Home';
-import { EditDish } from '../pages/EditDish';
 import { AddDish } from '../pages/AddDish';
+import { EditDish } from '../pages/EditDish';
+import { Favorites } from '../pages/Favorites';
 import { DishDetails } from '../pages/DishDetails';
 
 export function AppRoutes() {
@@ -13,8 +14,13 @@ export function AppRoutes() {
   return(
     <Routes>
       {/* ROUTES ACCESS JUST BY ADMIN  */}
-      {user.isAdmin &&  <Route path="/new" element={<AddDish />} />}
-      {user.isAdmin &&  <Route path="/edit/:id" element={<EditDish />} />}
+      {user.isAdmin && <Route path="/new" element={<AddDish />} />}
+      {user.isAdmin && <Route path="/edit/:id" element={<EditDish />} />}
+
+      {/* ROUTES ACCESS JUST BY CLIENT  */}
+      {!user.isAdmin && <Route path="/favorites" element={<Favorites />} />}
+
+
 
       <Route path="/" element={<Home />} />
       <Route path="/details/:id" element={<DishDetails />} />

@@ -32,7 +32,7 @@ export const Container = styled.div`
 
     > main {
       max-width: 112rem;
-      padding: 2.4rem 3rem 12rem;
+      padding: 4rem 3rem 12rem;
     }
   }
 `;

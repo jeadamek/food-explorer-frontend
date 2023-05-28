@@ -35,8 +35,8 @@ export const Container = styled(Link)`
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
     }
 
-    &:hover {
-      opacity: 0.5;
+    &:hover path {
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
     }
   }
 

@@ -195,11 +195,12 @@ export const NavHeaderAdmin = styled.nav`
   display: none;
   min-width: fit-content;
 
-  a {
+  a:first-child {
     min-width: fit-content;
     text-decoration: none;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     font-weight: 400;
+    padding: 0 1rem;
 
     &:hover{
       color: ${({ theme }) => theme.COLORS.CAKE_200};

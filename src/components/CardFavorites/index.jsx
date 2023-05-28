@@ -12,7 +12,7 @@ export function CardFavorites({ favorite, onRemoveFavorite, ...rest}) {
     await api.delete(`/favorites/${idFav}`)
       .then(() => {
         onRemoveFavorite(idFav);
-        toast.success("Favorito removido com sucesso!");
+        toast.success(`${favorite.name} removido com sucesso!`);
       })
       .catch(error => {
         if(error.response) {

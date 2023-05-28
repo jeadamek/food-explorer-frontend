@@ -29,7 +29,7 @@ export const Container = styled.div`
     }
   }
 
-  @media ${device.desktop} {
+  @media ${device.laptopL} {
     > main {
       padding: 3.4rem 12.3rem;
     }

@@ -31,8 +31,14 @@ export const Container = styled.div`
     grid-template-rows: 9.6rem auto 7.7rem;
 
     > main {
-      max-width: 112rem;
-      padding: 4rem 3rem 12rem;
+      max-width: 100%;
+      padding: 4rem 8rem 12rem;
+    }
+  }
+
+  @media ${device.laptopL} {
+    > main {
+      padding: 4rem 12.5rem 12rem;
     }
   }
 `;

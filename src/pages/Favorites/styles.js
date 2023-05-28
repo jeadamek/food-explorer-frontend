@@ -20,11 +20,8 @@ export const Container = styled.div`
 
     margin: 0 auto;
 
-    > section {
-      > h2 {
-        margin-bottom: 2.8rem;
-        font-size: 3.2rem;
-      }
+    > h1 {
+      margin-bottom: 2.8rem;
     }
 
     .favorite-items {
@@ -41,15 +38,20 @@ export const Container = styled.div`
     > main {
       padding: 3.4rem 8rem;
 
-      > section {
-        > h2 {
-          margin-bottom: 3.8rem;
-        }
+      > h1 {
+        margin-bottom: 3.8rem;
+        font-size: 3.2rem;
       }
 
       .favorite-items {
         flex-direction: row;
       }
+    }
+  }
+
+  @media ${device.laptopL} {
+    > main {
+      padding: 3.4rem 12.5rem;
     }
   }
 `;

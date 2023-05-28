@@ -111,7 +111,7 @@ export const Container = styled.header`
     }
   }
 
-  @media ${device.desktop} {
+  @media ${device.laptopL} {
     padding: 2.4rem 12.3rem;
   }
 `;

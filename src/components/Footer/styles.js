@@ -39,11 +39,15 @@ export const Container = styled.footer`
   }
 
   @media ${device.laptop} {
-    padding: 0 12.3rem;
+    padding: 0 8rem;
     font-size: 1.4rem;
 
     > img {
       height: 3rem;
     }
+  }
+
+  @media ${device.laptopL} {
+    padding: 2.4rem 12.3rem;
   }
 `;

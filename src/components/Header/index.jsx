@@ -60,6 +60,7 @@ export function Header({ orders, onSearch }) {
   return(
     <Container>
       
+      {/* MOBILE NAVIGATION */}
       <div id="nav-mobile">
         <header>
           <FiX size={26} onClick={() => {
@@ -139,15 +140,17 @@ export function Header({ orders, onSearch }) {
       {
         user.isAdmin ?
           <NavHeaderAdmin>
-            <NavButton to="/new" className="primary">
-              Novo prato
+            <Link to="/new">Novo prato</Link>
+            <NavButton to="#" className="primary">
+              <Receipt size={26}/>
+              Pedidos
             </NavButton>
           </NavHeaderAdmin>
         :
           <NavHeaderUser>
             <NavButton className="primary">
               <Receipt size={26}/>
-              Pedidos({ orders ? orders : 0 })
+              Pedido({ orders ? orders : 0 })
             </NavButton>
             <div className="dropdown">
               <button>

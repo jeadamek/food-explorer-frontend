@@ -192,6 +192,25 @@ export const MobileOrder = styled.button`
 `;
 
 export const NavHeaderAdmin = styled.nav`
+  display: none;
+  min-width: fit-content;
+
+  a {
+    min-width: fit-content;
+    text-decoration: none;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    font-weight: 400;
+
+    &:hover{
+      color: ${({ theme }) => theme.COLORS.CAKE_200};
+    }
+  }
+
+  @media ${device.laptop} {
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+  }
 `;
 
 export const NavHeaderUser = styled.nav`

@@ -86,7 +86,7 @@ export function Header({ orders, onSearch }) {
               <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/new">Novo Prato</Link></li>
-                <li><Link>Pedidos</Link></li>
+                <li><Link to="/orders">Pedidos</Link></li>
                 <li><Link to="/" onClick={handleSignOut}>Sair</Link></li>
               </ul>
             :
@@ -141,7 +141,7 @@ export function Header({ orders, onSearch }) {
         user.isAdmin ?
           <NavHeaderAdmin>
             <Link to="/new">Novo prato</Link>
-            <NavButton to="#" className="primary">
+            <NavButton to="/orders" className="primary">
               <Receipt size={26}/>
               Pedidos
             </NavButton>

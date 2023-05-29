@@ -7,6 +7,7 @@ import { api } from "../../services/api";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
+import { OrderStatus } from "../../components/OrderStatus";
 
 export function OrdersHistory() {
   const { user } = useAuth();
@@ -59,9 +60,10 @@ export function OrdersHistory() {
                 <span className="code">
                   {getFormattedOrderCode(order.id)}
                 </span>
-                <span className="status">
-                  {order.order_status}
-                </span>
+                <OrderStatus 
+                  className="status"
+                  status={order.order_status} 
+                />
                 <span className="time">
                   {getFormattedDateTime(order.created_at)}
                 </span>
@@ -88,7 +90,8 @@ export function OrdersHistory() {
               orders.map(order => (
                 <tr key={String(order.id)}>
                   <td>
-                    {order.order_status}
+                    {/* {order.order_status} */}
+                    <OrderStatus status={order.order_status} />
                   </td>
                   <td>
                     {getFormattedOrderCode(order.id)}

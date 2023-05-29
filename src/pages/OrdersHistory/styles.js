@@ -82,21 +82,6 @@ export const ContentMobile = styled.div`
   .status {
     grid-area: status;
     justify-self: center;
-
-    display: flex;
-    align-items: center;
-    gap: .8rem;
-  }
-
-  .status::before {
-    content: "";
-
-    width: 8px;
-    height: 8px;
-
-    background-color: ${({ theme }) => theme.COLORS.TOMATO_300};
-
-    border-radius: 50%;
   }
 
   .time {

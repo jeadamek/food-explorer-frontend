@@ -13,11 +13,23 @@ export function OrdersHistory() {
   const [orders, setOrders] = useState([]);
 
   function getFormattedOrderCode(number) {
-    return number.toString().padStart(8, '0')
+    return number.toString().padStart(8, '0');
   }
 
   function getFormattedOrderItems(items) {
-    return items.map(item => `${item.quantity} x ${item.name}`).join(", ")
+    return items.map(item => `${item.quantity} x ${item.name}`).join(", ");
+  }
+
+  function getFormattedDateTime(bdDate) {
+    const date = new Date(bdDate);
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    const formattedDate = `${day}/${month} às ${hours}:${minutes}`;
+    return formattedDate;
   }
 
   useEffect(() => {
@@ -51,7 +63,7 @@ export function OrdersHistory() {
                   {order.order_status}
                 </span>
                 <span className="time">
-                  20/05 às 18h00
+                  {getFormattedDateTime(order.created_at)}
                 </span>
                 <p className="details">
                   {getFormattedOrderItems(order.items)}

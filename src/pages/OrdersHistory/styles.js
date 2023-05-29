@@ -40,7 +40,7 @@ export const Container = styled.div`
     grid-template-rows: 9.6rem auto 7.7rem;
 
     > main {
-      padding: 3.4rem 8rem;
+      padding: 3.4rem 8rem 15rem;
 
       > h1 {
         margin-bottom: 3.8rem;

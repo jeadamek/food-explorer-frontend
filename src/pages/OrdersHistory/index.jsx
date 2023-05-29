@@ -12,8 +12,12 @@ export function OrdersHistory() {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
 
-  function formatOrderCode(number) {
+  function getFormattedOrderCode(number) {
     return number.toString().padStart(8, '0')
+  }
+
+  function getFormattedOrderItems(items) {
+    return items.map(item => `${item.quantity} x ${item.name}`).join(", ")
   }
 
   useEffect(() => {
@@ -35,26 +39,28 @@ export function OrdersHistory() {
       <Header />
 
       <main>
-        <h1>Histórico de pedidos</h1>
-        
+        <h1>{user.isAdmin ? "Pedidos" : "Histórico de pedidos"}</h1>
+        <div>
           {
             orders.map(order => (
               <ContentMobile key={String(order.id)}>
                 <span className="code">
-                  {formatOrderCode(order.id)}
+                  {getFormattedOrderCode(order.id)}
                 </span>
-                <span className="status">{order.order_status}</span>
-                <span className="time">20/05 às 18h00</span>
+                <span className="status">
+                  {order.order_status}
+                </span>
+                <span className="time">
+                  20/05 às 18h00
+                </span>
                 <p className="details">
-                  {order.items.map(item => {
-                    return `${item.quantity} x item, `
-                  })}
+                  {getFormattedOrderItems(order.items)}
                 </p>
               </ContentMobile>
 
             ))
           }
-          
+        </div>
 
         <ContentDesktop>
           <thead>
@@ -66,18 +72,16 @@ export function OrdersHistory() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Pendente</td>
-              <td>00000004</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 às 18h00</td>
-            </tr>
-            <tr>
-              <td>Pendente</td>
-              <td>00000004</td>
-              <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-              <td>20/05 às 18h00</td>
-            </tr>
+            {
+              orders.map(order => (
+                <tr key={String(order.id)}>
+                  <td>{order.order_status}</td>
+                  <td>{getFormattedOrderCode(order.id)}</td>
+                  <td>{getFormattedOrderItems(order.items)}</td>
+                  <td>20/05 às 18h00</td>
+                </tr>
+              ))
+            }
           </tbody>
         </ContentDesktop>
 

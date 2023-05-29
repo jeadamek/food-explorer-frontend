@@ -28,6 +28,12 @@ export const Container = styled.div`
     > h1 {
       margin-bottom: 2.8rem;
     }
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
   }
 
   @media ${device.laptop} {
@@ -112,8 +118,6 @@ export const ContentDesktop = styled.table`
 
   width: 100%;
   border: solid 2px ${({ theme }) => theme.COLORS.DARK_1000};
-
-  /* padding: 2.1rem 2.4rem; */
 
   border-collapse: collapse;
   border-radius: .8rem;

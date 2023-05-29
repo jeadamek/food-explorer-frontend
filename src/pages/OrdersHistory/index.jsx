@@ -56,7 +56,7 @@ export function OrdersHistory() {
         <div>
           {
             orders.map(order => (
-              <ContentMobile key={String(order.id)}>
+              <ContentMobile key={String(order.id)} isAdmin={user.isAdmin}>
                 <span className="code">
                   {getFormattedOrderCode(order.id)}
                 </span>
@@ -76,7 +76,7 @@ export function OrdersHistory() {
           }
         </div>
 
-        <ContentDesktop>
+        <ContentDesktop isAdmin={user.isAdmin}>
           <thead>
             <tr>
               <th>Status</th>
@@ -90,7 +90,6 @@ export function OrdersHistory() {
               orders.map(order => (
                 <tr key={String(order.id)}>
                   <td>
-                    {/* {order.order_status} */}
                     <OrderStatus status={order.order_status} />
                   </td>
                   <td>

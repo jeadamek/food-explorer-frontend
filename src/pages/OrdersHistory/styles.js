@@ -64,9 +64,18 @@ export const ContentMobile = styled.div`
 
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr;
-  grid-template-areas: 
-    "code status time"
-    "details details details";
+  grid-template-areas: ${({ isAdmin }) => {
+    if (isAdmin) {
+      return `'code time time'
+    'details details details'
+    'status status status'`;
+    } else {
+      return `'code status time'
+    'details details details'`;
+    }
+    
+  }};
+
 
   align-items: center;
   gap: 1.6rem;
@@ -86,7 +95,7 @@ export const ContentMobile = styled.div`
 
   .time {
     grid-area: time;
-    justify-self: end;
+    justify-self: ${({ isAdmin }) => isAdmin ? "start" : "end"};
   }
 
   .details {
@@ -130,7 +139,7 @@ export const ContentDesktop = styled.table`
 
   thead th:nth-child(1),
   tbody td:nth-child(1) {
-    width: 15rem;
+    width: ${({ isAdmin }) => isAdmin ? "22rem" : "15rem"};
   }
 
   thead th:nth-child(2),

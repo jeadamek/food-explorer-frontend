@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import { useAuth } from "../../hooks/auth";
 
+import { Select } from "../../components/Select";
+
 export function OrderStatus({ status, ...rest}) {
   const { user } = useAuth();
 
@@ -22,7 +24,7 @@ export function OrderStatus({ status, ...rest}) {
       {
         user.isAdmin ?
          // select
-          "hello"
+         <Select options={options} value={status} {...rest} />
         :
          // dado normal
          <UserContent {...rest} status={status}>

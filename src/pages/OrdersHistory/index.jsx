@@ -87,10 +87,18 @@ export function OrdersHistory() {
             {
               orders.map(order => (
                 <tr key={String(order.id)}>
-                  <td>{order.order_status}</td>
-                  <td>{getFormattedOrderCode(order.id)}</td>
-                  <td>{getFormattedOrderItems(order.items)}</td>
-                  <td>20/05 às 18h00</td>
+                  <td>
+                    {order.order_status}
+                  </td>
+                  <td>
+                    {getFormattedOrderCode(order.id)}
+                  </td>
+                  <td>
+                    {getFormattedOrderItems(order.items)}
+                  </td>
+                  <td>
+                    {getFormattedDateTime(order.created_at)}
+                  </td>
                 </tr>
               ))
             }

@@ -51,7 +51,7 @@ export const Container = styled.div`
 
   @media ${device.laptopL} {
     > main {
-      padding: 3.4rem 12.3rem;
+      padding: 3.4rem 12.3rem 15rem;  
     }
   }
 `;

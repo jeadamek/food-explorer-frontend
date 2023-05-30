@@ -1,26 +1,33 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
+
 import { Container } from "../Stepper/styles";
 
 import { FiPlus } from "react-icons/fi";
 import { FiMinus } from "react-icons/fi";
 
-export function Stepper(){
-  const [quantity, setQuantity] = useState(1);
+export function Stepper({ value=1, onChange }){
+  const [quantity, setQuantity] = useState(value);
 
   function handleAddQuantity(e){
     e.preventDefault();
-    setQuantity(prevState => prevState + 1);
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    onChange(newQuantity);
   }
 
   function handleRemoveQuantity(e){
     e.preventDefault();
     if (quantity > 1) {
-      setQuantity(prevState => prevState - 1);
+       const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      onChange(newQuantity);
     }
   }
+  
 
   return (
-    <Container>
+    <Container value={quantity} >
       <button onClick={handleRemoveQuantity}>
         <FiMinus size={24} />
       </button>
@@ -30,4 +37,9 @@ export function Stepper(){
       </button>
     </Container>
   )
+}
+
+Stepper.propTypes = {
+  value: PropTypes.number,
+  onChange: PropTypes.func,
 }

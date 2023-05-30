@@ -24,9 +24,20 @@ export function DishDetails() {
   
   const [data, setData] = useState({});
   const [image, setImage] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   const params = useParams();
   const navegate = useNavigate();
+
+  function handleStepperChange(newQuantity) {
+    setQuantity(newQuantity)
+  }
+
+  function handleTotal() {
+    const total = data.price * quantity;
+    const currency = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    return currency;
+  }
 
   function handleBack(){
     navegate(-1);
@@ -87,8 +98,8 @@ export function DishDetails() {
               :
               // USER
               <div className="buttons">
-                <Stepper />
-                <Button title={`incluir ∙ R$ ${data.price}`} icon={Receipt} className="primary" />
+                <Stepper value={quantity} onChange={handleStepperChange} />
+                <Button title={`incluir ∙ R$ ${handleTotal()}`} icon={Receipt} className="primary" />
               </div>
             }
           </DishInfo>

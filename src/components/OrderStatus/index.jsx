@@ -1,18 +1,22 @@
-import { UserContent, Select } from "./style";
+import { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 
-import { useAuth } from "../../hooks/auth";
-import { useEffect, useState } from "react";
+import { UserContent, Select } from "./style";
 
-export function OrderStatus({ status, ...rest}) {
+import { useAuth } from "../../hooks/auth";
+
+export function OrderStatus({ status, onStatusChange, ...rest}) {
   const { user } = useAuth();
 
-  const options = [
+  const options = useMemo(
+    () => [
     { value: 'pendente', label: 'Pendente', color: '#AB222E'},
     { value: 'preparando', label: 'Preparando', color: '#FBA94C'},
     { value: 'pronto', label: 'Pronto', color: '#04D361'},
     { value: 'entregue', label: 'Entregue', color: '#82F3FF'},
-  ];
+  ],
+  []
+  );
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -28,6 +32,8 @@ export function OrderStatus({ status, ...rest}) {
   function handleSelectedOption(option) {
     setSelectedOption(option);
     setIsOpen(false);
+
+    onStatusChange(option);
   }
 
   useEffect(() => {
@@ -35,7 +41,7 @@ export function OrderStatus({ status, ...rest}) {
     if (initialOption) {
       setSelectedOption(initialOption);
     }
-  }, [status])
+  }, [status, options])
    
   return(
     <>
@@ -76,5 +82,6 @@ export function OrderStatus({ status, ...rest}) {
 }
 
 OrderStatus.propTypes = {
-  status: PropTypes.any
+  status: PropTypes.any,
+  onStatusChange: PropTypes.func
 }

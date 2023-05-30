@@ -8,6 +8,7 @@ import { api } from "../../services/api";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { OrderStatus } from "../../components/OrderStatus";
+import { toast } from "react-toastify";
 
 export function OrdersHistory() {
   const { user } = useAuth();
@@ -31,6 +32,27 @@ export function OrdersHistory() {
 
     const formattedDate = `${day}/${month} às ${hours}:${minutes}`;
     return formattedDate;
+  }
+
+  async function handleOrderUpdate(option, orderId) {
+    const status = option.value;
+    const orderCode = getFormattedOrderCode(orderId);
+
+    await api.put("/orders/", {id: orderId, order_status: status})
+      .then(() => {
+        toast.success(`Pedido ${orderCode} atualizado com sucesso!`)
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 4000);
+      })
+      .catch(error => {
+        if(error.response) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("Não foi possível atualizar o status");
+        }
+      });
   }
 
   useEffect(() => {
@@ -63,6 +85,7 @@ export function OrdersHistory() {
                 <OrderStatus 
                   className="status"
                   status={order.order_status} 
+                  onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)}
                 />
                 <span className="time">
                   {getFormattedDateTime(order.created_at)}
@@ -71,7 +94,6 @@ export function OrdersHistory() {
                   {getFormattedOrderItems(order.items)}
                 </p>
               </ContentMobile>
-
             ))
           }
         </div>
@@ -90,7 +112,10 @@ export function OrdersHistory() {
               orders.map(order => (
                 <tr key={String(order.id)}>
                   <td>
-                    <OrderStatus status={order.order_status} />
+                    <OrderStatus 
+                      status={order.order_status} 
+                      onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)} 
+                    />
                   </td>
                   <td>
                     {getFormattedOrderCode(order.id)}

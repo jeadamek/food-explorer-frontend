@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <ToastContainer 
-        autoClose={4000}
+        autoClose={3000}
         theme='colored'
       />
       <AuthProvider>

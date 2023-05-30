@@ -33,20 +33,18 @@ export function Favorites() {
     <Container>
       <Header onSearch={handleSearch}/>
       <main>
-        <section>
-          <h2>Meus favoritos</h2>
-          <div className="favorite-items">
-            {
-              favorites.map(favorite => (
-                <CardFavorites 
-                  key={String(favorite.id)} 
-                  favorite={favorite} 
-                  onRemoveFavorite={handleRemoveFavorite}
-                />
-              ))
-            }
-          </div>
-        </section>
+        <h1>Meus favoritos</h1>
+        <div className="favorite-items">
+          {
+            favorites.map(favorite => (
+              <CardFavorites 
+                key={String(favorite.id)} 
+                favorite={favorite} 
+                onRemoveFavorite={handleRemoveFavorite}
+              />
+            ))
+          }
+        </div>
       </main>
       <Footer />
     </Container>

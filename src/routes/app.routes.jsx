@@ -7,6 +7,7 @@ import { AddDish } from '../pages/AddDish';
 import { EditDish } from '../pages/EditDish';
 import { Favorites } from '../pages/Favorites';
 import { DishDetails } from '../pages/DishDetails';
+import { OrdersHistory } from '../pages/OrdersHistory';
 
 export function AppRoutes() {
 
@@ -23,6 +24,7 @@ export function AppRoutes() {
 
 
       <Route path="/" element={<Home />} />
+      <Route path="/orders" element={<OrdersHistory />} />
       <Route path="/details/:id" element={<DishDetails />} />
     </Routes>
   )

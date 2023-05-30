@@ -14,7 +14,9 @@ export function Stepper(){
 
   function handleRemoveQuantity(e){
     e.preventDefault();
-    setQuantity(prevState => prevState - 1);
+    if (quantity > 1) {
+      setQuantity(prevState => prevState - 1);
+    }
   }
 
   return (

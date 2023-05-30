@@ -4,7 +4,7 @@ import { device } from "../../breakpoints/devices";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.6rem;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
@@ -34,8 +34,14 @@ export const Container = styled.div`
     }
   }
 
+  > span {
+    display: flex;
+    justify-content: center;
+    width: 2.8rem;
+  }
+
   @media ${device.laptop} {
-    gap: 1.6rem;
+    gap: 1.2rem;
     font-size: 2rem;
   }
 `;

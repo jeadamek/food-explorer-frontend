@@ -139,7 +139,7 @@ export const ContentDesktop = styled.table`
 
   thead th:nth-child(1),
   tbody td:nth-child(1) {
-    width: ${({ isAdmin }) => isAdmin ? "22rem" : "15rem"};
+    width: ${({ isAdmin }) => isAdmin ? "22.5rem" : "15rem"};
   }
 
   thead th:nth-child(2),

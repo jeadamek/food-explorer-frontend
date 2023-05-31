@@ -153,7 +153,6 @@ export const MobileOrder = styled.button`
   border: none;
 
   width: 3.5rem;
-  height: 2.6rem;
 
   position: relative;
   

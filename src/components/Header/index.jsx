@@ -86,7 +86,7 @@ export function Header({ orders, onSearch }) {
               <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/new">Novo Prato</Link></li>
-                <li><Link to="/orders">Pedidos</Link></li>
+                <li><Link to="/order-history">Pedidos</Link></li>
                 <li><Link to="/" onClick={handleSignOut}>Sair</Link></li>
               </ul>
             :
@@ -94,7 +94,7 @@ export function Header({ orders, onSearch }) {
                 <li><Link to="/">Home</Link></li>
                 <li><Link>Meu perfil</Link></li>
                 <li><Link to="/favorites">Meus favoritos</Link></li>
-                <li><Link to="/orders">Historico de Pedidos</Link></li>
+                <li><Link to="/order-history">Historico de Pedidos</Link></li>
                 <li><Link to="/" onClick={handleSignOut}>Sair</Link></li>
               </ul>
           }
@@ -124,7 +124,7 @@ export function Header({ orders, onSearch }) {
       </Brand>
 
       <MobileOrder>
-        <Receipt size={26} />
+        <Link to="/order"><Receipt size={26} /></Link>
         <div><span>{ orders ? orders : 0 }</span></div>
       </MobileOrder>
 
@@ -141,14 +141,14 @@ export function Header({ orders, onSearch }) {
         user.isAdmin ?
           <NavHeaderAdmin>
             <Link to="/new">Novo prato</Link>
-            <NavButton to="/orders" className="primary">
+            <NavButton to="/order-history" className="primary">
               <Receipt size={26}/>
               Pedidos
             </NavButton>
           </NavHeaderAdmin>
         :
           <NavHeaderUser>
-            <NavButton className="primary">
+            <NavButton to="/order" className="primary">
               <Receipt size={26}/>
               Pedido({ orders ? orders : 0 })
             </NavButton>
@@ -159,7 +159,7 @@ export function Header({ orders, onSearch }) {
               <div className="dropdown-content">
                 <Link>Meu perfil</Link>
                 <Link to="/favorites">Meus favoritos</Link>
-                <Link to="/orders">Historico de Pedidos</Link>
+                <Link to="/order-history">Historico de Pedidos</Link>
               </div>
             </div>
           </NavHeaderUser>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../breakpoints/devices";
 
 export const Container = styled.div`
   height: 100%;
@@ -18,12 +19,6 @@ export const Container = styled.div`
   > div {
     display: flex;
     flex-direction: column;
-
-    height: 41.6rem;
-
-    padding-right: 1rem;
-
-    overflow-y: scroll;
   } 
 
   .order {
@@ -98,5 +93,20 @@ export const Container = styled.div`
     width: 216px;
     align-self: flex-end;
     margin-top: 1.6rem;
+  }
+
+  @media ${device.laptop} {
+    margin: 0;
+
+    > div {
+      height: 41.6rem;
+      padding-right: 1rem;
+
+      overflow-y: scroll;
+    }
+
+    > button {
+      display: none;
+    }
   }
 `;

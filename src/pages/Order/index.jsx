@@ -1,6 +1,9 @@
-import { Footer } from "../../components/Footer";
-import { Header } from "../../components/Header";
 import { Container } from "./styles";
+
+
+import { Cart } from "../../components/Cart";
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 
 export function Order() {
   return(
@@ -8,6 +11,7 @@ export function Order() {
       <Header />
 
       <main>
+        <Cart />
 
       </main>
 

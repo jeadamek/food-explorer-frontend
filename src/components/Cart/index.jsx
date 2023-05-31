@@ -1,5 +1,6 @@
 import { Container } from "./styles";
 
+import { Button } from "../Button";
 import { Stepper } from "../Stepper";
 
 export function Cart() {
@@ -81,6 +82,8 @@ export function Cart() {
       </div>
 
       <span className="total">{`Total: ${orderTotal}`}</span>
+
+      <Button title="Avançar" className="primary" />
     </Container>
   )
 }

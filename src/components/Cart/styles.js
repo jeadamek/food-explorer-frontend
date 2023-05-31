@@ -2,13 +2,17 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 100%;
-  width: 40.4rem;
+  max-width: 40.4rem;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
 
   > h2 {
     font-size: 32px;
     line-height: 140%;
-
-    margin-bottom: 3.2rem;
   }
 
   > div {
@@ -18,10 +22,8 @@ export const Container = styled.div`
     height: 41.6rem;
 
     padding-right: 1rem;
-    margin-bottom: 3.2rem;
 
     overflow-y: scroll;
-
   } 
 
   .order {
@@ -90,5 +92,11 @@ export const Container = styled.div`
     line-height: 160%;
 
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
+  }
+
+  > button {
+    width: 216px;
+    align-self: flex-end;
+    margin-top: 1.6rem;
   }
 `;

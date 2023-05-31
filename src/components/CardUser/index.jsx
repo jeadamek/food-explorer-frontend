@@ -1,6 +1,8 @@
-import { Container } from "./styles";
-
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
+
+import { Container, DishInfo } from "./styles";
 
 import { api } from "../../services/api";
 
@@ -9,11 +11,8 @@ import { Stepper } from "../Stepper";
 
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { IoMdHeart } from 'react-icons/io'
-import { useState } from "react";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
 
-export function CardUser({ dish, ...rest }) {
+export function CardUser({ dish, nav, ...rest }) {
   const [isFavorite, setIsFavorite] = useState();
   const [idFavorite, setIdFavorite] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -81,10 +80,12 @@ export function CardUser({ dish, ...rest }) {
       <button disabled={isLoading} onClick={handleFavorite}>
         {isFavorite ? <IoMdHeart size={28} /> : <IoMdHeartEmpty size={28} />}
       </button>
-      <img src={imageUrl} alt={`imagem de ${dish.name}`}/>
-      <h3>{`${dish.name}`}</h3>
-      <p>{dish.description}</p>
-      <span>{priceInCurrency}</span>  
+      <DishInfo to={nav}>
+        <img src={imageUrl} alt={`imagem de ${dish.name}`}/>
+        <h3>{`${dish.name}`}</h3>
+        <p>{dish.description}</p>
+        <span>{priceInCurrency}</span>
+      </DishInfo>
       <div className="add-cart">
         <Stepper />
         <Button title="incluir" className="primary" />
@@ -95,4 +96,5 @@ export function CardUser({ dish, ...rest }) {
 
 CardUser.propTypes = {
   dish: PropTypes.object.isRequired,
+  nav: PropTypes.string.isRequired,
 }

@@ -116,7 +116,7 @@ export function Carousel({ items }) {
               user.isAdmin ?
                 <CardAdmin to={`/details/${item.id}`} dish={item} />
               : 
-                <CardUser to={`/details/${item.id}`} dish={item} />
+                <CardUser nav={`/details/${item.id}`} dish={item} />
             }
           </swiper-slide>
         ))}

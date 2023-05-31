@@ -33,9 +33,9 @@ export function DishDetails() {
     setQuantity(newQuantity)
   }
 
-  function handleTotal() {
-    const total = data.price * quantity;
-    const currency = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  function handlePrice() {
+    const price = data.price * quantity;
+    const currency = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     return currency;
   }
 
@@ -99,7 +99,7 @@ export function DishDetails() {
               // USER
               <div className="buttons">
                 <Stepper value={quantity} onChange={handleStepperChange} />
-                <Button title={`incluir ∙ R$ ${handleTotal()}`} icon={Receipt} className="primary" />
+                <Button title={`incluir ∙ ${handlePrice()}`} icon={Receipt} className="primary" />
               </div>
             }
           </DishInfo>

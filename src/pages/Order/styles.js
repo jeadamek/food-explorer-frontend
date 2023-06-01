@@ -18,6 +18,10 @@ export const Container = styled.div`
 
     padding: 4rem 2.8rem 5.8rem;
     margin: 0 auto;
+
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
   }
 
   @media ${device.laptop} {

@@ -220,6 +220,8 @@ export const NavHeaderUser = styled.nav`
     position: relative;
     display: inline-block;
 
+    z-index: 1;
+
     button {
       background: none;
       border: none;

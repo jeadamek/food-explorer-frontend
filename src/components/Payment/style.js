@@ -77,6 +77,8 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    padding: 0 3rem;
   }
   
   .status > form {
@@ -86,6 +88,19 @@ export const Content = styled.div`
 
     .input-wrapper {
       width: 100%;
+
+      > div {
+        background-color: transparent;
+        border: none;
+
+        > input {
+          border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
+        }
+
+        > input:focus {
+          border: 1px solid ${({ theme }) => theme.COLORS.CAKE_200};
+        }
+      }
     }
 
     .card-confirmation-wrapper {

@@ -44,7 +44,7 @@ export function Payment() {
           className={paymentMethod == 'pix' ? "active" : undefined}
           onClick={handlePaymentMethod}
         >
-          <SiPix size={24} />
+          <SiPix size={22} />
           PIX
         </button>  
 
@@ -52,7 +52,7 @@ export function Payment() {
           className={paymentMethod == 'credit' ? "active" : undefined}
           onClick={handlePaymentMethod}
         >
-          <HiCreditCard size={24} />
+          <HiCreditCard size={26} />
           Crédito
         </button>  
       </div>
@@ -81,7 +81,7 @@ export function Payment() {
                   <div className="input-wrapper">
                     <Label title="CVC" />
                     <Input
-                      placeholder="XXX"
+                      placeholder="000"
                     />
                   </div>
                 </div>

@@ -73,15 +73,17 @@ export const Content = styled.div`
 
   .status {
     width: 100%;
-    padding: 3.6rem 2.6rem;
+    height: 38rem;
 
-    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .status > form {
     display: flex;
     flex-direction: column;
-    gap: 3.2rem;
+    gap: 3.6rem;
 
     .input-wrapper {
       width: 100%;
@@ -91,5 +93,22 @@ export const Content = styled.div`
       display: flex;
       gap: 1.6rem;
     }
+  }
+
+  .order-status-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+
+    color: ${({ theme }) => theme.COLORS.LIGHT_500};
+
+    > span {
+      font-weight: 700;
+      font-size: 2.4rem;
+      line-height: 2.8rem;
+
+    }
+
   }
 `;

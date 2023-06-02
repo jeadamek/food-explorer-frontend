@@ -1,15 +1,21 @@
+import PropTypes from 'prop-types';
+
 import { Container } from "./styles";
 
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
 
-export function Cart() {
+export function Cart({onAdvance}) {
 
   const src = "/public/salada-molla.png"
   const name = "Salada Radish";
   const price = 10.99;
   const orderTotal = 103.98;
   const value = 1;
+
+  function handleButtonAdvance() {
+    onAdvance();
+  }
 
   function handlePrice(value) {
     const currency = value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -88,7 +94,15 @@ export function Cart() {
 
       <span className="total">{`Total: ${handlePrice(orderTotal)}`}</span>
 
-      <Button title="Avançar" className="primary" />
+      <Button 
+        title="Avançar" 
+        className="primary"
+        onClick={handleButtonAdvance}
+      />
     </Container>
   )
+}
+
+Cart.propTypes = {
+  onAdvance: PropTypes.func,
 }

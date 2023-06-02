@@ -14,21 +14,40 @@ export const Container = styled.div`
     margin-bottom: 3.2rem;
   }
 
+
+  @media ${device.laptop} {
+    width: 53rem;
+
+    margin: 0;
+  }
+
+  @media ${device.laptopL} {
+    margin-right: 11rem; 
+  }
+`;
+
+export const Content = styled.div`
+  border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
+
+  border-radius: .8rem;
+
   .buttons {
-    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
     
     display: flex;
     justify-content: space-between;
 
-    border-radius: .8rem .8rem 0 0;
-
-
     > button:first-child {
       border-right: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
+      border-radius: .8rem 0 0 0;
+    }
+
+    > button:last-child {
+      border-radius: 0 .8rem 0 0;
     }
 
     > button {
-      width: 26.5rem;
+      width: 50%;
       height: 8rem;
 
       display: flex;
@@ -52,9 +71,25 @@ export const Container = styled.div`
     }
   }
 
-  @media ${device.laptop} {
-    width: 53rem;
+  .status {
+    width: 100%;
+    padding: 3.6rem 2.6rem;
 
-    margin: 0;
+    border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
+  }
+  
+  .status > form {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+
+    .input-wrapper {
+      width: 100%;
+    }
+
+    .card-confirmation-wrapper {
+      display: flex;
+      gap: 1.6rem;
+    }
   }
 `;

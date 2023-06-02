@@ -3,6 +3,7 @@ import { device } from "../../breakpoints/devices";
 
 export const Container = styled.div`
   height: 100%;
+  min-width: fit-content;
   max-width: 40.4rem;
 
   margin: 0 auto;
@@ -46,7 +47,7 @@ export const Container = styled.div`
     gap: 1.2rem;
 
     > h3 {
-      font-size: 20px;
+      font-size: 2rem;
       line-height: 160%;
     }
 
@@ -90,7 +91,7 @@ export const Container = styled.div`
   }
 
   > button {
-    width: 216px;
+    width: 21.6rem;
     align-self: flex-end;
     margin-top: 1.6rem;
   }

@@ -16,10 +16,14 @@ export function Payment() {
   const [paymentMethod, setPaymentMethod] = useState('pix');
   
   
-  const status = 'initial';
+  const status = 'processing';
   const isPaid = false 
 
   function handlePaymentMethod() {
+    if (status !== 'initial'){
+      return;
+    }
+
     if (paymentMethod == 'pix'){
       setPaymentMethod('credit');
     } else {

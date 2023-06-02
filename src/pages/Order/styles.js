@@ -22,6 +22,7 @@ export const Container = styled.div`
     display: flex;
     align-items: start;
     justify-content: space-between;
+    gap: 10rem;
   }
 
   @media ${device.laptop} {

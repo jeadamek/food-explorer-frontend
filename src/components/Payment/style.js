@@ -16,8 +16,6 @@ export const Container = styled.div`
 
 
   @media ${device.laptop} {
-    width: 53rem;
-
     margin: 0;
   }
 
@@ -27,6 +25,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  
   border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
 
   border-radius: .8rem;
@@ -93,6 +92,10 @@ export const Content = styled.div`
       display: flex;
       gap: 1.6rem;
     }
+
+    > button {
+      width: 100%;
+    }
   }
 
   .order-status-wrapper {
@@ -107,7 +110,6 @@ export const Content = styled.div`
       font-weight: 700;
       font-size: 2.4rem;
       line-height: 2.8rem;
-
     }
 
   }

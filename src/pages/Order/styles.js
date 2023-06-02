@@ -16,7 +16,7 @@ export const Container = styled.div`
     grid-area: content;
     width: 100%;
 
-    padding: 4rem 2.8rem 5.8rem;
+    padding: 4rem 3.5rem 5.8rem;
     margin: 0 auto;
 
     display: flex;

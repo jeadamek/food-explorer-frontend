@@ -3,8 +3,9 @@ import { device } from "../../breakpoints/devices";
 
 export const Container = styled.div`
   height: 100%;
-  min-width: fit-content;
+  width: 100%;
   max-width: 40.4rem;
+
 
   margin: 0 auto;
 
@@ -97,10 +98,13 @@ export const Container = styled.div`
   }
 
   @media ${device.laptop} {
+    min-width: fit-content;
+    
     margin: 0;
 
     > div {
-      height: 41.6rem;
+      max-height: 41.6rem;
+      min-height: fit-content;
       padding-right: 1rem;
 
       overflow-y: scroll;

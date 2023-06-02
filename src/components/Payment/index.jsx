@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Container, Content } from "./style";
 
 import { Label } from "../Label";
@@ -11,10 +13,19 @@ import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 
 export function Payment() {
-
-  const status = 'processing';
-  const paymentMethod = 'card'
+  const [paymentMethod, setPaymentMethod] = useState('pix');
+  
+  
+  const status = 'initial';
   const isPaid = false 
+
+  function handlePaymentMethod() {
+    if (paymentMethod == 'pix'){
+      setPaymentMethod('credit');
+    } else {
+      setPaymentMethod('pix');
+    }
+  }
 
   return(
     <Container>
@@ -22,13 +33,17 @@ export function Payment() {
       
       <Content>
       <div className="buttons">
-        <button>
+        <button
+          className={paymentMethod == 'pix' ? "active" : undefined}
+          onClick={handlePaymentMethod}
+        >
           <SiPix size={24} />
           PIX
         </button>  
 
         <button
-          className="active"
+          className={paymentMethod == 'credit' ? "active" : undefined}
+          onClick={handlePaymentMethod}
         >
           <HiCreditCard size={24} />
           Crédito
@@ -41,7 +56,7 @@ export function Payment() {
 
           {
           // CREDIT 
-            status == 'initial' && paymentMethod == 'card' &&         
+            status == 'initial' && paymentMethod == 'credit' &&         
               <form>
                 <div className="input-wrapper">
                   <Label title="Número do Cartão" />

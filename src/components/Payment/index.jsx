@@ -6,9 +6,12 @@ import { Label } from "../Label";
 import { Input } from "../Input";
 import { Button } from "../Button";
 
+import { ForkKnife } from "../../assets/icons/ForkKnife";
+
 import { SiPix } from "react-icons/si";
-import { HiCreditCard } from "react-icons/hi";
 import { FiClock } from "react-icons/fi";
+import { HiCreditCard } from "react-icons/hi";
+import { BsBagCheckFill } from "react-icons/bs";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 
@@ -16,7 +19,7 @@ export function Payment() {
   const [paymentMethod, setPaymentMethod] = useState('pix');
   
   
-  const status = 'processing';
+  const status = 'delivered';
   const isPaid = false 
 
   function handlePaymentMethod() {
@@ -112,6 +115,24 @@ export function Payment() {
             <div className="order-status-wrapper">
               <FiClock size={104} />
               <span>Preparando seu pedido</span>
+            </div>
+          }
+
+          {
+          // DISH IS READY
+            status == 'isReady' &&
+            <div className="order-status-wrapper">
+              <ForkKnife size={104} />
+              <span>Pode retirar seu pedido!</span>
+            </div>
+          }
+
+          {
+          // DELIVERED
+            status == 'delivered' &&
+            <div className="order-status-wrapper">
+              <BsBagCheckFill size={104} />
+              <span>Pedido entregue!</span>
             </div>
           }
           

@@ -19,11 +19,11 @@ export function Payment() {
   const [paymentMethod, setPaymentMethod] = useState('pix');
   
   
-  const status = 'delivered';
+  const status = 'payment';
   const isPaid = false 
 
   function handlePaymentMethod() {
-    if (status !== 'initial'){
+    if (status !== 'payment'){
       return;
     }
 
@@ -63,7 +63,7 @@ export function Payment() {
 
           {
           // CREDIT 
-            status == 'initial' && paymentMethod == 'credit' &&         
+            status == 'payment' && paymentMethod == 'credit' &&         
               <form>
                 <div className="input-wrapper">
                   <Label title="Número do Cartão" />

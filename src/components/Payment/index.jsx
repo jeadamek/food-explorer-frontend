@@ -1,9 +1,9 @@
 import { useState } from "react";
+import InputMask from 'react-input-mask';
 
 import { Container, Content } from "./style";
 
 import { Label } from "../Label";
-import { Input } from "../Input";
 import { Button } from "../Button";
 
 import { ForkKnife } from "../../assets/icons/ForkKnife";
@@ -66,22 +66,37 @@ export function Payment() {
             status == 'payment' && paymentMethod == 'credit' &&         
               <form>
                 <div className="input-wrapper">
-                  <Label title="Número do Cartão" />
-                  <Input
+                  <Label title="Número do Cartão" htmlFor="card-number"/>
+                  <InputMask
+                    id="card-number"
+                    name="card-number"
+                    type="text"
+                    mask="9999 9999 9999 9999"
                     placeholder="0000 0000 0000 0000"
+                    required
                   />
                 </div>
                 <div className="card-confirmation-wrapper">
                   <div className="input-wrapper">
-                    <Label title="Validade" />
-                    <Input
+                    <Label title="Validade" htmlFor="expiration-date" />
+                    <InputMask
+                      id="expiration-date"
+                      name="expiration-date"
+                      type="text"
+                      mask="99/99"
                       placeholder="04/05"
+                      required
                     />
                   </div>
-                  <div className="input-wrapper">
-                    <Label title="CVC" />
-                    <Input
+                  <div className="input-wrapper" >
+                    <Label title="CVC" htmlFor="cvc" />
+                    <InputMask
+                      id="cvc"
+                      name="cvc"
+                      type="text"
+                      mask="999"
                       placeholder="000"
+                      required
                     />
                   </div>
                 </div>

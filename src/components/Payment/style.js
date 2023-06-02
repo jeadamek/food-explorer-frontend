@@ -89,15 +89,23 @@ export const Content = styled.div`
     .input-wrapper {
       width: 100%;
 
-      > div {
+      input {
+        height: 4.8rem;
+        width: 100%;
+
+        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
         background-color: transparent;
-        border: none;
 
-        > input {
-          border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
+        padding: 14px;
+        margin-top: .8rem;
+
+        border-radius: .5rem;
+
+        &:placeholder {
+          color: ${({ theme }) => theme.COLORS.LIGHT_500};
         }
-
-        > input:focus {
+        
+        &:focus {
           border: 1px solid ${({ theme }) => theme.COLORS.CAKE_200};
         }
       }

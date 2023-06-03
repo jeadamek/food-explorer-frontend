@@ -139,10 +139,6 @@ export const Content = styled.div`
 
     color: ${({ theme }) => theme.COLORS.LIGHT_500};
 
-    > svg > path {
-      fill: ${({ theme }) => theme.COLORS.LIGHT_500};
-    }
-
     > span {
       font-weight: 700;
       font-size: 2.4rem;

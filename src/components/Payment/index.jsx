@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import { api } from "../../services/api";
 
-import { Container, Content } from "./style";
+import { Container, Content } from "./styles";
 
 import { Label } from "../Label";
 import { Button } from "../Button";
@@ -29,14 +29,15 @@ export function Payment() {
 
   const [paymentMethod, setPaymentMethod] = useState('pix');
   const [isPaid, setIsPaid] = useState(false);
+  const [status, setStatus] = useState("isReady");
   
-  
-  const status = 'processing';
 
   async function handlePurchase() {
     if (!creditCard || !cardExpirationDate || !cvcCode) {
       toast.warn("Preencha todos os dados do cartão")
     }
+
+    setStatus("processing");
 
     await api.post("/orders", order)
       .then(() => {
@@ -149,7 +150,6 @@ export function Payment() {
               </form>
           }
 
-
           {
           // PROCESSING
             status == 'processing' && !isPaid &&
@@ -181,7 +181,10 @@ export function Payment() {
           // DISH IS READY
             status == 'isReady' &&
             <div className="order-status-wrapper">
-              <ForkKnife size={104} />
+              <ForkKnife 
+                color="#7C7C8A"
+                size={104} 
+              />
               <span>Pode retirar seu pedido!</span>
             </div>
           }

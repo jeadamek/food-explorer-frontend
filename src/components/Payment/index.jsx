@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputMask from 'react-input-mask';
+import { toast } from "react-toastify";
+
+import { api } from "../../services/api";
 
 import { Container, Content } from "./style";
 
 import { Label } from "../Label";
 import { Button } from "../Button";
+import { Loading } from "../Loading";
 
 import qrCode from "../../assets/qrCode.svg";
 import { ForkKnife } from "../../assets/icons/ForkKnife";
@@ -15,14 +19,38 @@ import { HiCreditCard } from "react-icons/hi";
 import { BsBagCheckFill } from "react-icons/bs";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
-
+// order test
+import { order } from "./order";
 
 export function Payment() {
+  const [cvcCode, setCvcCode] = useState(null);
+  const [creditCard, setCreditCard] = useState(null);
+  const [cardExpirationDate, setCardExpirationDate] = useState(null);
+
   const [paymentMethod, setPaymentMethod] = useState('pix');
+  const [isPaid, setIsPaid] = useState(false);
   
   
-  const status = 'payment';
-  const isPaid = false 
+  const status = 'processing';
+
+  async function handlePurchase() {
+    if (!creditCard || !cardExpirationDate || !cvcCode) {
+      toast.warn("Preencha todos os dados do cartão")
+    }
+
+    await api.post("/orders", order)
+      .then(() => {
+        toast.success("Pedido realizado com sucesso!");
+        setIsPaid(true)
+      })
+      .catch((error) => {
+        if (error.response) {
+          return toast.error(error.response.data.message);
+        } else {
+          return toast.error("Erro ao criar o prato!");
+        }
+      })
+  }
 
   function handlePaymentMethod() {
     if (status !== 'payment'){
@@ -35,6 +63,10 @@ export function Payment() {
       setPaymentMethod('pix');
     }
   }
+
+  useEffect(() => {
+    console.log(order);
+  },[])
 
   return(
     <Container>
@@ -79,6 +111,7 @@ export function Payment() {
                     mask="9999 9999 9999 9999"
                     placeholder="0000 0000 0000 0000"
                     required
+                    onChange={e => setCreditCard(e.target.value)}
                   />
                 </div>
                 <div className="card-confirmation-wrapper">
@@ -90,6 +123,7 @@ export function Payment() {
                       type="text"
                       mask="99/99"
                       placeholder="04/05"
+                      onChange={e => setCardExpirationDate(e.target.value)}
                       required
                     />
                   </div>
@@ -101,11 +135,16 @@ export function Payment() {
                       type="text"
                       mask="999"
                       placeholder="000"
+                      onChange={e => setCvcCode(e.target.value)}
                       required
                     />
                   </div>
                 </div>
-                <Button title="Finalizar pagamento" className="primary" />
+                <Button 
+                  title="Finalizar pagamento" 
+                  className="primary"
+                  onClick={handlePurchase}
+                />
 
               </form>
           }
@@ -113,9 +152,9 @@ export function Payment() {
 
           {
           // PROCESSING
-            status == 'processing' && ! isPaid &&
+            status == 'processing' && !isPaid &&
             <div className="order-status-wrapper">
-              <FiClock size={104} />
+              <Loading className="loading" />
               <span>Processando pagamento</span>
             </div>
           }

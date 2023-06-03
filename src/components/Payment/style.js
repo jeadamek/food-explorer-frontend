@@ -83,7 +83,7 @@ export const Content = styled.div`
     > img {
       width: 16rem;
     }
-
+    
     @media ${device.mobileL} {
       > img {
         width: 25rem;
@@ -151,5 +151,12 @@ export const Content = styled.div`
       text-align: center;
     }
 
+    .loading {
+      width: 104px;
+      height: 104px;
+
+      border: 4px solid rgba(0, 0, 0, 0.2);
+      border-top: 4px solid ${({ theme }) => theme.COLORS.LIGHT_500};
+    }
   }
 `;

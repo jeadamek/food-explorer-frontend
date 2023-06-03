@@ -6,6 +6,7 @@ import { Container, Content } from "./style";
 import { Label } from "../Label";
 import { Button } from "../Button";
 
+import qrCode from "../../assets/qrCode.svg";
 import { ForkKnife } from "../../assets/icons/ForkKnife";
 
 import { SiPix } from "react-icons/si";
@@ -13,6 +14,7 @@ import { FiClock } from "react-icons/fi";
 import { HiCreditCard } from "react-icons/hi";
 import { BsBagCheckFill } from "react-icons/bs";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
+
 
 
 export function Payment() {
@@ -58,8 +60,11 @@ export function Payment() {
       </div>
 
         <div className="status">
-          {/* PIX */}
-
+          {
+            status == 'payment' && paymentMethod == 'pix' && (
+              <img src={qrCode} alt="QR Code" />
+            )  
+          }
 
           {
           // CREDIT 

@@ -79,6 +79,16 @@ export const Content = styled.div`
     justify-content: center;
 
     padding: 0 3rem;
+
+    > img {
+      width: 16rem;
+    }
+
+    @media ${device.mobileL} {
+      > img {
+        width: 25rem;
+      }
+    }
   }
   
   .status > form {

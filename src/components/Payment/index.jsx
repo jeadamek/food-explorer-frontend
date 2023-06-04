@@ -28,13 +28,19 @@ export function Payment() {
   const [cardExpirationDate, setCardExpirationDate] = useState(null);
 
   const [paymentMethod, setPaymentMethod] = useState('pix');
-  const [isPaid, setIsPaid] = useState(false);
-  const [status, setStatus] = useState("isReady");
+
+
+  const [isPaid, setIsPaid] = useState();
+  const [status, setStatus] = useState("");
+
+  const cart = [];
+
   
 
   async function handlePurchase() {
     if (!creditCard || !cardExpirationDate || !cvcCode) {
-      toast.warn("Preencha todos os dados do cartão")
+      toast.warn("Preencha todos os dados do cartão");
+      return;
     }
 
     setStatus("processing");
@@ -42,7 +48,10 @@ export function Payment() {
     await api.post("/orders", order)
       .then(() => {
         toast.success("Pedido realizado com sucesso!");
-        setIsPaid(true)
+
+        setTimeout(() => {
+          setIsPaid(true)
+        }, 1000)
       })
       .catch((error) => {
         if (error.response) {
@@ -66,7 +75,33 @@ export function Payment() {
   }
 
   useEffect(() => {
-    console.log(order);
+    if (cart.length !== 0) {
+      setStatus("payment");
+    } else {
+      fetchUserOrders();
+    }
+
+    async function fetchUserOrders() {
+      const response = await api.get("orders/");
+      const lastOrder = response.data[0];
+
+        const orderUpdatedStatus = (() => {
+          switch (lastOrder.order_status) {
+          case "pendente": 
+            return "processing"
+          case "preparando":
+            return "preparing"
+          case "pronto" :
+            return "isReady"
+          case "entregue":
+            return "delivered"  
+        }
+        })();
+
+        setStatus(orderUpdatedStatus);
+        setIsPaid(true);
+    }
+
   },[])
 
   return(

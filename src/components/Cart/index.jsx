@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import { useCart } from "../../hooks/cart";
+
 import { Container } from "./styles";
 
 import { Button } from "../Button";
@@ -8,12 +10,9 @@ import { useEffect } from 'react';
 
 
 export function Cart({onAdvance}) {
+  const { cartItems } = useCart();
 
-  const src = "/public/salada-molla.png"
-  const name = "Salada Radish";
-  const price = 10.99;
   const orderTotal = 103.98;
-  const quantity = 1;
 
   function handleButtonAdvance() {
     onAdvance();
@@ -24,31 +23,34 @@ export function Cart({onAdvance}) {
     return currency;
   }
 
-  useEffect(() => {
-    // cart.map(item => {
-
-    // })
-  },[]) 
-
   return(
     <Container>
       <h2>Pedido</h2>
       <div>
-          {/* renderizar itens carrinho */}
-        <div className="dish-wrapper">
-          <img src={src} alt="Foto de prato teste" />
-          <div>
-            <div className="dish-info">
-              <h3>{name}</h3>
-              <span>{handlePrice(price)}</span>
-            </div>
-            <div className="dish-quantity">
-              <Stepper value={quantity} />
-              <button>Excluir</button>
+        
+       { 
+        cartItems && 
+        cartItems.map(item => (
+          <div 
+            className="dish-wrapper"
+            key={String(item.id)}
+          >
+            {console.log(item)}
+            <img src={item.image} alt="Foto de prato teste" />
+            <div>
+              <div className="dish-info">
+                <h3>{item.name}</h3>
+                <span>{handlePrice(item.price)}</span>
+              </div>
+              <div className="dish-quantity">
+                <Stepper value={item.quantity} />
+                <button>Excluir</button>
+              </div>
             </div>
           </div>
-        </div>
-        {/* Renderizar ate aqui */}
+        ))
+        
+        }
 
       </div>
 

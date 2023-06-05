@@ -9,12 +9,13 @@ function CartProvider({ children }) {
 
 
   function addToCart(dish, image, quantity) {
-    const item = [dish.id, image, dish.name, dish.price, quantity];
+    const item = { id: dish.id, image, name: dish.name, price: dish.price, quantity};
     setCartItems(prevState => [...prevState, item]);
   }
 
   return (
     <CartContext.Provider value={{
+      cartItems,
       addToCart
     }}
     >

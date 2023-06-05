@@ -10,8 +10,14 @@ function CartProvider({ children }) {
 
   function addToCart(dish, image, quantity) {
     const item = { id: dish.id, image, name: dish.name, price: dish.price, quantity};
+
     setCartItems(prevState => [...prevState, item]);
+
   }
+
+  useEffect(() => {
+    localStorage.setItem("@foodexplorer:cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <CartContext.Provider value={{

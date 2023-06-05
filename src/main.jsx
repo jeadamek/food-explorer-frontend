@@ -6,7 +6,8 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 
-import { AuthProvider } from './hooks/auth';
+import { AuthProvider } from './hooks/auth'; 
+import { CartProvider } from './hooks/cart'; 
 
 import { Routes } from './routes';
 
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         theme='colored'
       />
       <AuthProvider>
-        <Routes />
+        <CartProvider>
+          <Routes />
+        </CartProvider>
       </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,

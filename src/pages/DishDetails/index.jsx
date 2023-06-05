@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
+import { useCart } from '../../hooks/cart';
 
 import { api } from '../../services/api';
 
@@ -28,6 +29,8 @@ export function DishDetails() {
 
   const params = useParams();
   const navegate = useNavigate();
+
+  const { addToCart }  = useCart();
 
   function handleStepperChange(newQuantity) {
     setQuantity(newQuantity)
@@ -99,7 +102,12 @@ export function DishDetails() {
               // USER
               <div className="buttons">
                 <Stepper value={quantity} onChange={handleStepperChange} />
-                <Button title={`incluir ∙ ${handlePrice()}`} icon={Receipt} className="primary" />
+                <Button 
+                  title={`incluir ∙ ${handlePrice()}`} 
+                  icon={Receipt} 
+                  className="primary" 
+                  onClick={() => addToCart(data, image, quantity)}  
+                />
               </div>
             }
           </DishInfo>

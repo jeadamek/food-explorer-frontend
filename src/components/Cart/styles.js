@@ -23,7 +23,7 @@ export const Container = styled.div`
     flex-direction: column;
   } 
 
-  .order {
+  .dish-wrapper {
     width: 100%;
 
     padding: 1.6rem 0;
@@ -42,7 +42,7 @@ export const Container = styled.div`
     }
   }
 
-  .order-info {
+  .dish-info {
     display: flex;
     align-items: center;
     gap: 1.2rem;
@@ -58,7 +58,7 @@ export const Container = styled.div`
     }
   }
 
-  .edit-order {
+  .dish-quantity {
     display: flex;
     align-items: center;
     justify-content: space-between;

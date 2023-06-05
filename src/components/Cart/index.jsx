@@ -4,6 +4,8 @@ import { Container } from "./styles";
 
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
+import { useEffect } from 'react';
+
 
 export function Cart({onAdvance}) {
 
@@ -11,7 +13,7 @@ export function Cart({onAdvance}) {
   const name = "Salada Radish";
   const price = 10.99;
   const orderTotal = 103.98;
-  const value = 1;
+  const quantity = 1;
 
   function handleButtonAdvance() {
     onAdvance();
@@ -22,74 +24,32 @@ export function Cart({onAdvance}) {
     return currency;
   }
 
+  useEffect(() => {
+    // cart.map(item => {
+
+    // })
+  },[]) 
+
   return(
     <Container>
       <h2>Pedido</h2>
       <div>
           {/* renderizar itens carrinho */}
-        <div className="order">
+        <div className="dish-wrapper">
           <img src={src} alt="Foto de prato teste" />
           <div>
-            <div className="order-info">
+            <div className="dish-info">
               <h3>{name}</h3>
               <span>{handlePrice(price)}</span>
             </div>
-            <div className="edit-order">
-              <Stepper value={value} />
+            <div className="dish-quantity">
+              <Stepper value={quantity} />
               <button>Excluir</button>
             </div>
           </div>
         </div>
         {/* Renderizar ate aqui */}
 
-
-        {/* renderizar itens carrinho */}
-        <div className="order">
-          <img src={src} alt="Foto de prato teste" />
-          <div>
-            <div className="order-info">
-              <h3>{name}</h3>
-              <span>{handlePrice(price)}</span>
-            </div>
-            <div className="edit-order">
-              <Stepper value={value} />
-              <button>Excluir</button>
-            </div>
-          </div>
-        </div>
-        {/* Renderizar ate aqui */}
-
-        {/* renderizar itens carrinho */}
-        <div className="order">
-          <img src={src} alt="Foto de prato teste" />
-          <div>
-            <div className="order-info">
-              <h3>{name}</h3>
-              <span>{handlePrice(price)}</span>
-            </div>
-            <div className="edit-order">
-              <Stepper value={value} />
-              <button>Excluir</button>
-            </div>
-          </div>
-        </div>
-        {/* Renderizar ate aqui */}
-
-        {/* renderizar itens carrinho */}
-        <div className="order">
-          <img src={src} alt="Foto de prato teste" />
-          <div>
-            <div className="order-info">
-              <h3>{name}</h3>
-              <span>{handlePrice(price)}</span>
-            </div>
-            <div className="edit-order">
-              <Stepper value={value} />
-              <button>Excluir</button>
-            </div>
-          </div>
-        </div>
-        {/* Renderizar ate aqui */} 
       </div>
 
       <span className="total">{`Total: ${handlePrice(orderTotal)}`}</span>

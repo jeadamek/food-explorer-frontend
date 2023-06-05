@@ -20,7 +20,7 @@ import { BsBagCheckFill } from "react-icons/bs";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 // order test
-import { order } from "./order";
+import { order } from "./order.js";
 
 export function Payment() {
   const [cvcCode, setCvcCode] = useState(null);

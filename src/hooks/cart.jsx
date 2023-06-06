@@ -30,8 +30,8 @@ function CartProvider({ children }) {
   }
 
   const orderTotal = cartItems.reduce((total, item) => {
-    return total += item.price;
-  }, 0)
+    return total + (item.price * item.quantity);
+  }, 0);
 
 
   useEffect(() => {

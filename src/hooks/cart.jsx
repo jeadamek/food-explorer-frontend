@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from "prop-types";
+import { toast } from 'react-toastify';
 
 
 export const CartContext = createContext({});
@@ -8,9 +9,14 @@ function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem(`@foodexplorer:cart`)) || []);
 
   function addItemToCart(dish, image, quantity) {
-    const item = { id: dish.id, image, name: dish.name, price: dish.price, quantity};
+    const newItem = { id: dish.id, image, name: dish.name, price: dish.price, quantity};
 
-    setCartItems(prevState => [...prevState, item]);
+    const dishInCart = cartItems.some((item) => item.id === newItem.id);
+    if (dishInCart) {
+      return toast.warn("Prato já está no carrinho");
+    }
+
+    setCartItems(prevState => [...prevState, newItem]);
   }
 
   function removeItemFromCart(deleted) {

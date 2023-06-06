@@ -13,8 +13,9 @@ function CartProvider({ children }) {
     setCartItems(prevState => [...prevState, item]);
   }
 
-  function removeFromCart() {
-
+  function removeItem(deleted) {
+    const updatedItems = cartItems.filter((item) => item.id !== deleted);
+    setCartItems(updatedItems);
   }
 
   function cleanCart() {
@@ -35,7 +36,7 @@ function CartProvider({ children }) {
       cartItems,
       orderTotal,
       addToCart,
-      removeFromCart,
+      removeItem,
       cleanCart,
     }}
     >

@@ -2,7 +2,6 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import PropTypes from "prop-types";
 
-
 export const CartContext = createContext({});
 
 function CartProvider({ children }) {

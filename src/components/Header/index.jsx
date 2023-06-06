@@ -77,11 +77,9 @@ export function Header({ onSearch }) {
         setNewOrders(pendingOrders)
       }
   
-
       if (user.isAdmin) {
         fetchOrders();
       }
-
 
   }, [user]);
 
@@ -152,13 +150,18 @@ export function Header({ onSearch }) {
       </Brand>
 
       <MobileOrder>
-        <Link to="/order-history"><Receipt size={26} /></Link>
         {
-        user.isAdmin
-        ?
-         <div><span>{ newOrders.length }</span></div>
-        :
-         <div><span>{ cartItems.length }</span></div>
+        user.isAdmin ? (
+          <>
+            <Link to="/order-history"><Receipt size={26} /></Link>
+            <div><span>{ newOrders.length }</span></div>
+          </>
+        ) : (
+          <>
+            <Link to="/order"><Receipt size={26} /></Link>
+            <div><span>{ cartItems.length }</span></div>
+          </>
+        )
         }
 
       </MobileOrder>

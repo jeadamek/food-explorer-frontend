@@ -6,6 +6,8 @@ import { Container, DishInfo } from "./styles";
 
 import { api } from "../../services/api";
 
+import { useCart } from "../../hooks/cart";
+
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
 
@@ -13,6 +15,11 @@ import { IoMdHeartEmpty } from 'react-icons/io'
 import { IoMdHeart } from 'react-icons/io'
 
 export function CardUser({ dish, nav, ...rest }) {
+  const { addItemToCart } = useCart();
+
+  // it will be changed
+  const [quantity, setQuantity] = useState(1);
+
   const [isFavorite, setIsFavorite] = useState();
   const [idFavorite, setIdFavorite] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +67,10 @@ export function CardUser({ dish, nav, ...rest }) {
     }
   }
 
+  function handleStepperChange(newQuantity) {
+    setQuantity(newQuantity)
+  }
+
   useEffect(() => {
     async function fetchFavorite() {
       const response = await api.get('/favorites');
@@ -87,8 +98,15 @@ export function CardUser({ dish, nav, ...rest }) {
         <span>{priceInCurrency}</span>
       </DishInfo>
       <div className="add-cart">
-        <Stepper />
-        <Button title="incluir" className="primary" />
+        <Stepper 
+          value={quantity}
+          onChange={handleStepperChange} 
+        />
+        <Button 
+          title="incluir" 
+          className="primary" 
+          onClick={() => addItemToCart(dish, imageUrl, quantity)}
+        />
       </div>
     </Container>
   )

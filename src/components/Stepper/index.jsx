@@ -9,15 +9,13 @@ import { FiMinus } from "react-icons/fi";
 export function Stepper({ value=1, onChange }){
   const [quantity, setQuantity] = useState(value);
 
-  function handleAddQuantity(e){
-    e.preventDefault();
+  function handleAddQuantity(){
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
     onChange(newQuantity);
   }
 
-  function handleRemoveQuantity(e){
-    e.preventDefault();
+  function handleRemoveQuantity(){
     if (quantity > 1) {
        const newQuantity = quantity - 1;
       setQuantity(newQuantity);
@@ -25,7 +23,6 @@ export function Stepper({ value=1, onChange }){
     }
   }
   
-
   return (
     <Container value={quantity} >
       <button onClick={handleRemoveQuantity}>

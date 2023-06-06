@@ -63,7 +63,11 @@ export function DishDetails() {
       <Header />
 
       <main>
-      <TextButton title="voltar" icon={SlArrowLeft} onClick={handleBack}/>
+      <TextButton 
+        title="voltar" 
+        icon={SlArrowLeft} 
+        onClick={handleBack}
+      />
 
         <Content> 
           <DishPhoto>
@@ -101,7 +105,10 @@ export function DishDetails() {
               :
               // USER
               <div className="buttons">
-                <Stepper value={quantity} onChange={handleStepperChange} />
+                <Stepper 
+                  value={quantity} 
+                  onChange={handleStepperChange} 
+                />
                 <Button 
                   title={`incluir ∙ ${handlePrice()}`} 
                   icon={Receipt} 

@@ -22,7 +22,8 @@ import { SlArrowLeft } from "react-icons/sl";
 
 export function DishDetails() {
   const { user } = useAuth();
-  
+  const { addItemToCart }  = useCart();
+
   const [data, setData] = useState({});
   const [image, setImage] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -30,7 +31,6 @@ export function DishDetails() {
   const params = useParams();
   const navegate = useNavigate();
 
-  const { addToCart }  = useCart();
 
   function handleStepperChange(newQuantity) {
     setQuantity(newQuantity)
@@ -106,7 +106,7 @@ export function DishDetails() {
                   title={`incluir ∙ ${handlePrice()}`} 
                   icon={Receipt} 
                   className="primary" 
-                  onClick={() => addToCart(data, image, quantity)}  
+                  onClick={() => addItemToCart(data, image, quantity)}  
                 />
               </div>
             }

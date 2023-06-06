@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import { Stepper } from "../Stepper";
 
 export function Cart({onAdvance}) {
-  const { cartItems, removeItem, orderTotal } = useCart();
+  const { cartItems, removeItemFromCart, orderTotal } = useCart();
 
   function handleButtonAdvance() {
     onAdvance();
@@ -41,7 +41,7 @@ export function Cart({onAdvance}) {
                 <div className="dish-quantity">
                   <Stepper value={item.quantity} />
                   <button
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeItemFromCart(item.id)}
                   >
                     Excluir
                   </button>

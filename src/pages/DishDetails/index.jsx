@@ -60,7 +60,7 @@ export function DishDetails() {
 
   return(
     <Container>
-      <Header orders={2}/>
+      <Header />
 
       <main>
       <TextButton title="voltar" icon={SlArrowLeft} onClick={handleBack}/>

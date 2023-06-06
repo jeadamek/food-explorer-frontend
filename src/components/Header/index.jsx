@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { useAuth } from '../../hooks/auth';
+import { useCart } from '../../hooks/cart';
 
 import { Container, Brand, Hamburguer, MobileOrder, NavHeaderUser, NavHeaderAdmin, NavButton, Logout } from "./styles";
 
@@ -16,8 +17,9 @@ import logoImg from "../../assets/logo-user.svg";
 import logoImgAdmin from "../../assets/logo-admin-desktop.svg"; 
 import logoImgAdminMobile from "../../assets/logo-admin-mobile.svg"; 
 
-export function Header({ orders, onSearch }) {
+export function Header({ onSearch }) {
   const { signOut, user } = useAuth();
+  const { cartItems } = useCart();
   
   const [search, setSearch] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -125,7 +127,7 @@ export function Header({ orders, onSearch }) {
 
       <MobileOrder>
         <Link to="/order"><Receipt size={26} /></Link>
-        <div><span>{ orders ? orders : 0 }</span></div>
+        <div><span>{ cartItems.length }</span></div>
       </MobileOrder>
 
       <Input 
@@ -150,7 +152,7 @@ export function Header({ orders, onSearch }) {
           <NavHeaderUser>
             <NavButton to="/order" className="primary">
               <Receipt size={26}/>
-              Pedido({ orders ? orders : 0 })
+              Pedido({ cartItems.length })
             </NavButton>
             <div className="dropdown">
               <button>
@@ -175,6 +177,5 @@ export function Header({ orders, onSearch }) {
 }
 
 Header.propTypes = {
-  orders: PropTypes.number,
   onSearch: PropTypes.func
 };

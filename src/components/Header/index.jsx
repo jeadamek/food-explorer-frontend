@@ -2,6 +2,8 @@ import { useState, useEffect  } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { api } from '../../services/api';
+
 import { useAuth } from '../../hooks/auth';
 import { useCart } from '../../hooks/cart';
 
@@ -23,6 +25,8 @@ export function Header({ onSearch }) {
   
   const [search, setSearch] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const [newOrders, setNewOrders] = useState([]);
   
   const navigate = useNavigate();
 
@@ -58,6 +62,28 @@ export function Header({ onSearch }) {
   useEffect(() => {
     document.body.classList.remove('no-scroll');
   }, []);
+
+  useEffect(() => {
+      async function fetchOrders() {
+        const response = await api.get("orders/admin");
+        const data = response.data;
+  
+        const pendingOrders = data.filter(order => {
+          if ( order.order_status === "pendente") {
+            return order;
+          }
+        })
+  
+        setNewOrders(pendingOrders)
+      }
+  
+
+      if (user.isAdmin) {
+        fetchOrders();
+      }
+
+
+  }, [user]);
 
   return(
     <Container>
@@ -126,8 +152,15 @@ export function Header({ onSearch }) {
       </Brand>
 
       <MobileOrder>
-        <Link to="/order"><Receipt size={26} /></Link>
-        <div><span>{ cartItems.length }</span></div>
+        <Link to="/order-history"><Receipt size={26} /></Link>
+        {
+        user.isAdmin
+        ?
+         <div><span>{ newOrders.length }</span></div>
+        :
+         <div><span>{ cartItems.length }</span></div>
+        }
+
       </MobileOrder>
 
       <Input 

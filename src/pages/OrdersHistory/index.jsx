@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import { Container, ContentMobile, ContentDesktop } from "./styles";
 
-import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";

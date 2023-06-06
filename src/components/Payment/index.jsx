@@ -31,9 +31,27 @@ export function Payment() {
 
   const [paymentMethod, setPaymentMethod] = useState('pix');
 
-
   const [isPaid, setIsPaid] = useState();
   const [status, setStatus] = useState("");
+
+
+  function handlePaymentMethod() {
+    if (status !== 'payment'){
+      return;
+    }
+
+    if (paymentMethod == 'pix'){
+      setPaymentMethod('credit card');
+    } else {
+      setPaymentMethod('pix');
+    }
+  }
+
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      handlePurchase();
+    }
+  }
 
   async function handlePurchase() {
     if (!creditCard || !cardExpirationDate || !cvcCode) {
@@ -73,18 +91,6 @@ export function Payment() {
       })
   }
 
-  function handlePaymentMethod() {
-    if (status !== 'payment'){
-      return;
-    }
-
-    if (paymentMethod == 'pix'){
-      setPaymentMethod('credit card');
-    } else {
-      setPaymentMethod('pix');
-    }
-  }
-
   useEffect(() => {
     if (cartItems.length !== 0) {
       setStatus("payment");
@@ -112,8 +118,7 @@ export function Payment() {
         setStatus(orderUpdatedStatus);
         setIsPaid(true);
     }
-
-  },[])
+  },[cartItems])
 
   return(
     <Container>
@@ -183,6 +188,7 @@ export function Payment() {
                       mask="999"
                       placeholder="000"
                       onChange={e => setCvcCode(e.target.value)}
+                      onKeyDown={handleKeyDown}
                       required
                     />
                   </div>

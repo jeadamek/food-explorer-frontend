@@ -6,8 +6,6 @@ import { Container } from "./styles";
 
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
-import { useEffect } from 'react';
-
 
 export function Cart({onAdvance}) {
   const { cartItems } = useCart();

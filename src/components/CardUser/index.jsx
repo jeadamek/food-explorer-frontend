@@ -17,12 +17,11 @@ import { IoMdHeart } from 'react-icons/io'
 export function CardUser({ dish, nav, ...rest }) {
   const { addItemToCart } = useCart();
 
-  // it will be changed
-  const [quantity, setQuantity] = useState(1);
-
   const [isFavorite, setIsFavorite] = useState();
   const [idFavorite, setIdFavorite] = useState();
+
   const [isLoading, setIsLoading] = useState(false);
+  const [dishquantity, setDishQuantity] = useState(1);
 
   const priceInCurrency = dish.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
@@ -68,7 +67,7 @@ export function CardUser({ dish, nav, ...rest }) {
   }
 
   function handleStepperChange(newQuantity) {
-    setQuantity(newQuantity)
+    setDishQuantity(newQuantity)
   }
 
   useEffect(() => {
@@ -99,13 +98,13 @@ export function CardUser({ dish, nav, ...rest }) {
       </DishInfo>
       <div className="add-cart">
         <Stepper 
-          value={quantity}
+          value={dishquantity}
           onChange={handleStepperChange} 
         />
         <Button 
           title="incluir" 
           className="primary" 
-          onClick={() => addItemToCart(dish, imageUrl, quantity)}
+          onClick={() => addItemToCart(dish, imageUrl, dishquantity)}
         />
       </div>
     </Container>

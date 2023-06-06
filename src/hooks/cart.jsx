@@ -33,7 +33,6 @@ function CartProvider({ children }) {
     return total + (item.price * item.quantity);
   }, 0);
 
-
   useEffect(() => {
     localStorage.setItem("@foodexplorer:cart", JSON.stringify(cartItems));
   }, [cartItems]);

@@ -6,7 +6,7 @@ import { Container } from "../Stepper/styles";
 import { FiPlus } from "react-icons/fi";
 import { FiMinus } from "react-icons/fi";
 
-export function Stepper({ value=1, onChange }){
+export function Stepper({ value, onChange }){
   const [quantity, setQuantity] = useState(value);
 
   function handleAddQuantity(){

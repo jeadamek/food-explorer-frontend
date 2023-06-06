@@ -22,22 +22,22 @@ import { SlArrowLeft } from "react-icons/sl";
 
 export function DishDetails() {
   const { user } = useAuth();
-  const { addItemToCart }  = useCart();
+  const { addItemToCart, cartItems }  = useCart();
 
   const [data, setData] = useState({});
   const [image, setImage] = useState("");
-  const [quantity, setQuantity] = useState(1);
+  const [dishQuantity, setDishQuantity] = useState(1);
 
   const params = useParams();
   const navegate = useNavigate();
 
 
   function handleStepperChange(newQuantity) {
-    setQuantity(newQuantity)
+    setDishQuantity(newQuantity)
   }
 
   function handlePrice() {
-    const price = data.price * quantity;
+    const price = data.price * dishQuantity;
     const currency = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     return currency;
   }
@@ -56,7 +56,7 @@ export function DishDetails() {
     }
 
     fetchDish();
-  },[params.id]);
+  },[params.id, cartItems]);
 
   return(
     <Container>
@@ -106,14 +106,14 @@ export function DishDetails() {
               // USER
               <div className="buttons">
                 <Stepper 
-                  value={quantity} 
+                  value={dishQuantity} 
                   onChange={handleStepperChange} 
                 />
                 <Button 
                   title={`incluir ∙ ${handlePrice()}`} 
                   icon={Receipt} 
                   className="primary" 
-                  onClick={() => addItemToCart(data, image, quantity)}  
+                  onClick={() => addItemToCart(data, image, dishQuantity)}  
                 />
               </div>
             }

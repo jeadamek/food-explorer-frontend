@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// import InputMask from 'react-input-mask';
+import { PatternFormat } from "react-number-format";
 import { toast } from "react-toastify";
 
 import { api } from "../../services/api";
@@ -11,7 +11,6 @@ import { Container, Content } from "./styles";
 import { Label } from "../Label";
 import { Button } from "../Button";
 import { Loading } from "../Loading";
-import { Input } from "../Input";
 
 import qrCode from "../../assets/qrCode.svg";
 import { ForkKnife } from "../../assets/icons/ForkKnife";
@@ -157,11 +156,12 @@ export function Payment() {
               <form>
                 <div className="input-wrapper">
                   <Label title="Número do Cartão" htmlFor="card-number"/>
-                  <Input
+                  <PatternFormat 
                     id="card-number"
                     name="card-number"
                     type="text"
-                    mask="9999 9999 9999 9999"
+                    format="#### #### #### ####"
+                    mask="_"
                     placeholder="0000 0000 0000 0000"
                     required
                     onChange={e => setCreditCard(e.target.value)}
@@ -170,11 +170,12 @@ export function Payment() {
                 <div className="card-confirmation-wrapper">
                   <div className="input-wrapper">
                     <Label title="Validade" htmlFor="expiration-date" />
-                    <Input
+                    <PatternFormat
                       id="expiration-date"
                       name="expiration-date"
                       type="text"
-                      mask="99/99"
+                      format="##/##"
+                      mask="_"
                       placeholder="04/05"
                       onChange={e => setCardExpirationDate(e.target.value)}
                       required
@@ -182,11 +183,12 @@ export function Payment() {
                   </div>
                   <div className="input-wrapper" >
                     <Label title="CVC" htmlFor="cvc" />
-                    <Input
+                    <PatternFormat
                       id="cvc"
                       name="cvc"
                       type="text"
-                      mask="999"
+                      format="###"
+                      mask="_"
                       placeholder="000"
                       onChange={e => setCvcCode(e.target.value)}
                       onKeyDown={handleKeyDown}

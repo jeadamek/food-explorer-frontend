@@ -8,9 +8,7 @@ import { Button } from "../Button";
 import { Stepper } from "../Stepper";
 
 export function Cart({onAdvance}) {
-  const { cartItems } = useCart();
-
-  const orderTotal = 103.98;
+  const { cartItems, orderTotal } = useCart();
 
   function handleButtonAdvance() {
     onAdvance();
@@ -29,24 +27,24 @@ export function Cart({onAdvance}) {
        { 
         cartItems && 
         cartItems.map(item => (
-          <div 
-            className="dish-wrapper"
-            key={String(item.id)}
-          >
-            {console.log(item)}
-            <img src={item.image} alt="Foto de prato teste" />
-            <div>
-              <div className="dish-info">
-                <h3>{item.name}</h3>
-                <span>{handlePrice(item.price * item.quantity)}</span>
-              </div>
-              <div className="dish-quantity">
-                <Stepper value={item.quantity} />
-                <button>Excluir</button>
+            <div 
+              className="dish-wrapper"
+              key={String(item.id)}
+            >
+              {console.log(item)}
+              <img src={item.image} alt="Foto de prato teste" />
+              <div>
+                <div className="dish-info">
+                  <h3>{item.name}</h3>
+                  <span>{handlePrice(item.price * item.quantity)}</span>
+                </div>
+                <div className="dish-quantity">
+                  <Stepper value={item.quantity} />
+                  <button>Excluir</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))
+          ))
         
         }
 

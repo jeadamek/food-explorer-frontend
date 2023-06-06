@@ -17,6 +17,14 @@ function CartProvider({ children }) {
 
   }
 
+  function cleanCart() {
+    setCartItems([]);
+  }
+
+  const orderTotal = cartItems.reduce((total, item) => {
+    return total += item.price;
+  }, 0)
+
 
   useEffect(() => {
     localStorage.setItem("@foodexplorer:cart", JSON.stringify(cartItems));
@@ -25,8 +33,10 @@ function CartProvider({ children }) {
   return (
     <CartContext.Provider value={{
       cartItems,
+      orderTotal,
       addToCart,
       removeFromCart,
+      cleanCart,
     }}
     >
       {children}

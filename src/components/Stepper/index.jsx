@@ -17,7 +17,7 @@ export function Stepper({ value, onChange }){
 
   function handleRemoveQuantity(){
     if (quantity > 1) {
-       const newQuantity = quantity - 1;
+      const newQuantity = quantity - 1;
       setQuantity(newQuantity);
       onChange(newQuantity);
     }

@@ -25,6 +25,18 @@ function CartProvider({ children }) {
     setCartItems(updatedItems);
   }
 
+  function updateDishQuantity(itemId, newQuantity) {
+    const updatedCartItems = cartItems.map((item) => {
+      if (item.id === itemId) {
+        return {...item, quantity:newQuantity};
+      }
+
+      return item;
+    });
+
+    setCartItems(updatedCartItems)
+  }
+
   function cleanCart() {
     setCartItems([]);
   }
@@ -43,6 +55,7 @@ function CartProvider({ children }) {
       orderTotal,
       addItemToCart,
       removeItemFromCart,
+      updateDishQuantity,
       cleanCart,
     }}
     >

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import InputMask from 'react-input-mask';
+// import InputMask from 'react-input-mask';
 import { toast } from "react-toastify";
 
 import { api } from "../../services/api";
@@ -11,6 +11,7 @@ import { Container, Content } from "./styles";
 import { Label } from "../Label";
 import { Button } from "../Button";
 import { Loading } from "../Loading";
+import { Input } from "../Input";
 
 import qrCode from "../../assets/qrCode.svg";
 import { ForkKnife } from "../../assets/icons/ForkKnife";
@@ -156,7 +157,7 @@ export function Payment() {
               <form>
                 <div className="input-wrapper">
                   <Label title="Número do Cartão" htmlFor="card-number"/>
-                  <InputMask
+                  <Input
                     id="card-number"
                     name="card-number"
                     type="text"
@@ -169,7 +170,7 @@ export function Payment() {
                 <div className="card-confirmation-wrapper">
                   <div className="input-wrapper">
                     <Label title="Validade" htmlFor="expiration-date" />
-                    <InputMask
+                    <Input
                       id="expiration-date"
                       name="expiration-date"
                       type="text"
@@ -181,7 +182,7 @@ export function Payment() {
                   </div>
                   <div className="input-wrapper" >
                     <Label title="CVC" htmlFor="cvc" />
-                    <InputMask
+                    <Input
                       id="cvc"
                       name="cvc"
                       type="text"

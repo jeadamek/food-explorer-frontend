@@ -83,12 +83,20 @@ export const Container = styled.div`
   }
 
   .total {
+    display: flex;
+    gap: 1.6rem;
+
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 20px;
     line-height: 160%;
 
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+    > strong {
+      font-weight: 500;
+      color: ${({ theme }) => theme.COLORS.MINT_100};
+    }
   }
 
   > button {

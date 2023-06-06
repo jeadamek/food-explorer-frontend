@@ -38,7 +38,7 @@ export function Cart({onAdvance}) {
             <div>
               <div className="dish-info">
                 <h3>{item.name}</h3>
-                <span>{handlePrice(item.price)}</span>
+                <span>{handlePrice(item.price * item.quantity)}</span>
               </div>
               <div className="dish-quantity">
                 <Stepper value={item.quantity} />
@@ -52,7 +52,7 @@ export function Cart({onAdvance}) {
 
       </div>
 
-      <span className="total">{`Total: ${handlePrice(orderTotal)}`}</span>
+      <span className="total">Total:<strong>{handlePrice(orderTotal)}</strong></span>
 
       <Button 
         title="Avançar" 

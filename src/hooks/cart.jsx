@@ -17,6 +17,7 @@ function CartProvider({ children }) {
     }
 
     setCartItems(prevState => [...prevState, newItem]);
+    toast.success(`${newItem.name} adicionado ao carrinho!`)
   }
 
   function removeItemFromCart(deleted) {

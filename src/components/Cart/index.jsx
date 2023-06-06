@@ -31,7 +31,6 @@ export function Cart({onAdvance}) {
               className="dish-wrapper"
               key={String(item.id)}
             >
-              {console.log(item)}
               <img src={item.image} alt="Foto de prato teste" />
               <div>
                 <div className="dish-info">

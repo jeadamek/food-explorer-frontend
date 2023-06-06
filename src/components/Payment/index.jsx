@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 
 import { api } from "../../services/api";
 
+import { useCart } from "../../hooks/cart";
+
 import { Container, Content } from "./styles";
 
 import { Label } from "../Label";
@@ -19,10 +21,10 @@ import { HiCreditCard } from "react-icons/hi";
 import { BsBagCheckFill } from "react-icons/bs";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
-// order test
-import { order } from "./order.js";
 
 export function Payment() {
+  const { cartItems, cleanCart, orderTotal } = useCart();
+
   const [cvcCode, setCvcCode] = useState(null);
   const [creditCard, setCreditCard] = useState(null);
   const [cardExpirationDate, setCardExpirationDate] = useState(null);
@@ -33,10 +35,6 @@ export function Payment() {
   const [isPaid, setIsPaid] = useState();
   const [status, setStatus] = useState("");
 
-  const cart = [];
-
-  
-
   async function handlePurchase() {
     if (!creditCard || !cardExpirationDate || !cvcCode) {
       toast.warn("Preencha todos os dados do cartão");
@@ -45,8 +43,21 @@ export function Payment() {
 
     setStatus("processing");
 
+    const order = {
+      "cart": cartItems.map(item => {
+        return {
+          dish_id: item.id,
+          quantity: item.quantity,
+          unit_price: item.price
+        }
+      }),
+      order_amount: orderTotal,
+      payment_method: paymentMethod
+    }
+
     await api.post("/orders", order)
       .then(() => {
+        cleanCart();
         toast.success("Pedido realizado com sucesso!");
 
         setTimeout(() => {
@@ -68,14 +79,14 @@ export function Payment() {
     }
 
     if (paymentMethod == 'pix'){
-      setPaymentMethod('credit');
+      setPaymentMethod('credit card');
     } else {
       setPaymentMethod('pix');
     }
   }
 
   useEffect(() => {
-    if (cart.length !== 0) {
+    if (cartItems.length !== 0) {
       setStatus("payment");
     } else {
       fetchUserOrders();
@@ -119,7 +130,7 @@ export function Payment() {
         </button>  
 
         <button
-          className={paymentMethod == 'credit' ? "active" : undefined}
+          className={paymentMethod == 'credit card' ? "active" : undefined}
           onClick={handlePaymentMethod}
         >
           <HiCreditCard size={26} />
@@ -136,7 +147,7 @@ export function Payment() {
 
           {
           // CREDIT 
-            status == 'payment' && paymentMethod == 'credit' &&         
+            status == 'payment' && paymentMethod == 'credit card' &&         
               <form>
                 <div className="input-wrapper">
                   <Label title="Número do Cartão" htmlFor="card-number"/>

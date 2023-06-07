@@ -15,9 +15,13 @@ export const Container = styled.div`
   > main {
     grid-area: content;
     width: 100%;
+    max-width: 70rem;
 
     padding: 4rem 3.5rem 5.8rem;
     margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
   }
 
   @media ${device.laptop} {

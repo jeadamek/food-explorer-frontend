@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 
 export function ExplorerLogo({ height }) {
   return(
-    <svg width="auto" height={height} viewBox="0 0 160 47" fill="none">
-      <path opacity="0.3" d="M39.8795 11.5119L29.908 17.2678L19.9429 23.0237L9.97146 28.7797L0 34.5356V11.5119L19.9429 0L39.8795 11.5119Z" fill="#42D3FF"></path>
-      <path opacity="0.6" d="M39.8795 34.5358L19.9429 46.0477L0 34.5358L9.97146 28.7799L19.9429 23.0239L29.908 28.7799L39.8795 34.5358Z" fill="#42D3FF"></path>
-      <path d="M39.8819 11.5122V34.5359L29.9104 28.78L19.9453 23.0241L29.9104 17.2681L39.8819 11.5122Z" fill="#42D3FF"></path>
-    </svg>
+    <svg width="auto" height={height} viewBox="0 0 107 123" fill="none">
+    <path opacity="0.3" d="M107 30.6668L80.2456 46L53.5084 61.3333L26.7543 76.6668L0 92V30.6668L53.5084 0L107 30.6668Z" fill="#42D3FF"/>
+    <path opacity="0.6" d="M107 92L53.5084 123L0 92L26.7543 76.5001L53.5084 61L80.2456 76.5001L107 92Z" fill="#42D3FF"/>
+    <path d="M107 31V92L79.9913 76.7501L53 61.5001L79.9913 46.2499L107 31Z" fill="#42D3FF"/>
+  </svg>
   )
 }
 

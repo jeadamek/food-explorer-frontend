@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from 'react-toastify';
 
 import { useAuth } from "../../hooks/auth";
 
@@ -22,6 +23,16 @@ export function Profile() {
   const [oldPassword, setOldPassword] = useState("");
 
   async function handleUpdate() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      return toast.error("Email inválido!");
+    }
+
+    if (newPassword.length < 6) {
+      return toast.error("Senha deve ter no minimo 6 caracteres")
+    }
+
     const updated = {
       name,
       email,

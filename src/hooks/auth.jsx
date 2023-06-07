@@ -38,6 +38,31 @@ function AuthProvider({ children }) {
     setData({});
   }
 
+  async function updateProfile({ user }) {
+    try {
+      await api.put("/users", user);
+
+      // update localStorage with new information
+      user.password = '';
+      user.old_passord = '';
+      localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+
+      // update data
+      setData({
+        user,
+        token: data.token
+      });
+
+      toast.success("Perfil Atualizado");
+    } catch (error) {
+      if (error.reponse) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Não foi possível atualizar o perfil.");
+      }
+    }
+  }
+
   useEffect(() => {
     const token =  localStorage.getItem("@foodexplorer:token");
     const user = localStorage.getItem("@foodexplorer:user");
@@ -57,6 +82,7 @@ function AuthProvider({ children }) {
     <AuthContext.Provider value={{ 
       signIn,
       signOut,
+      updateProfile,
       user: data.user
     }}
     >

@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 
 import { Container, UserInfo } from "./styles";
@@ -14,17 +13,26 @@ import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 
 export function Profile() {
-  const { user } = useAuth();
+  const { user, updateProfile } = useAuth();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
+
   const [newPassword, setNewPassword] = useState("");
   const [oldPassword, setOldPassword] = useState("");
 
+  async function handleUpdate() {
+    const updated = {
+      name,
+      email,
+      password: newPassword,
+      old_password: oldPassword
+    }
 
-  useEffect(() => {
-
-  })
+    const userUpdated = Object.assign(user, updated);
+    
+    await updateProfile({ user: userUpdated });
+  }
 
   return(
     <Container>
@@ -33,7 +41,7 @@ export function Profile() {
           <ExplorerLogo size={150}/>
 
           <UserInfo>
-            <h1>Olá, {name}</h1>
+            <h1>Olá, {user.name}</h1>
             <p>Para atualizar seu cadastro, altere as informações abaixo:</p>
 
             <form>
@@ -56,16 +64,7 @@ export function Profile() {
               </div>
 
               <div className="input-wrapper">
-                <Label title="Senha nova" />
-                <Input
-                  type="password"
-                  value={newPassword}
-                  onChange={e => setNewPassword(e.target.value)}
-                />
-              </div>
-
-              <div className="input-wrapper">
-                <Label title="Senha antiga" />
+                <Label title="Senha atual" />
                 <Input
                   type="password"
                   value={oldPassword}
@@ -73,7 +72,20 @@ export function Profile() {
                 />
               </div>
 
-              <Button title="Salvar Alterações" className="primary" />
+              <div className="input-wrapper">
+                <Label title="Nova Senha" />
+                <Input
+                  type="password"
+                  value={newPassword}
+                  onChange={e => setNewPassword(e.target.value)}
+                />
+              </div>
+
+              <Button 
+                title="Salvar Alterações" 
+                className="primary"
+                onClick={handleUpdate}
+              />
 
             </form>
           </UserInfo>

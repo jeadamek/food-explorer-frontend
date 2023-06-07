@@ -21,7 +21,7 @@ import logoImgAdminMobile from "../../assets/logo-admin-mobile.svg";
 
 export function Header({ onSearch }) {
   const { signOut, user } = useAuth();
-  const { cartItems } = useCart();
+  const { cartItems, cleanCart } = useCart();
   
   const [search, setSearch] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,6 +33,7 @@ export function Header({ onSearch }) {
   const mobile = window.innerWidth <= 768;
 
   function handleSignOut() {
+    cleanCart();
     navigate("/");
     signOut();
   }

@@ -45,7 +45,7 @@ function CartProvider({ children }) {
   }, 0);
 
   useEffect(() => {
-    localStorage.setItem("@foodexplorer:cart", JSON.stringify(cartItems));
+    localStorage.setItem("@foodexplorer:cart", JSON.stringify(cartItems))
   }, [cartItems]);
 
   return (

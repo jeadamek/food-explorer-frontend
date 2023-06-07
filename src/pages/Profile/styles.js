@@ -15,26 +15,44 @@ export const Container = styled.div`
   > main {
     grid-area: content;
     width: 100%;
-    max-width: 70rem;
+    max-width: 50rem;
 
     padding: 4rem 3.5rem 5.8rem;
     margin: 0 auto;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   @media ${device.laptop} {
     grid-template-rows: 9.6rem auto 7.7rem;
+  }
+`;
 
-    > main {
-      padding: 3.4rem 8rem 10rem;
-    }
+export const UserInfo = styled.div`
+  width: 100%;
+  margin-top: 3.2rem;
+
+  > h1 {
+    text-align: center;
+    margin-bottom: 1.6rem;
+    color: ${({ theme }) => theme.COLORS.CAKE_200};
+  } 
+
+  > p {
+    text-align: center;
+    margin-bottom: 3.2rem;
   }
 
-  @media ${device.laptopL} {
-    > main {
-      padding: 3.4rem 12.3rem 10rem; 
+  > form {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+
+    > button {
+      width: 100%;
+      margin-top: 3.2rem;
     }
   }
 `;

@@ -119,7 +119,7 @@ export function Header({ onSearch }) {
             :
               <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link>Meu perfil</Link></li>
+                <li><Link to="/profile">Meu perfil</Link></li>
                 <li><Link to="/favorites">Meus favoritos</Link></li>
                 <li><Link to="/order-history">Historico de Pedidos</Link></li>
                 <li><Link to="/" onClick={handleSignOut}>Sair</Link></li>
@@ -196,7 +196,7 @@ export function Header({ onSearch }) {
                 <FiUser size={32} />
               </button>
               <div className="dropdown-content">
-                <Link>Meu perfil</Link>
+                <Link to="/profile">Meu perfil</Link>
                 <Link to="/favorites">Meus favoritos</Link>
                 <Link to="/order-history">Historico de Pedidos</Link>
               </div>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { useAuth } from '../../hooks/auth';
+import { useCart } from '../../hooks/cart';
 
 import { Container, Brand, Hamburguer, MobileOrder, NavHeaderUser, NavHeaderAdmin, NavButton, Logout } from "./styles";
 
@@ -16,8 +17,9 @@ import logoImg from "../../assets/logo-user.svg";
 import logoImgAdmin from "../../assets/logo-admin-desktop.svg"; 
 import logoImgAdminMobile from "../../assets/logo-admin-mobile.svg"; 
 
-export function Header({ orders, onSearch }) {
+export function Header({ onSearch }) {
   const { signOut, user } = useAuth();
+  const { cartItems } = useCart();
   
   const [search, setSearch] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -86,7 +88,7 @@ export function Header({ orders, onSearch }) {
               <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/new">Novo Prato</Link></li>
-                <li><Link to="/orders">Pedidos</Link></li>
+                <li><Link to="/order-history">Pedidos</Link></li>
                 <li><Link to="/" onClick={handleSignOut}>Sair</Link></li>
               </ul>
             :
@@ -94,7 +96,7 @@ export function Header({ orders, onSearch }) {
                 <li><Link to="/">Home</Link></li>
                 <li><Link>Meu perfil</Link></li>
                 <li><Link to="/favorites">Meus favoritos</Link></li>
-                <li><Link to="/orders">Historico de Pedidos</Link></li>
+                <li><Link to="/order-history">Historico de Pedidos</Link></li>
                 <li><Link to="/" onClick={handleSignOut}>Sair</Link></li>
               </ul>
           }
@@ -124,8 +126,8 @@ export function Header({ orders, onSearch }) {
       </Brand>
 
       <MobileOrder>
-        <Receipt size={26} />
-        <div><span>{ orders ? orders : 0 }</span></div>
+        <Link to="/order"><Receipt size={26} /></Link>
+        <div><span>{ cartItems.length }</span></div>
       </MobileOrder>
 
       <Input 
@@ -141,16 +143,16 @@ export function Header({ orders, onSearch }) {
         user.isAdmin ?
           <NavHeaderAdmin>
             <Link to="/new">Novo prato</Link>
-            <NavButton to="/orders" className="primary">
+            <NavButton to="/order-history" className="primary">
               <Receipt size={26}/>
               Pedidos
             </NavButton>
           </NavHeaderAdmin>
         :
           <NavHeaderUser>
-            <NavButton className="primary">
+            <NavButton to="/order" className="primary">
               <Receipt size={26}/>
-              Pedido({ orders ? orders : 0 })
+              Pedido({ cartItems.length })
             </NavButton>
             <div className="dropdown">
               <button>
@@ -159,7 +161,7 @@ export function Header({ orders, onSearch }) {
               <div className="dropdown-content">
                 <Link>Meu perfil</Link>
                 <Link to="/favorites">Meus favoritos</Link>
-                <Link to="/orders">Historico de Pedidos</Link>
+                <Link to="/order-history">Historico de Pedidos</Link>
               </div>
             </div>
           </NavHeaderUser>
@@ -175,6 +177,5 @@ export function Header({ orders, onSearch }) {
 }
 
 Header.propTypes = {
-  orders: PropTypes.number,
   onSearch: PropTypes.func
 };

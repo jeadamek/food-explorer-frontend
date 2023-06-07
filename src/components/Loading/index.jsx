@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 
-export function Loading() {
+export function Loading({...rest}) {
   return(
-    <Container />
+    <Container {...rest}/>
   )
 }

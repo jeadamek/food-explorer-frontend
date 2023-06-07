@@ -153,7 +153,6 @@ export const MobileOrder = styled.button`
   border: none;
 
   width: 3.5rem;
-  height: 2.6rem;
 
   position: relative;
   
@@ -220,6 +219,8 @@ export const NavHeaderUser = styled.nav`
   .dropdown {
     position: relative;
     display: inline-block;
+
+    z-index: 1;
 
     button {
       background: none;

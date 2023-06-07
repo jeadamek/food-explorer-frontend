@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useAuth } from '../hooks/auth';
 
 import { Home } from '../pages/Home';
+import { Order } from '../pages/Order';
 import { AddDish } from '../pages/AddDish';
 import { EditDish } from '../pages/EditDish';
 import { Favorites } from '../pages/Favorites';
@@ -20,11 +21,12 @@ export function AppRoutes() {
 
       {/* ROUTES ACCESS JUST BY CLIENT  */}
       {!user.isAdmin && <Route path="/favorites" element={<Favorites />} />}
+      {!user.isAdmin && <Route path="/order" element={<Order />} />}
 
 
 
       <Route path="/" element={<Home />} />
-      <Route path="/orders" element={<OrdersHistory />} />
+      <Route path="/order-history" element={<OrdersHistory />} />
       <Route path="/details/:id" element={<DishDetails />} />
     </Routes>
   )

@@ -2,12 +2,9 @@ import styled from "styled-components";
 import { device } from "../../breakpoints/devices";
 import { Link } from "react-router-dom";
 
-export const Container = styled(Link)`
+export const Container = styled.div`
   height: 318px;
   width: 210px;
-  
-  text-decoration: none;
-  color: ${({ theme }) => theme.COLORS.LIGHT_300};
 
   padding: 2.4rem;
 
@@ -19,9 +16,11 @@ export const Container = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
+  gap: 2.4rem;
 
   border-radius: .5rem;
+
+  cursor: pointer;
 
   > button {
     background: none;
@@ -43,6 +42,68 @@ export const Container = styled(Link)`
       filter: brightness(5);
     }
   }
+
+  .add-cart {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+
+  &:hover {
+    filter: drop-shadow(0px 0px 8px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY});
+    border: solid 0.5px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY};  
+  }
+
+  @media ${device.laptop} {
+    height: 462px;
+    width: 304px;
+
+    padding: 2.4rem;
+    
+    > button {
+      right: 20px;
+      top: 20px;
+    }
+
+    > img {
+      width: 176px;
+    }
+
+    > p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    > span {
+      font-size: 3.2rem;
+      line-height: 160%;
+    }
+
+    .add-cart {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+`;
+
+export const DishInfo = styled(Link)`
+  width: 100%;
+
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+
 
   > img {
     width: 88px;
@@ -87,27 +148,7 @@ export const Container = styled(Link)`
     color: ${({ theme }) => theme.COLORS.CAKE_200};
   }
 
-  .add-cart {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.6rem;
-    margin-top: 1.2rem;
-  }
-
-  &:hover {
-    filter: drop-shadow(0px 0px 8px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY});
-    border: solid 0.5px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY};  
-  }
-
   @media ${device.laptop} {
-    height: 462px;
-    width: 304px;
-
-    padding: 2.4rem;
     
     > button {
       right: 20px;
@@ -129,11 +170,6 @@ export const Container = styled(Link)`
     > span {
       font-size: 3.2rem;
       line-height: 160%;
-    }
-
-    .add-cart {
-      flex-direction: row;
-      align-items: center;
     }
   }
 `;

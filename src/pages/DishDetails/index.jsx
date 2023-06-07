@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
+import { useCart } from '../../hooks/cart';
 
 import { api } from '../../services/api';
 
@@ -21,12 +22,25 @@ import { SlArrowLeft } from "react-icons/sl";
 
 export function DishDetails() {
   const { user } = useAuth();
-  
+  const { addItemToCart, cartItems }  = useCart();
+
   const [data, setData] = useState({});
   const [image, setImage] = useState("");
+  const [dishQuantity, setDishQuantity] = useState(1);
 
   const params = useParams();
   const navegate = useNavigate();
+
+
+  function handleStepperChange(newQuantity) {
+    setDishQuantity(newQuantity)
+  }
+
+  function handlePrice() {
+    const price = data.price * dishQuantity;
+    const currency = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    return currency;
+  }
 
   function handleBack(){
     navegate(-1);
@@ -42,14 +56,18 @@ export function DishDetails() {
     }
 
     fetchDish();
-  },[params.id]);
+  },[params.id, cartItems]);
 
   return(
     <Container>
-      <Header orders={2}/>
+      <Header />
 
       <main>
-      <TextButton title="voltar" icon={SlArrowLeft} onClick={handleBack}/>
+      <TextButton 
+        title="voltar" 
+        icon={SlArrowLeft} 
+        onClick={handleBack}
+      />
 
         <Content> 
           <DishPhoto>
@@ -87,8 +105,16 @@ export function DishDetails() {
               :
               // USER
               <div className="buttons">
-                <Stepper />
-                <Button title={`incluir ∙ R$ ${data.price}`} icon={Receipt} className="primary" />
+                <Stepper 
+                  value={dishQuantity} 
+                  onChange={handleStepperChange} 
+                />
+                <Button 
+                  title={`incluir ∙ ${handlePrice()}`} 
+                  icon={Receipt} 
+                  className="primary" 
+                  onClick={() => addItemToCart(data, image, dishQuantity)}  
+                />
               </div>
             }
           </DishInfo>

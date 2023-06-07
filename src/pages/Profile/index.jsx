@@ -22,6 +22,8 @@ export function Profile() {
   const [newPassword, setNewPassword] = useState("");
   const [oldPassword, setOldPassword] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   async function handleUpdate() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -29,7 +31,7 @@ export function Profile() {
       return toast.error("Email inválido!");
     }
 
-    if (newPassword.length < 6) {
+    if (newPassword && newPassword.length < 6) {
       return toast.error("Senha deve ter no minimo 6 caracteres")
     }
 
@@ -41,18 +43,25 @@ export function Profile() {
     }
 
     const userUpdated = Object.assign(user, updated);
-    
+
+    setIsLoading(true);
+
     await updateProfile({ user: userUpdated });
+
+    setOldPassword("");
+    setNewPassword("");
+
+    setIsLoading(false);
   }
 
   return(
     <Container>
       <Header />
         <main>
-          <ExplorerLogo size={150}/>
+          <ExplorerLogo size={120}/>
 
           <UserInfo>
-            <h1>Olá, {user.name}</h1>
+            <h1>Olá, {user.name }</h1>
             <p>Para atualizar seu cadastro, altere as informações abaixo:</p>
 
             <form>
@@ -97,6 +106,7 @@ export function Profile() {
               <Button 
                 title="Salvar Alterações" 
                 className="primary"
+                loading={isLoading}
                 onClick={handleUpdate}
               />
 

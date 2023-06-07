@@ -1,3 +1,8 @@
+import { useState, useEffect } from "react";
+
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
+
 import { Container, UserInfo } from "./styles";
 
 import { ExplorerLogo } from "../../assets/ExplorerLogo";
@@ -9,42 +14,62 @@ import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 
 export function Profile() {
+  const { user } = useAuth();
+
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [newPassword, setNewPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+
+
+  useEffect(() => {
+
+  })
+
   return(
     <Container>
       <Header />
         <main>
-          <ExplorerLogo height={150}/>
+          <ExplorerLogo size={150}/>
 
           <UserInfo>
-            <h1>Olá, fulano</h1>
+            <h1>Olá, {name}</h1>
             <p>Para atualizar seu cadastro, altere as informações abaixo:</p>
 
             <form>
               <div className="input-wrapper">
                 <Label title="Nome" />
                 <Input
-                  value="UserName"
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
                 />
               </div>
 
               <div className="input-wrapper">
                 <Label title="Email" />
                 <Input
-                  value="UserEmail"
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                 />
               </div>
 
               <div className="input-wrapper">
                 <Label title="Senha nova" />
                 <Input
-                  value="UserNewPassword"
+                  type="password"
+                  value={newPassword}
+                  onChange={e => setNewPassword(e.target.value)}
                 />
               </div>
 
               <div className="input-wrapper">
                 <Label title="Senha antiga" />
                 <Input
-                  value="UserOldPassword"
+                  type="password"
+                  value={oldPassword}
+                  onChange={e => setOldPassword(e.target.value)}
                 />
               </div>
 
@@ -53,7 +78,6 @@ export function Profile() {
             </form>
           </UserInfo>
           
-
         </main>
       <Footer />
     </Container>

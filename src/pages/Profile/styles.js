@@ -17,7 +17,7 @@ export const Container = styled.div`
     width: 100%;
     max-width: 50rem;
 
-    padding: 4rem 3.5rem 5.8rem;
+    padding: 5rem 3.5rem 12rem;
     margin: 0 auto;
 
     display: flex;

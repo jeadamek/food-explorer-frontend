@@ -68,6 +68,7 @@ export function Profile() {
                 <Input
                   type="password"
                   value={oldPassword}
+                  placeholder="Necessário para atualizar a senha"
                   onChange={e => setOldPassword(e.target.value)}
                 />
               </div>
@@ -77,6 +78,7 @@ export function Profile() {
                 <Input
                   type="password"
                   value={newPassword}
+                  placeholder="Mínimo 6 caracteres"
                   onChange={e => setNewPassword(e.target.value)}
                 />
               </div>

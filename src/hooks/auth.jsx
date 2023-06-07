@@ -55,7 +55,7 @@ function AuthProvider({ children }) {
 
       toast.success("Perfil Atualizado");
     } catch (error) {
-      if (error.reponse) {
+      if (error.response) {
         toast.error(error.response.data.message);
       } else {
         toast.error("Não foi possível atualizar o perfil.");

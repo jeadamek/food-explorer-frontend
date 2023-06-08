@@ -136,14 +136,13 @@ export const Brand = styled(Link)`
   align-items: center;
 
   > img {
-    width: auto;
-    height: 2.5rem;
+    width: 16rem;
+    height: auto;
   }
 
   @media ${device.laptop} {
     > img {
       width: 18.6rem;
-      height: auto;
     }
   }
 `;
@@ -163,10 +162,6 @@ export const MobileOrder = styled.button`
 
   &:hover {
     opacity: 0.8;
-  }
-
-  > img {
-    height: 2.2rem;
   }
 
   > div {

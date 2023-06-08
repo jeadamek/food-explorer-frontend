@@ -182,7 +182,7 @@ export function Header({ onSearch }) {
             <Link to="/new">Novo prato</Link>
             <NavButton to="/order-history" className="primary">
               <Receipt size={26}/>
-              Pedidos
+              Pedidos({ newOrders.length })
             </NavButton>
           </NavHeaderAdmin>
         :

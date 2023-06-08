@@ -61,31 +61,36 @@ export function Profile() {
           <ExplorerLogo size={120}/>
 
           <UserInfo>
-            <h1>Olá, {user.name }</h1>
+            <h1>Olá, {user.name}</h1>
             <p>Para atualizar seu cadastro, altere as informações abaixo:</p>
 
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
               <div className="input-wrapper">
-                <Label title="Nome" />
+                <Label title="Nome" htmlFor="name" />
                 <Input
+                  id="name"
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
+                  required
                 />
               </div>
 
               <div className="input-wrapper">
-                <Label title="Email" />
+                <Label title="Email" htmlFor="email" />
                 <Input
+                  id="email"
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
+                  required
                 />
               </div>
 
               <div className="input-wrapper">
-                <Label title="Senha atual" />
+                <Label title="Senha atual" htmlFor="old-password"/>
                 <Input
+                  id="old-password"  
                   type="password"
                   value={oldPassword}
                   placeholder="Necessário para atualizar a senha"
@@ -94,9 +99,11 @@ export function Profile() {
               </div>
 
               <div className="input-wrapper">
-                <Label title="Nova Senha" />
+                <Label title="Nova Senha" htmlFor="new-password"/>
                 <Input
+                  id="new-password"
                   type="password"
+                  minLength="6"
                   value={newPassword}
                   placeholder="Mínimo 6 caracteres"
                   onChange={e => setNewPassword(e.target.value)}
@@ -104,6 +111,7 @@ export function Profile() {
               </div>
 
               <Button 
+                type="submit"
                 title="Salvar Alterações" 
                 className="primary"
                 loading={isLoading}

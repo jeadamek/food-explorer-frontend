@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin-top: .8rem;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_900};
-  border: solid 0.5px ${({ theme }) => theme.COLORS.DARK_900};
+  border: solid 1px ${({ theme }) => theme.COLORS.DARK_900};
   color: ${({ theme }) => theme.COLORS.LIGHT_500};
 
   display: flex;
@@ -41,7 +41,11 @@ export const Container = styled.div`
     }
 
     &:focus {
-      border: solid 0.5px ${({ theme }) => theme.COLORS.CAKE_200_TRANSPARENCY}; 
+      border: solid 1px ${({ theme }) => theme.COLORS.CAKE_100}; 
+    }
+
+    &:invalid {
+      border: 1px solid ${({ theme }) => theme.COLORS.TOMATO_300};
     }
   }
 

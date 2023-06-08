@@ -159,7 +159,7 @@ export function Header({ onSearch }) {
           </>
         ) : (
           <>
-            <Link to="/order"><Receipt size={26} /></Link>
+            <Link to="/checkout"><Receipt size={26} /></Link>
             <div><span>{ cartItems.length }</span></div>
           </>
         )
@@ -187,7 +187,7 @@ export function Header({ onSearch }) {
           </NavHeaderAdmin>
         :
           <NavHeaderUser>
-            <NavButton to="/order" className="primary">
+            <NavButton to="/checkout" className="primary">
               <Receipt size={26}/>
               Pedido({ cartItems.length })
             </NavButton>
@@ -203,8 +203,6 @@ export function Header({ onSearch }) {
             </div>
           </NavHeaderUser>
       }
-
-
 
       <Logout onClick={handleSignOut}>
         <FiLogOut size={26} />

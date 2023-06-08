@@ -5,6 +5,7 @@ import { useAuth } from '../hooks/auth';
 import { Home } from '../pages/Home';
 import { Order } from '../pages/Order';
 import { AddDish } from '../pages/AddDish';
+import { Profile } from '../pages/Profile';
 import { EditDish } from '../pages/EditDish';
 import { Favorites } from '../pages/Favorites';
 import { DishDetails } from '../pages/DishDetails';
@@ -20,14 +21,14 @@ export function AppRoutes() {
       {user.isAdmin && <Route path="/edit/:id" element={<EditDish />} />}
 
       {/* ROUTES ACCESS JUST BY CLIENT  */}
-      {!user.isAdmin && <Route path="/favorites" element={<Favorites />} />}
       {!user.isAdmin && <Route path="/order" element={<Order />} />}
-
+      {!user.isAdmin && <Route path="/profile" element={<Profile />} />}
+      {!user.isAdmin && <Route path="/favorites" element={<Favorites />} />}
 
 
       <Route path="/" element={<Home />} />
-      <Route path="/order-history" element={<OrdersHistory />} />
       <Route path="/details/:id" element={<DishDetails />} />
+      <Route path="/order-history" element={<OrdersHistory />} />
     </Routes>
   )
 }

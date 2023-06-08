@@ -1,11 +1,14 @@
 import { Container } from "./styles";
 import PropTypes from "prop-types";
 
-export function Input({ icon: Icon, className , ...rest }) {
+export function Input({ icon: Icon, className, ...rest }) {
   return(
     <Container className={className}>
       {Icon && <Icon size={20} />}
-      <input {...rest} className={Icon && "hasIcon"} autoComplete="off" />
+      <input {...rest} 
+        className={Icon && "hasIcon"} 
+        autoComplete="off" 
+      />
     </Container>
   )
 }

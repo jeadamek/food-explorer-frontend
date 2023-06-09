@@ -79,20 +79,11 @@ While working on the Food Explorer project, I could practice and study the follo
 </br>
 
 
-
 ## 🚀 Getting started
 
-To run the Food Explorer front-end application locally, follow these steps:
+To run the Food Explorer application locally, follow these steps:
 
-1. Clone the repository to your local machine.
-`git clone git@github.com:jeadamek/food-explorer-frontend.git`
-2. Navigate to the project directory `cd food-explorer-frontend`
-3. Install the dependencies `npm install`
-4. Run the development server `npm run dev`
-5. Access the application at [http://localhost:3030](http://localhost:3030) in your browser.
-
-
-Also, you need the app's API to run the application locally:
+First, you need the app's API to run the application locally:
 
 1. Clone the repository to your local machine.
 `git clone git@github.com:jeadamek/food-explorer-api.git`
@@ -100,6 +91,16 @@ Also, you need the app's API to run the application locally:
 3. Install the dependencies `npm install`
 4. Run the development server `npm run dev`
 5. Access the application at [http://localhost:3333](http://localhost:3333) in your browser.
+
+
+After that, you can launch the Food Explorer front-end application by following these instructions:
+
+1. Clone the repository to your local machine.
+`git clone git@github.com:jeadamek/food-explorer-frontend.git`
+2. Navigate to the project directory `cd food-explorer-frontend`
+3. Install the dependencies `npm install`
+4. Run the development server `npm run dev`
+5. Access the application at [http://localhost:3030](http://localhost:3030) in your browser.
 
 
 ## 💻 Usage

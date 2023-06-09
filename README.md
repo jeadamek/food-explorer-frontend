@@ -90,6 +90,18 @@ To run the Food Explorer front-end application locally, follow these steps:
 3. Install the dependencies `npm install`
 4. Run the development server `npm run dev`
 5. Access the application at [http://localhost:3030](http://localhost:3030) in your browser.
+
+
+Also, you need the app's API to run the application locally:
+
+1. Clone the repository to your local machine.
+`git clone git@github.com:jeadamek/food-explorer-api.git`
+2. Navigate to the project directory `cd food-explorer-api`
+3. Install the dependencies `npm install`
+4. Run the development server `npm run dev`
+5. Access the application at [http://localhost:3333](http://localhost:3333) in your browser.
+
+
 ## 💻 Usage
 Access the application by clicking on this link [Food Explorer](#)
 

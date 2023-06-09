@@ -89,7 +89,7 @@ To run the Food Explorer front-end application locally, follow these steps:
 2. Navigate to the project directory `cd food-explorer-frontend`
 3. Install the dependencies `npm install`
 4. Run the development server `npm run dev`
-5. Access the application at [http://localhost:3000](http://localhost:3000) in your browser.
+5. Access the application at [http://localhost:3030](http://localhost:3030) in your browser.
 ## 💻 Usage
 Access the application by clicking on this link [Food Explorer](#)
 
@@ -126,6 +126,7 @@ Access the application by clicking on this link [Food Explorer](#)
 
 ## 🎨 Layout
 🔗 [View on Figma](https://www.figma.com/file/c8uPpa1BM4s2WtlmKOl1SV/food-explorer-v2-(Community)?type=design&node-id=201%3A1532&t=UKYfOVTwYGxe2x1j-1)
+
 
 ## 📝 License
 

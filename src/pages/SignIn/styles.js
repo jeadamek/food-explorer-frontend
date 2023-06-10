@@ -1,5 +1,39 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { device } from "../../breakpoints/devices";
+
+const LogoAppear = keyframes`
+  from {
+    filter: opacity(0);
+    transform: translateY(-100px);
+  }
+  to {
+    filter: opacity(1);
+    transform: translateY(0);
+  }
+`;
+
+const fadeIn = keyframes`
+  from {
+    filter: opacity(0);
+  }
+  to {
+    filter: opacity(1);
+  }
+`;
+
+const InputField = keyframes`
+  0% {
+    filter: opacity(0);
+    transform: translateX(-30px);
+  }
+  50% {
+    filter: opacity(1);
+  }
+  100% {
+    transform: translateX(0);
+
+  }
+`;
 
 export const Container = styled.div`
   width: 100%;
@@ -20,6 +54,8 @@ export const Container = styled.div`
   > img {
     width: 100%;
     max-width: 32.4rem;
+
+    animation: ${LogoAppear} 1s ease-in-out;
   }
 
   .input-wrapper {
@@ -45,8 +81,23 @@ export const Form = styled.form`
 
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
+  animation: ${fadeIn} 1s ease-in-out;
+
   > h2 {
     display: none;
+    animation: ${fadeIn} 2s ease-in-out;
+  }
+
+  > label:first-child, div:first-child {
+    animation: ${InputField} .5s ease-in-out;
+  }
+
+  > label:nth-child(2), div:nth-child(2) {
+    animation: ${InputField} 1s ease-in-out;
+  }
+
+  > button, a {
+    animation: ${fadeIn} 1.5s ease-in-out;
   }
 
   > a {

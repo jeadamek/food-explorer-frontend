@@ -20,6 +20,9 @@ export const Container = styled.div`
 
   border-radius: .5rem;
 
+  transition: filter 0.3s ease-in;
+  transition: border 0.3s ease-in;
+
   cursor: pointer;
 
   > button {
@@ -34,6 +37,9 @@ export const Container = styled.div`
     position: absolute;
     right: 16px;
     top: 16px;
+
+    transition: color 0.3s ease-in;
+    transition: filter 0.3s ease-in;
 
     cursor: pointer;
 
@@ -116,12 +122,14 @@ export const DishInfo = styled(Link)`
     text-overflow: ellipsis;
     white-space: nowrap;
 
+    transition: filter 0.3s ease-in;
+
     &::after {
       content: ' >';
     }
 
     &:hover {
-      opacity: 0.5;
+      filter: opacity(0.5);
     }
   }
 

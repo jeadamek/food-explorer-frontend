@@ -287,6 +287,8 @@ export const NavButton = styled(Link)`
 
   border-radius: .5rem;
 
+  transition: background-color 0.3s ease;
+
   cursor: pointer;
 
   @media ${device.laptop} {

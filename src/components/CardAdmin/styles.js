@@ -22,6 +22,9 @@ export const Container = styled(Link)`
   justify-content: center;
   gap: 1.2rem;
 
+  transition: filter 0.3s ease-in;
+  transition: border 0.3s ease-in;
+
   border-radius: .5rem;
 
   > svg {
@@ -33,6 +36,7 @@ export const Container = styled(Link)`
 
     > path {
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      transition: color .3s ease;
     }
 
     &:hover path {
@@ -51,12 +55,14 @@ export const Container = styled(Link)`
     text-overflow: ellipsis;
     white-space: nowrap;
 
+    transition: filter 0.3s ease-in;
+
     &::after {
       content: ' >';
     }
     
     &:hover {
-      opacity: 0.5;
+      filter: opacity(0.5);
     }
   }
 

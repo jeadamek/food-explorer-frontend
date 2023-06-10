@@ -55,4 +55,20 @@ export const Container = styled.div`
     position: absolute;
     left: 14px;
   }
+
+  > button {
+    background: none;
+    border: none;
+
+    color: ${({ theme }) => theme.COLORS.CAKE_200};
+
+    position: absolute;
+    right: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+  }
 `;

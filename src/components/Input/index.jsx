@@ -1,20 +1,31 @@
 import { Container } from "./styles";
+
+import { FiX } from "react-icons/fi";
 import PropTypes from "prop-types";
 
-export function Input({ icon: Icon, className, ...rest }) {
+export function Input({ icon: Icon, className, value, onClear, ...rest }) {
   return(
     <Container className={className}>
       {Icon && <Icon size={20} />}
       <input {...rest} 
+        value={value}
         className={Icon && "hasIcon"} 
         autoComplete="off" 
       />
+      {
+        value && (
+          <button onClick={onClear}>
+            <FiX size={24} />
+          </button>
+        )
+      }
     </Container>
   )
 }
 
 Input.propTypes = {
   icon: PropTypes.any,
-  rest: PropTypes.any,
+  onClear: PropTypes.func,
+  value: PropTypes.string,
   className: PropTypes.string
 }

@@ -18,10 +18,15 @@ export function Carousel({ items }) {
     const swiperContainer = swiperRef.current;
     const params = {
       navigation: true,
+      slidesPerView: 'auto',
       injectStyles: [
         `
         swiper-container {
           cursor: drab;
+        }
+
+        swiper-slide {
+          width: 210px;
         }
 
         .swiper-button-next,
@@ -53,6 +58,10 @@ export function Carousel({ items }) {
         }
 
         @media ${device.laptop} {
+          swiper-slide {
+            width: 304px;
+          }
+
           .swiper-button-next,
           .swiper-button-prev {
             display: flex;
@@ -66,41 +75,14 @@ export function Carousel({ items }) {
       ],
       breakpoints: {
         320: {
-          slidesPerView: 1.60,
-          spaceBetween: 8,
-        },
-        375: {
-          slidesPerView: 1.60,
           spaceBetween: 8,
         },
         425: {
-          slidesPerView: 1.80,
-          spaceBetween: 16,
-        },
-        500: {
-          slidesPerView: 2.1,
-          spaceBetween: 16,
-        },
-        600: {
-          slidesPerView: 2.5,
-          spaceBetween: 16,
-        },
-        680: {
-          slidesPerView: 2.80,
-          spaceBetween: 16,
-        },
-        750: {
-          slidesPerView: 3,
           spaceBetween: 16,
         },
         1024: {
-          slidesPerView: 3,
           spaceBetween: 27,
         },
-        1440: {
-          slidesPerView: 3.5,
-          spaceBetween: 27,
-        }
       }
     };
 
@@ -113,6 +95,7 @@ export function Carousel({ items }) {
         ref={swiperRef}
         init="false"
         pagination="false"
+        
       > 
         {items.map(item => (
           <swiper-slide key={item.id}>

@@ -89,11 +89,11 @@ export const Form = styled.form`
   }
 
   > label:first-child, div:first-child {
-    animation: ${InputField} .5s ease-in-out;
+    animation: ${InputField} .5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
   }
 
   > label:nth-child(2), div:nth-child(2) {
-    animation: ${InputField} 1s ease-in-out;
+    animation: ${InputField} 1s cubic-bezier(0.45, 0.05, 0.55, 0.95);
   }
 
   > button, a {

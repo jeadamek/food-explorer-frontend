@@ -77,6 +77,8 @@ export const Container = styled.header`
             display: block;
             cursor: pointer;
 
+            transition: color 0.3s ease;
+
             &:hover {
               color: ${({ theme }) => theme.COLORS.CAKE_200};;
             }
@@ -196,6 +198,8 @@ export const NavHeaderAdmin = styled.nav`
     font-weight: 400;
     padding: 0 1rem;
 
+    transition: color 0.3s ease-in;
+
     &:hover{
       color: ${({ theme }) => theme.COLORS.CAKE_200};
     }
@@ -254,6 +258,8 @@ export const NavHeaderUser = styled.nav`
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+
+    transition: color 0.3s ease;
 
     &:hover {
       color: ${({ theme }) => theme.COLORS.CAKE_200};

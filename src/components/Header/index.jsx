@@ -110,7 +110,7 @@ export function Header({ onSearch }) {
             value={search}
             onChange={handleSearch}
             onKeyDown={handleKeyDown}
-            onClear={() => handleClearSearch()}
+            onClear={handleClearSearch}
           />
 
           {

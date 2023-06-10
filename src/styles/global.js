@@ -75,6 +75,10 @@ export default createGlobalStyle`
     line-height: 100%;
   }
 
+  button {
+    transition: background-color 0.3s ease;
+  }
+
   .primary {
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 

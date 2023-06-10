@@ -30,6 +30,18 @@ export const Container = styled.div`
       }
     }
 
+    .loading-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .loading {
+      width: 5rem;
+      height: 5rem;
+      align-items: center;
+    }
+
     .dish-not-found {
       font-size: 2.4rem;
       text-align: center;

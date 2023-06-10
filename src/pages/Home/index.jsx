@@ -6,7 +6,7 @@ import { Banner, Container } from "./styles";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-
+import { Loading } from "../../components/Loading";
 import { Carousel } from "../../components/Carousel";
 
 export function Home() {
@@ -15,14 +15,22 @@ export function Home() {
   const [drinkCategory, setDrinkCategory] = useState([]);
   const [dessertCategory, setDessertCategory] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   function handleSearch(searchValue) {
     setSearch(searchValue)
   }
 
   useEffect(() => {
     async function fetchDishes() {
+      setIsLoading(true);
       const response = await api.get(`/dishes?search=${search}`);
       const dishes = response.data;
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 5000)
+
+
 
       const mealItems = dishes.filter((dish) => {
         return dish.category === 'refeição';
@@ -101,6 +109,11 @@ export function Home() {
           mealCategory.length === 0 && 
           dessertCategory.length === 0 &&
           (
+            isLoading ? 
+            <div className="loading-wrapper"> 
+              <Loading className="loading" />
+            </div> 
+            : 
             <p className="dish-not-found">Prato não encontrado.</p>
           )
         }

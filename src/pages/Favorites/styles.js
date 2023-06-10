@@ -29,6 +29,12 @@ export const Container = styled.div`
       flex-direction: column;
       flex-wrap: wrap;
       gap: 3.2rem;
+
+      > p {
+        font-size: 2.4rem;
+        text-align: center;
+        margin-top: 5rem;
+      }
     }
   } 
 
@@ -45,6 +51,11 @@ export const Container = styled.div`
 
       .favorite-items {
         flex-direction: row;
+
+        > p {
+          text-align: center;
+          width: 100%;
+        }
       }
     }
   }

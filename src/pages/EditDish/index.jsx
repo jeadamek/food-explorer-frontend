@@ -125,6 +125,7 @@ export function EditDish() {
       }
     } finally {
       setIsLoadingUpdate(false);
+      navegate("/");
     }
   }
 

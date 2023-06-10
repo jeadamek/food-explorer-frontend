@@ -36,13 +36,17 @@ export function Favorites() {
         <h1>Meus favoritos</h1>
         <div className="favorite-items">
           {
-            favorites.map(favorite => (
-              <CardFavorites 
-                key={String(favorite.id)} 
-                favorite={favorite} 
-                onRemoveFavorite={handleRemoveFavorite}
-              />
-            ))
+            favorites.length > 0 ? ( 
+              favorites.map(favorite => (
+                <CardFavorites 
+                  key={String(favorite.id)} 
+                  favorite={favorite} 
+                  onRemoveFavorite={handleRemoveFavorite}
+                />
+              ))
+            ) : (
+              <p>Você não possui pratos favoritos</p>
+            )
           }
         </div>
       </main>

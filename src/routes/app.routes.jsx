@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useAuth } from '../hooks/auth';
 
 import { Home } from '../pages/Home';
-import { Order } from '../pages/Order';
+import { Checkout } from '../pages/Checkout';
 import { AddDish } from '../pages/AddDish';
 import { Profile } from '../pages/Profile';
 import { EditDish } from '../pages/EditDish';
@@ -21,7 +21,7 @@ export function AppRoutes() {
       {user.isAdmin && <Route path="/edit/:id" element={<EditDish />} />}
 
       {/* ROUTES ACCESS JUST BY CLIENT  */}
-      {!user.isAdmin && <Route path="/order" element={<Order />} />}
+      {!user.isAdmin && <Route path="/checkout" element={<Checkout />} />}
       {!user.isAdmin && <Route path="/profile" element={<Profile />} />}
       {!user.isAdmin && <Route path="/favorites" element={<Favorites />} />}
 

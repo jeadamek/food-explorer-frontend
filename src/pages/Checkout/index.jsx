@@ -8,7 +8,7 @@ import { Footer } from "../../components/Footer";
 import { Payment } from "../../components/Payment";
 import { useState } from "react";
 
-export function Order() {
+export function Checkout() {
   const [isMobile, setIsMobile] = useState(false);
   const [showCart, setShowCart] = useState(true);
 

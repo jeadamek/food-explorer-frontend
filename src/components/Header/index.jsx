@@ -54,6 +54,10 @@ export function Header({ onSearch }) {
     onSearch(value);
   }
 
+  function handleClearSearch() {
+    setSearch("");  
+  }
+
   function handleKeyDown(event) {
     if (event.keyCode === 13) {
       handleModal();
@@ -106,6 +110,7 @@ export function Header({ onSearch }) {
             value={search}
             onChange={handleSearch}
             onKeyDown={handleKeyDown}
+            onClear={() => handleClearSearch()}
           />
 
           {
@@ -159,7 +164,7 @@ export function Header({ onSearch }) {
           </>
         ) : (
           <>
-            <Link to="/order"><Receipt size={26} /></Link>
+            <Link to="/checkout"><Receipt size={26} /></Link>
             <div><span>{ cartItems.length }</span></div>
           </>
         )
@@ -173,6 +178,7 @@ export function Header({ onSearch }) {
         className="desktop-search" 
         value={search}
         onChange={handleSearch}
+        onClear={handleClearSearch}
       />
       
       {/* DESKTOP NAVIGATION */}
@@ -182,12 +188,12 @@ export function Header({ onSearch }) {
             <Link to="/new">Novo prato</Link>
             <NavButton to="/order-history" className="primary">
               <Receipt size={26}/>
-              Pedidos
+              Pedidos({ newOrders.length })
             </NavButton>
           </NavHeaderAdmin>
         :
           <NavHeaderUser>
-            <NavButton to="/order" className="primary">
+            <NavButton to="/checkout" className="primary">
               <Receipt size={26}/>
               Pedido({ cartItems.length })
             </NavButton>
@@ -203,8 +209,6 @@ export function Header({ onSearch }) {
             </div>
           </NavHeaderUser>
       }
-
-
 
       <Logout onClick={handleSignOut}>
         <FiLogOut size={26} />

@@ -11,9 +11,6 @@ import { CardFavorites } from "../../components/CardFavorites";
 
 export function Favorites() {
   const [favorites, setFavorites] = useState([]);
-  function handleSearch() {
-    alert("search");
-  }
 
   function handleRemoveFavorite(id) {
     const newFavorites = favorites.filter(favorite => favorite.id !== id);
@@ -31,7 +28,7 @@ export function Favorites() {
 
   return(
     <Container>
-      <Header onSearch={handleSearch}/>
+      <Header />
       <main>
         <h1>Meus favoritos</h1>
         <div className="favorite-items">

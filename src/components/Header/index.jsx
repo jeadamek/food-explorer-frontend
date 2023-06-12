@@ -51,7 +51,7 @@ export function Header({ onSearch }) {
   function handleSearch(event) {
     const value = event.target.value;
     setSearch(value);
-    onSearch(value);
+    onSearch && onSearch(value);
   }
 
   function handleClearSearch() {
@@ -61,6 +61,7 @@ export function Header({ onSearch }) {
   function handleKeyDown(event) {
     if (event.keyCode === 13) {
       handleModal();
+      navigate(`/?search=${search}`);
     }
   }
 
@@ -178,6 +179,7 @@ export function Header({ onSearch }) {
         className="desktop-search" 
         value={search}
         onChange={handleSearch}
+        onKeyDown={handleKeyDown}
         onClear={handleClearSearch}
       />
       

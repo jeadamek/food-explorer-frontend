@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Container, ContentMobile, ContentDesktop } from "./styles";
+import { Container, OrdersHeader, ContentMobile, ContentDesktop } from "./styles";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
@@ -74,7 +74,22 @@ export function OrdersHistory() {
       <Header />
 
       <main>
-        <h1>{user.isAdmin ? "Pedidos" : "Histórico de pedidos"}</h1>
+        {
+          user.isAdmin 
+          ? (
+            <OrdersHeader >
+              <h1>{"Pedidos"}</h1>
+              <label htmlFor="search" />
+              <input 
+                id="search" 
+                type="search" 
+                name="search" 
+              />
+            </OrdersHeader>
+          ) : (
+            <h1>{"Histórico de pedidos"}</h1>
+          )
+        }
         <div>
           {
             orders.map(order => (

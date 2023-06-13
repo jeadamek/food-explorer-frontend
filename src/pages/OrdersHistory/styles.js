@@ -56,6 +56,10 @@ export const Container = styled.div`
   }
 `;
 
+export const OrdersHeader = styled.div`
+
+`;
+
 export const ContentMobile = styled.div`
   width: 100%;
   

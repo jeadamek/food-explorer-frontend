@@ -25,10 +25,14 @@ export function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
 
   const navegate = useNavigate();
-  
-  async function handleSignUp(event) {
-    event.preventDefault();
 
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      handleSignUp();
+    }
+  }
+  
+  async function handleSignUp() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     setNameClass("");
@@ -86,7 +90,7 @@ export function SignUp() {
     <Container>
       <img src={Logo} alt="Logo Food Explorer" />
 
-      <Form onSubmit={handleSignUp}>
+      <Form>
         <h2>Crie sua conta</h2>
 
         <div className="input-wrapper">
@@ -97,7 +101,10 @@ export function SignUp() {
             name="name"
             placeholder="Exemplo: Maria da Silva"
             validation={nameClass}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              setNameClass("");
+            }}
           />
         </div>
 
@@ -109,7 +116,10 @@ export function SignUp() {
             name="email"
             placeholder="Exemplo: exemplo@exemplo.com.br"
             validation={emailClass}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailClass("");
+            }}
           />
         </div>
 
@@ -121,15 +131,19 @@ export function SignUp() {
             name="password"
             placeholder="No mínimo 6 caracteres"
             validation={passwordClass}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setPasswordClass("");
+            }}
+            onKeyDown={handleKeyDown}
           />
         </div>
 
         <Button 
-          type="submit"
           title="Criar conta" 
           className="primary" 
           loading={isLoading}
+          onClick={handleSignUp}
         />
 
         <Link to="/">

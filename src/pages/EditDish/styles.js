@@ -120,6 +120,18 @@ export const Form = styled.form`
     }
   }
 
+  input:invalid {
+    border: 1px solid ${({ theme }) => theme.COLORS.TOMATO_300};
+  }
+
+  textarea:invalid {
+    border: 1px solid ${({ theme }) => theme.COLORS.TOMATO_300};
+  }
+
+  .invalid {
+    border: 1px solid ${({ theme }) => theme.COLORS.TOMATO_300};
+  }
+
   .buttons {
     width: 100%;
 

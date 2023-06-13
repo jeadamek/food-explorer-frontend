@@ -24,16 +24,21 @@ export function SignIn() {
 
   const { signIn } = useAuth();
 
+  function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      handleSignIn();
+    }
+  }
 
-  async function handleSignIn(event) {
-    event.preventDefault();
+  async function handleSignIn() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     setEmailClass('');
     setPasswordClass('');
 
-    if(!email) {
+    if(!emailRegex.test(email)) {
       setEmailClass("invalid");
-      return toast.error("Campo e-mail é obrigatório!");
+      return toast.error("E-mail inválido!");
     } else {
       setEmailClass("valid");
     }
@@ -61,7 +66,7 @@ export function SignIn() {
     <Container>
       <img src={Logo} alt="Logo Food Explorer" />
 
-      <Form onSubmit={handleSignIn}>
+      <Form>
         <h2>Faça login</h2>
 
         <div className="input-wrapper">
@@ -72,7 +77,10 @@ export function SignIn() {
             id="email"
             name="email"
             validation={emailClass}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailClass("");
+            }}
           />
         </div>
 
@@ -84,15 +92,19 @@ export function SignIn() {
             id="password"
             name="password"
             validation={passwordClass}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setPasswordClass("");
+            }}
+            onKeyDown={handleKeyDown}
           />
         </div>
 
         <Button 
-          type="submit"
           title="Entrar" 
           className="primary"
           loading={isLoading}
+          onClick={handleSignIn}
         />
 
         <Link to="/register">

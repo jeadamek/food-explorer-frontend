@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import { Container, OrdersHeader, ContentMobile, ContentDesktop } from "./styles";
 
@@ -8,7 +9,8 @@ import { useAuth } from "../../hooks/auth";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { OrderStatus } from "../../components/OrderStatus";
-import { toast } from "react-toastify";
+
+import { FiSearch } from "react-icons/fi";
 
 export function OrdersHistory() {
   const { user } = useAuth();
@@ -77,20 +79,30 @@ export function OrdersHistory() {
         {
           user.isAdmin 
           ? (
-            <OrdersHeader >
+            <OrdersHeader>
               <h1>{"Pedidos"}</h1>
-              <label htmlFor="search" />
-              <input 
-                id="search" 
-                type="search" 
-                name="search" 
-              />
+
+              <div className="input-wrapper">
+                <label 
+                  htmlFor="search" 
+                  className="sr-only"
+                >
+                  Buscar pedido por código
+                </label>
+                <FiSearch />
+                <input
+                  id="search"
+                  type="search"
+                  name="search"
+                  placeholder="Buscar pedido por código"
+                />
+              </div>
             </OrdersHeader>
           ) : (
             <h1>{"Histórico de pedidos"}</h1>
           )
         }
-        <div>
+        <div className="content-wrapper">
           {
             orders.map(order => (
               <ContentMobile key={String(order.id)} isAdmin={user.isAdmin}>

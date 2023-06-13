@@ -25,11 +25,15 @@ export const Container = styled.div`
 
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
+    h1 {
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    }
+
     > h1 {
       margin-bottom: 2.8rem;
     }
 
-    > div {
+    .content-wrapper {
         display: flex;
         flex-direction: column;
         gap: 1.6rem;
@@ -57,7 +61,29 @@ export const Container = styled.div`
 `;
 
 export const OrdersHeader = styled.div`
+  width: 100%;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  margin-bottom: 2.8rem;
+  
+  > h1 {
+    width: fit-content;
+  }
+
+  .input-wrapper {
+    width: 50rem;
+
+    > input {
+      width: 100%;
+      height: 3.2rem;
+      padding: 1.6rem;
+
+      border-radius: 2rem;
+    }
+  }
 `;
 
 export const ContentMobile = styled.div`

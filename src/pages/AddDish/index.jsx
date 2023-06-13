@@ -35,6 +35,8 @@ export function AddDish() {
   const [imageClass, setImageClass] = useState("");
   const [categoryClass, setCategoryClass] = useState("");
   const [descriptionClass, setDescriptionClass] = useState("");
+  const [ingredientClass, setIngredientClass] = useState("");
+
 
   const [isLoading, setIsLoading] = useState(false);
   const navegate = useNavigate();
@@ -52,37 +54,14 @@ export function AddDish() {
     }
   }
 
-  function handleUploadImage(event) {
-    const value = event.target.files[0];
-    setImage(value);
-    setImageClass("");
-  }
-
-  function handleDishName(event) {
-    const value = event.target.value;
-    setName(value);
-    setNameClass("");
-  }
-
-  function handleDishCategory(event) {
-    const value = event.target.value;
-    setCategory(value);
-    setCategoryClass("");
-  }
-
-  function handleDishDescription(event) {
-    const value = event.target.value;
-    setDescription(value);
-    setDescriptionClass("");
-  }
-
   function handleNewIngredient() {
     if (!newIngredient) {
-      return toast.warn("Digite um ingrediente antes de adicioná-lo")
+      return toast.error("Digite um ingrediente antes de adicioná-lo")
     }
     
     setIngredients(prevState => [...prevState, newIngredient]);
     setNewIngredient("");
+    setIngredientClass("");
   }
 
   function handleRemoveIngredient(deleted) {
@@ -96,14 +75,10 @@ export function AddDish() {
       setImageClass("invalid");
       return toast.error("Faça upload da foto do prato");
     } 
-    
-    // if(!name || category == "default" || !price || !description) {
-    //   return toast.warn("Todos os campos devem ser preenchidos");
-    // }
 
     if (!name) {
       setNameClass("invalid");
-      return toast.error("Nome do prato deve ser preenchido");
+      return toast.error("Nome do prato é obrigatório");
     }
 
     if (category == "default") {
@@ -112,21 +87,23 @@ export function AddDish() {
     }
 
     if(ingredients.length == 0) {
-      return toast.warn("Adicione os ingredientes do prato");
+      setIngredientClass("invalid");
+      return toast.error("Adicione os ingredientes do prato");
     }
 
     if(newIngredient) {
-      return toast.warn(`Clique em "+" para adicionar o ingrediente: ${newIngredient}, ou deixe o campo vázio.`);
+      setIngredientClass("invalid");
+      return toast.error(`Clique em "+" para adicionar o ingrediente: ${newIngredient}, ou deixe o campo vázio.`);
     }
 
     if (!price) {
       setPriceClass("invalid");
-      return toast.error("Preço do prato deve ser preenchido");
+      return toast.error("Preço do prato é obrigatório");
     }
 
     if (!description) {
       setDescriptionClass("invalid");
-      return toast.error("Descrição do prato deve ser preenchido");
+      return toast.error("Descrição é obrigatória");
     }
 
     setIsLoading(true);
@@ -185,7 +162,10 @@ export function AddDish() {
                     type="file" 
                     id="image"
                     name="image"
-                    onChange={handleUploadImage}
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                      setImageClass("");
+                    }}
                   />
                 </div>
               </label>
@@ -197,7 +177,10 @@ export function AddDish() {
                 placeholder="Ex.: Salada Ceasar" 
                 id="name"
                 validation={nameClass}
-                onChange={handleDishName}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  setNameClass("");
+                }}
                 autoFocus
               />
             </div>
@@ -210,7 +193,10 @@ export function AddDish() {
                 value={category}
                 options={options}
                 className={categoryClass}
-                onChange={handleDishCategory}
+                onChange={(e) => {
+                  setCategory(e.target.value);
+                  setCategoryClass("");
+                }}
               />
             </div>
           </div>
@@ -234,7 +220,11 @@ export function AddDish() {
                   placeholder="Adicionar"
                   value={newIngredient}
                   size={9} 
-                  onChange={e => setNewIngredient(e.target.value)}
+                  validation={ingredientClass}
+                  onChange={(e) => {
+                    setNewIngredient(e.target.value);
+                    setIngredientClass("");
+                  }}
                   onClick={handleNewIngredient} 
                   onKeyDown={handleKeyDown}
                 />
@@ -268,7 +258,10 @@ export function AddDish() {
               id="description" 
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" 
               className={descriptionClass}
-              onChange={handleDishDescription}
+              onChange={(e) => {
+                setDescription(e.target.value);
+                setDescriptionClass("");
+              }}
             />
           </div>
           

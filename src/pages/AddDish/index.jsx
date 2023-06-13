@@ -55,7 +55,13 @@ export function AddDish() {
   function handleUploadImage(event) {
     const value = event.target.files[0];
     setImage(value);
-    setImageClass("")
+    setImageClass("");
+  }
+
+  function handleDishName(event) {
+    const value = event.target.value;
+    setName(value);
+    setNameClass("");
   }
 
   function handleNewIngredient() {
@@ -79,8 +85,13 @@ export function AddDish() {
       return toast.error("Faça upload da foto do prato");
     } 
     
-    if(!name || category == "default" || !price || !description) {
-      return toast.warn("Todos os campos devem ser preenchidos");
+    // if(!name || category == "default" || !price || !description) {
+    //   return toast.warn("Todos os campos devem ser preenchidos");
+    // }
+
+    if (!name) {
+      setNameClass("invalid");
+      return toast.error("Nome do prato deve ser preenchido");
     }
 
     if(ingredients.length == 0) {
@@ -158,7 +169,8 @@ export function AddDish() {
               <Input 
                 placeholder="Ex.: Salada Ceasar" 
                 id="name"
-                onChange={e => setName(e.target.value)}
+                validation={nameClass}
+                onChange={handleDishName}
                 autoFocus
               />
             </div>

@@ -91,10 +91,6 @@ export const Form = styled.form`
     }
   }
 
-  .invalid {
-    border: 1px solid ${({ theme }) => theme.COLORS.TOMATO_300};
-  }
-
   .dish-ingredients{
     > span {
       font-family: 'Roboto', sans-serif;
@@ -122,6 +118,10 @@ export const Form = styled.form`
       row-gap: .8rem;
       flex-wrap: wrap;
     }
+  }
+
+  .invalid {
+    border: 1px solid ${({ theme }) => theme.COLORS.TOMATO_300};
   }
 
   @media ${device.laptop} {

@@ -22,19 +22,19 @@ import { SlArrowLeft } from "react-icons/sl";
 
 export function AddDish() {
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("default");
   const [price, setPrice] = useState(null);
-  const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const [category, setCategory] = useState("default");
+  const [description, setDescription] = useState("");
 
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
 
   const [nameClass, setNameClass] = useState("");
-  // const [category, setCategory] = useState("default");
-  // const [price, setPrice] = useState(null);
-  // const [description, setDescription] = useState("");
+  const [priceClass, setPriceClass] = useState("");
   const [imageClass, setImageClass] = useState("");
+  const [categoryClass, setCategoryClass] = useState("");
+  const [descriptionClass, setDescriptionClass] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
   const navegate = useNavigate();
@@ -62,6 +62,18 @@ export function AddDish() {
     const value = event.target.value;
     setName(value);
     setNameClass("");
+  }
+
+  function handleDishCategory(event) {
+    const value = event.target.value;
+    setCategory(value);
+    setCategoryClass("");
+  }
+
+  function handleDishDescription(event) {
+    const value = event.target.value;
+    setDescription(value);
+    setDescriptionClass("");
   }
 
   function handleNewIngredient() {
@@ -94,12 +106,27 @@ export function AddDish() {
       return toast.error("Nome do prato deve ser preenchido");
     }
 
+    if (category == "default") {
+      setCategoryClass("invalid");
+      return toast.error("Categoria inválida");
+    }
+
     if(ingredients.length == 0) {
       return toast.warn("Adicione os ingredientes do prato");
     }
 
     if(newIngredient) {
       return toast.warn(`Clique em "+" para adicionar o ingrediente: ${newIngredient}, ou deixe o campo vázio.`);
+    }
+
+    if (!price) {
+      setPriceClass("invalid");
+      return toast.error("Preço do prato deve ser preenchido");
+    }
+
+    if (!description) {
+      setDescriptionClass("invalid");
+      return toast.error("Descrição do prato deve ser preenchido");
     }
 
     setIsLoading(true);
@@ -146,7 +173,7 @@ export function AddDish() {
           <h1>Adicionar Prato</h1>
         </header>
 
-        <Form onSubmit={handleAddDish}>
+        <Form>
           <div className="wrapper">
             <div className="dish-image">
               <label>
@@ -182,7 +209,8 @@ export function AddDish() {
                 id="category" 
                 value={category}
                 options={options}
-                onChange={e => setCategory(e.target.value)}
+                className={categoryClass}
+                onChange={handleDishCategory}
               />
             </div>
           </div>
@@ -223,10 +251,12 @@ export function AddDish() {
                 decimalSeparator=","
                 groupSeparator="."
                 id="price"
+                className={priceClass}
                 onValueChange={(value) => {
                   const formattedValue = value.replace(',', '.');
-                  const valueAsFloat = parseFloat(formattedValue)
-                  setPrice(valueAsFloat)
+                  const valueAsFloat = parseFloat(formattedValue);
+                  setPrice(valueAsFloat);
+                  setPriceClass("");
                 }}
               />
             </div>
@@ -237,15 +267,16 @@ export function AddDish() {
             <Textarea 
               id="description" 
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" 
-              onChange={e => setDescription(e.target.value)}
+              className={descriptionClass}
+              onChange={handleDishDescription}
             />
           </div>
           
           <Button 
-            type="submit"
             title="Salvar alterações" 
             className="primary" 
             loading={isLoading}
+            onClick={handleAddDish}
           />
 
         </Form>

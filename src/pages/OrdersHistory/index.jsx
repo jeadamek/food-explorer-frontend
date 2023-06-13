@@ -116,6 +116,7 @@ export function OrdersHistory() {
                   placeholder="Buscar pedido por código"
                   icon={FiSearch}
                   value={searchCode}
+                  search
                   onChange={handleOrderSearch}
                   onClear={handleClearSearch}
                 />
@@ -126,6 +127,7 @@ export function OrdersHistory() {
             <h1>{"Histórico de pedidos"}</h1>
           )
         }
+        
         <div className="content-wrapper">
           {
             orders.length !== 0 ? (

@@ -10,6 +10,7 @@ import { useCart } from '../../hooks/cart';
 import { Container, Brand, Hamburguer, MobileOrder, NavHeaderUser, NavHeaderAdmin, NavButton, Logout } from "./styles";
 
 import { Input } from '../Input';
+import { Label } from '../Label';
 import { Receipt } from "../../assets/icons/Receipt";
 
 import { GoSearch } from "react-icons/go";
@@ -103,12 +104,18 @@ export function Header({ onSearch }) {
         </header>
 
         <nav>
+          <Label 
+            title="Buscar pedido por código"
+            htmlFor="search" 
+            className="sr-only"
+          />
           <Input
             type="text"
             placeholder="Busque por pratos ou ingredientes"
             icon={GoSearch}
             className="input-header"
             value={search}
+            search
             onChange={handleSearch}
             onKeyDown={handleKeyDown}
             onClear={handleClearSearch}
@@ -172,12 +179,18 @@ export function Header({ onSearch }) {
         }
 
       </MobileOrder>
-
+      
+      <Label 
+        title="Buscar pedido por código"
+        htmlFor="search" 
+        className="sr-only"
+      />
       <Input 
         placeholder="Busque por pratos ou ingredientes" 
         icon={GoSearch} 
         className="desktop-search" 
         value={search}
+        search
         onChange={handleSearch}
         onKeyDown={handleKeyDown}
         onClear={handleClearSearch}

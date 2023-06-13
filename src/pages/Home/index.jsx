@@ -120,7 +120,7 @@ export function Home() {
               <Loading className="loading" />
             </div> 
             : 
-            <p className="dish-not-found">Prato não encontrado.</p>
+            <p className="dish-not-found">Nenhum prato encontrado.</p>
           )
         }
 

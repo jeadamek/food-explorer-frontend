@@ -15,25 +15,44 @@ import Logo from "../../assets/logo-user.svg"
 
 export function SignIn() {
   const [email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [emailClass, setEmailClass] = useState("");
+  const [passwordClass, setPasswordClass] = useState("");
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const { signIn } = useAuth();
 
-  function handleKeyDown(event) {
-    if (event.keyCode === 13) {
-      handleSignIn();
-    }
-  }
 
-  function handleSignIn() {
-    if (!email, !password) {
-      return toast.warn("Preencha todos os campos!");
+  async function handleSignIn(event) {
+    event.preventDefault();
+
+    setEmailClass('');
+    setPasswordClass('');
+
+    if(!email) {
+      setEmailClass("invalid");
+      return toast.error("Campo e-mail é obrigatório!");
+    } else {
+      setEmailClass("valid");
+    }
+
+    if (!password) {
+      setPasswordClass("invalid");
+      return toast.error("Campo senha é obrigatório!");
+    } else {
+      setPasswordClass("valid");
     }
 
     setIsLoading(true);
 
-    signIn({ email, password });
+    const error = await signIn({ email, password });
+
+    if (error) {
+      setEmailClass("invalid");
+      setPasswordClass("invalid");
+    }
 
     setIsLoading(false);
   }
@@ -42,7 +61,7 @@ export function SignIn() {
     <Container>
       <img src={Logo} alt="Logo Food Explorer" />
 
-      <Form>
+      <Form onSubmit={handleSignIn}>
         <h2>Faça login</h2>
 
         <div className="input-wrapper">
@@ -52,6 +71,7 @@ export function SignIn() {
             placeholder="Exemplo: exemplo@exemplo.com.br"
             id="email"
             name="email"
+            validation={emailClass}
             onChange={e => setEmail(e.target.value)}
           />
         </div>
@@ -63,16 +83,16 @@ export function SignIn() {
             placeholder="No mínimo 6 caracteres"
             id="password"
             name="password"
-            onChange={e => setpassword(e.target.value)}
-            onKeyDown={handleKeyDown}
+            validation={passwordClass}
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
 
         <Button 
+          type="submit"
           title="Entrar" 
           className="primary"
           loading={isLoading}
-          onClick={handleSignIn}
         />
 
         <Link to="/register">

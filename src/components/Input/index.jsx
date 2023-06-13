@@ -26,6 +26,6 @@ export function Input({ icon: Icon, className, value, onClear, ...rest }) {
 Input.propTypes = {
   icon: PropTypes.any,
   onClear: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.any,
   className: PropTypes.string
 }

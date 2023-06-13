@@ -12,10 +12,12 @@ import { OrderStatus } from "../../components/OrderStatus";
 
 import { FiSearch } from "react-icons/fi";
 import { Input } from "../../components/Input";
+import { Label } from "../../components/Label";
 
 export function OrdersHistory() {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
+  const [searchCode, setSearchCode] = useState("");
 
   function getFormattedOrderCode(number) {
     return number.toString().padStart(8, '0');
@@ -35,6 +37,16 @@ export function OrdersHistory() {
 
     const formattedDate = `${day}/${month} às ${hours}:${minutes}`;
     return formattedDate;
+  }
+
+  function handleOrderSearch(event) {
+    const value = event.target.value
+    const parsedValue = value ? parseInt(value, 10) : '';
+    setSearchCode(parsedValue)
+  }
+
+  function handleClearSearch() {
+    setSearchCode("");  
   }
 
   async function handleOrderUpdate(option, orderId) {
@@ -62,7 +74,14 @@ export function OrdersHistory() {
     async function fetchOrders() {
       if (user.isAdmin) {
         const response = await api.get("orders/admin");
-        setOrders(response.data);
+
+        if (searchCode) {
+          const searchOrder = searchCode && response.data.filter( order => order.id === searchCode)
+          setOrders(searchOrder);
+        } else {
+          setOrders(response.data);
+        }
+
       } else {
         const response = await api.get("orders/");
         setOrders(response.data);
@@ -70,7 +89,7 @@ export function OrdersHistory() {
     }
 
     fetchOrders();
-  }, [user]);
+  }, [user, searchCode]);
 
   return(
     <Container>
@@ -84,26 +103,21 @@ export function OrdersHistory() {
               <h1>{"Pedidos"}</h1>
 
               <div className="input-wrapper">
-                <label 
+                <Label 
+                  title="Buscar pedido por código"
                   htmlFor="search" 
                   className="sr-only"
-                >
-                  Buscar pedido por código
-                </label>
-                {/* <FiSearch />
-                <input
-                  id="search"
-                  type="search"
-                  name="search"
-                  placeholder="Buscar pedido por código"
-                /> */}
+                />
 
                 <Input 
                   id="search"
                   name="search"
-                  type="search"
+                  type="text"
                   placeholder="Buscar pedido por código"
                   icon={FiSearch}
+                  value={searchCode}
+                  onChange={handleOrderSearch}
+                  onClear={handleClearSearch}
                 />
 
               </div>

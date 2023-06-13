@@ -3,7 +3,7 @@ import { Container } from "./styles";
 import { FiX } from "react-icons/fi";
 import PropTypes from "prop-types";
 
-export function Input({ icon: Icon, className, value, onClear, ...rest }) {
+export function Input({ icon: Icon, className, value, onClear, search=false, ...rest }) {
   return(
     <Container className={className}>
       {Icon && <Icon size={20} />}
@@ -13,7 +13,7 @@ export function Input({ icon: Icon, className, value, onClear, ...rest }) {
         autoComplete="off" 
       />
       {
-        value && (
+        search && value && (
           <button onClick={onClear}>
             <FiX size={24} />
           </button>
@@ -26,6 +26,7 @@ export function Input({ icon: Icon, className, value, onClear, ...rest }) {
 Input.propTypes = {
   icon: PropTypes.any,
   onClear: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.any,
+  search: PropTypes.bool,
   className: PropTypes.string
 }

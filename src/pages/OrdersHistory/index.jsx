@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-import { Container, ContentMobile, ContentDesktop } from "./styles";
+import { Container, OrdersHeader, ContentMobile, ContentDesktop } from "./styles";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
@@ -8,11 +9,15 @@ import { useAuth } from "../../hooks/auth";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { OrderStatus } from "../../components/OrderStatus";
-import { toast } from "react-toastify";
+
+import { FiSearch } from "react-icons/fi";
+import { Input } from "../../components/Input";
+import { Label } from "../../components/Label";
 
 export function OrdersHistory() {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
+  const [searchCode, setSearchCode] = useState("");
 
   function getFormattedOrderCode(number) {
     return number.toString().padStart(8, '0');
@@ -32,6 +37,16 @@ export function OrdersHistory() {
 
     const formattedDate = `${day}/${month} às ${hours}:${minutes}`;
     return formattedDate;
+  }
+
+  function handleOrderSearch(event) {
+    const value = event.target.value
+    const parsedValue = value ? parseInt(value, 10) : '';
+    setSearchCode(parsedValue)
+  }
+
+  function handleClearSearch() {
+    setSearchCode("");  
   }
 
   async function handleOrderUpdate(option, orderId) {
@@ -59,7 +74,14 @@ export function OrdersHistory() {
     async function fetchOrders() {
       if (user.isAdmin) {
         const response = await api.get("orders/admin");
-        setOrders(response.data);
+
+        if (searchCode) {
+          const searchOrder = searchCode && response.data.filter( order => order.id === searchCode)
+          setOrders(searchOrder);
+        } else {
+          setOrders(response.data);
+        }
+
       } else {
         const response = await api.get("orders/");
         setOrders(response.data);
@@ -67,34 +89,69 @@ export function OrdersHistory() {
     }
 
     fetchOrders();
-  }, [user]);
+  }, [user, searchCode]);
 
   return(
     <Container>
       <Header />
 
       <main>
-        <h1>{user.isAdmin ? "Pedidos" : "Histórico de pedidos"}</h1>
-        <div>
-          {
-            orders.map(order => (
-              <ContentMobile key={String(order.id)} isAdmin={user.isAdmin}>
-                <span className="code">
-                  {getFormattedOrderCode(order.id)}
-                </span>
-                <OrderStatus 
-                  className="status"
-                  status={order.order_status} 
-                  onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)}
+        {
+          user.isAdmin 
+          ? (
+            <OrdersHeader>
+              <h1>{"Pedidos"}</h1>
+
+              <div className="input-wrapper">
+                <Label 
+                  title="Buscar pedido por código"
+                  htmlFor="search" 
+                  className="sr-only"
                 />
-                <span className="time">
-                  {getFormattedDateTime(order.created_at)}
-                </span>
-                <p className="details">
-                  {getFormattedOrderItems(order.items)}
-                </p>
-              </ContentMobile>
-            ))
+
+                <Input 
+                  id="search"
+                  name="search"
+                  type="text"
+                  placeholder="Buscar pedido por código"
+                  icon={FiSearch}
+                  value={searchCode}
+                  search
+                  onChange={handleOrderSearch}
+                  onClear={handleClearSearch}
+                />
+
+              </div>
+            </OrdersHeader>
+          ) : (
+            <h1>{"Histórico de pedidos"}</h1>
+          )
+        }
+        
+        <div className="content-wrapper">
+          {
+            orders.length !== 0 ? (
+              orders.map(order => (
+                <ContentMobile key={String(order.id)} isAdmin={user.isAdmin}>
+                  <span className="code">
+                    {getFormattedOrderCode(order.id)}
+                  </span>
+                  <OrderStatus 
+                    className="status"
+                    status={order.order_status} 
+                    onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)}
+                  />
+                  <span className="time">
+                    {getFormattedDateTime(order.created_at)}
+                  </span>
+                  <p className="details">
+                    {getFormattedOrderItems(order.items)}
+                  </p>
+                </ContentMobile>
+              ))
+            ) : (
+              <p className="mobile-no-order-found">{user.isAdmin ? "Nenhum pedido encontrado" : "Você ainda não realizou nenhum pedido"}</p>
+            )
           }
         </div>
 
@@ -109,25 +166,32 @@ export function OrdersHistory() {
           </thead>
           <tbody>
             {
-              orders.map(order => (
-                <tr key={String(order.id)}>
-                  <td>
-                    <OrderStatus 
-                      status={order.order_status} 
-                      onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)} 
-                    />
-                  </td>
-                  <td>
-                    {getFormattedOrderCode(order.id)}
-                  </td>
-                  <td>
-                    {getFormattedOrderItems(order.items)}
-                  </td>
-                  <td>
-                    {getFormattedDateTime(order.created_at)}
-                  </td>
+              orders.length !== 0 ? (
+                orders.map(order => (
+                  <tr key={String(order.id)}>
+                    <td>
+                      <OrderStatus 
+                        status={order.order_status} 
+                        onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)} 
+                      />
+                    </td>
+                    <td>
+                      {getFormattedOrderCode(order.id)}
+                    </td>
+                    <td>
+                      {getFormattedOrderItems(order.items)}
+                    </td>
+                    <td>
+                      {getFormattedDateTime(order.created_at)}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td className="desktop-no-order-found">{user.isAdmin ? "Nenhum pedido encontrado" : "Você ainda não realizou nenhum pedido"}</td>
                 </tr>
-              ))
+              )
+              
             }
           </tbody>
         </ContentDesktop>

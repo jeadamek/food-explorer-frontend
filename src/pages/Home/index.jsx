@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import { api } from "../../services/api";
 
@@ -10,7 +11,10 @@ import { Loading } from "../../components/Loading";
 import { Carousel } from "../../components/Carousel";
 
 export function Home() {
-  const [search, setSearch] = useState("");
+  const location = useLocation();
+  const searchParam = new URLSearchParams(location.search).get('search');
+
+  const [search, setSearch] = useState(searchParam ? searchParam : "");
   const [mealCategory, setMealCategory] = useState([]);
   const [drinkCategory, setDrinkCategory] = useState([]);
   const [dessertCategory, setDessertCategory] = useState([]);
@@ -22,6 +26,10 @@ export function Home() {
   }
 
   useEffect(() => {
+    setSearch(searchParam || '');
+  }, [searchParam]);
+
+  useEffect(() => {
     async function fetchDishes() {
       setIsLoading(true);
       const response = await api.get(`/dishes?search=${search}`);
@@ -29,8 +37,6 @@ export function Home() {
       setTimeout(() => {
         setIsLoading(false);
       }, 5000)
-
-
 
       const mealItems = dishes.filter((dish) => {
         return dish.category === 'refeição';
@@ -54,7 +60,7 @@ export function Home() {
 
   return(
     <Container>
-      <Header onSearch={handleSearch}/>
+      <Header onSearch={handleSearch} />
       <main>
           {
             !search &&
@@ -114,12 +120,9 @@ export function Home() {
               <Loading className="loading" />
             </div> 
             : 
-            <p className="dish-not-found">Prato não encontrado.</p>
+            <p className="dish-not-found">Nenhum prato encontrado.</p>
           )
         }
-
-
-
 
       </main>
       <Footer />

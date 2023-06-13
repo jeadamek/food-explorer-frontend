@@ -25,15 +25,25 @@ export const Container = styled.div`
 
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
+    h1 {
+      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    }
+
     > h1 {
       margin-bottom: 2.8rem;
     }
 
-    > div {
-        display: flex;
-        flex-direction: column;
-        gap: 1.6rem;
-      }
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+  }
+
+  @media ${device.tablet} {
+    .content-wrapper .mobile-no-order-found {
+      display: none;
+    }
   }
 
   @media ${device.laptop} {
@@ -52,6 +62,44 @@ export const Container = styled.div`
   @media ${device.laptopL} {
     > main {
       padding: 3.4rem 12.3rem 15rem;  
+    }
+  }
+`;
+
+export const OrdersHeader = styled.div`
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  margin-bottom: 2.8rem;
+
+  .input-wrapper {
+    width: 100%;
+
+    > div {
+      border-radius: 2.4rem;
+      height: 4rem;
+    }
+
+    #search {
+      width: 100%;
+      height: 4rem;
+
+      padding-right: 1.6rem;
+
+      border-radius: 2.4rem;
+    }
+
+  }
+  @media ${device.tablet} {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .input-wrapper {
+      width: 50rem;
     }
   }
 `;
@@ -155,6 +203,12 @@ export const ContentDesktop = styled.table`
 
   tbody tr:last-child td {
     border-bottom: none;
+  }
+
+  .desktop-no-order-found {
+    text-align: center;
+    padding: 5rem;
+    font-size: 2rem;
   }
 
   @media ${device.tablet} {

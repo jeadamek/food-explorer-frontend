@@ -11,6 +11,7 @@ import { Footer } from "../../components/Footer";
 import { OrderStatus } from "../../components/OrderStatus";
 
 import { FiSearch } from "react-icons/fi";
+import { Input } from "../../components/Input";
 
 export function OrdersHistory() {
   const { user } = useAuth();
@@ -89,13 +90,22 @@ export function OrdersHistory() {
                 >
                   Buscar pedido por código
                 </label>
-                <FiSearch />
+                {/* <FiSearch />
                 <input
                   id="search"
                   type="search"
                   name="search"
                   placeholder="Buscar pedido por código"
+                /> */}
+
+                <Input 
+                  id="search"
+                  name="search"
+                  type="search"
+                  placeholder="Buscar pedido por código"
+                  icon={FiSearch}
                 />
+
               </div>
             </OrdersHeader>
           ) : (

@@ -64,24 +64,36 @@ export const OrdersHeader = styled.div`
   width: 100%;
   
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
 
   margin-bottom: 2.8rem;
-  
-  > h1 {
-    width: fit-content;
-  }
 
   .input-wrapper {
-    width: 50rem;
+    width: 100%;
 
-    > input {
+    > div {
+      border-radius: 2.4rem;
+      height: 4rem;
+    }
+
+    #search {
       width: 100%;
-      height: 3.2rem;
-      padding: 1.6rem;
+      height: 4rem;
 
-      border-radius: 2rem;
+      padding-right: 1.6rem;
+
+      border-radius: 2.4rem;
+    }
+
+  }
+  @media ${device.tablet} {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .input-wrapper {
+      width: 50rem;
     }
   }
 `;

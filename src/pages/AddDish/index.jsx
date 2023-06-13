@@ -30,6 +30,12 @@ export function AddDish() {
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
 
+  const [nameClass, setNameClass] = useState("");
+  // const [category, setCategory] = useState("default");
+  // const [price, setPrice] = useState(null);
+  // const [description, setDescription] = useState("");
+  const [imageClass, setImageClass] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
   const navegate = useNavigate();
 
@@ -46,6 +52,12 @@ export function AddDish() {
     }
   }
 
+  function handleUploadImage(event) {
+    const value = event.target.files[0];
+    setImage(value);
+    setImageClass("")
+  }
+
   function handleNewIngredient() {
     if (!newIngredient) {
       return toast.warn("Digite um ingrediente antes de adicioná-lo")
@@ -59,9 +71,12 @@ export function AddDish() {
     setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
   }
 
-  async function handleAddDish() {
+  async function handleAddDish(event) {
+    event.preventDefault();
+
     if(!image) {
-      return toast.warn("Faça upload da foto do prato");
+      setImageClass("invalid");
+      return toast.error("Faça upload da foto do prato");
     } 
     
     if(!name || category == "default" || !price || !description) {
@@ -120,19 +135,19 @@ export function AddDish() {
           <h1>Adicionar Prato</h1>
         </header>
 
-        <Form>
+        <Form onSubmit={handleAddDish}>
           <div className="wrapper">
             <div className="dish-image">
               <label>
                 Imagem do prato
-                <div>
+                <div className={imageClass ? imageClass : ""}>
                   <FiUpload size={24}/>
-                  {image ? image.name : "Selecionar Imagem"}
+                  <span>{image ? image.name : "Selecionar Imagem"}</span>
                   <input 
                     type="file" 
                     id="image"
                     name="image"
-                    onChange={e => setImage(e.target.files[0])}
+                    onChange={handleUploadImage}
                   />
                 </div>
               </label>
@@ -215,10 +230,10 @@ export function AddDish() {
           </div>
           
           <Button 
+            type="submit"
             title="Salvar alterações" 
             className="primary" 
             loading={isLoading}
-            onClick={handleAddDish}
           />
 
         </Form>

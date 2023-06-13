@@ -3,13 +3,23 @@ import { Container } from "./styles";
 import { FiX } from "react-icons/fi";
 import PropTypes from "prop-types";
 
-export function Input({ icon: Icon, className, value, onClear, search=false, ...rest }) {
+export function Input({ icon: Icon, className, value, onClear, search=false, error, ...rest }) {
+  let inputClassName = '';
+
+  if (Icon) {
+    inputClassName += 'hasIcon'
+  }
+
+  if (error) {
+    inputClassName += 'error'
+  }
+
   return(
     <Container className={className}>
       {Icon && <Icon size={20} />}
       <input {...rest} 
         value={value}
-        className={Icon && "hasIcon"} 
+        className={inputClassName.trim()}
         autoComplete="off" 
       />
       {
@@ -28,5 +38,6 @@ Input.propTypes = {
   onClear: PropTypes.func,
   value: PropTypes.any,
   search: PropTypes.bool,
+  error: PropTypes.bool,
   className: PropTypes.string
 }

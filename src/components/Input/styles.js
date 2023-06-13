@@ -44,7 +44,7 @@ export const Container = styled.div`
       border: solid 1px ${({ theme }) => theme.COLORS.CAKE_100}; 
     }
 
-    &:invalid {
+    &.error {
       border: 1px solid ${({ theme }) => theme.COLORS.TOMATO_300};
     }
   }

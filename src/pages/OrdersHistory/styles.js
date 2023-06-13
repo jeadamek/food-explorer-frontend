@@ -34,10 +34,16 @@ export const Container = styled.div`
     }
 
     .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 1.6rem;
-      }
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+  }
+
+  @media ${device.tablet} {
+    .content-wrapper .mobile-no-order-found {
+      display: none;
+    }
   }
 
   @media ${device.laptop} {
@@ -197,6 +203,12 @@ export const ContentDesktop = styled.table`
 
   tbody tr:last-child td {
     border-bottom: none;
+  }
+
+  .desktop-no-order-found {
+    text-align: center;
+    padding: 5rem;
+    font-size: 2rem;
   }
 
   @media ${device.tablet} {

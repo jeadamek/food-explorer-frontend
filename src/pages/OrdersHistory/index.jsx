@@ -128,24 +128,28 @@ export function OrdersHistory() {
         }
         <div className="content-wrapper">
           {
-            orders.map(order => (
-              <ContentMobile key={String(order.id)} isAdmin={user.isAdmin}>
-                <span className="code">
-                  {getFormattedOrderCode(order.id)}
-                </span>
-                <OrderStatus 
-                  className="status"
-                  status={order.order_status} 
-                  onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)}
-                />
-                <span className="time">
-                  {getFormattedDateTime(order.created_at)}
-                </span>
-                <p className="details">
-                  {getFormattedOrderItems(order.items)}
-                </p>
-              </ContentMobile>
-            ))
+            orders.length !== 0 ? (
+              orders.map(order => (
+                <ContentMobile key={String(order.id)} isAdmin={user.isAdmin}>
+                  <span className="code">
+                    {getFormattedOrderCode(order.id)}
+                  </span>
+                  <OrderStatus 
+                    className="status"
+                    status={order.order_status} 
+                    onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)}
+                  />
+                  <span className="time">
+                    {getFormattedDateTime(order.created_at)}
+                  </span>
+                  <p className="details">
+                    {getFormattedOrderItems(order.items)}
+                  </p>
+                </ContentMobile>
+              ))
+            ) : (
+              <p className="mobile-no-order-found">{user.isAdmin ? "Nenhum pedido encontrado" : "Você ainda não realizou nenhum pedido"}</p>
+            )
           }
         </div>
 
@@ -160,25 +164,32 @@ export function OrdersHistory() {
           </thead>
           <tbody>
             {
-              orders.map(order => (
-                <tr key={String(order.id)}>
-                  <td>
-                    <OrderStatus 
-                      status={order.order_status} 
-                      onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)} 
-                    />
-                  </td>
-                  <td>
-                    {getFormattedOrderCode(order.id)}
-                  </td>
-                  <td>
-                    {getFormattedOrderItems(order.items)}
-                  </td>
-                  <td>
-                    {getFormattedDateTime(order.created_at)}
-                  </td>
+              orders.length !== 0 ? (
+                orders.map(order => (
+                  <tr key={String(order.id)}>
+                    <td>
+                      <OrderStatus 
+                        status={order.order_status} 
+                        onStatusChange={(newStatus) => handleOrderUpdate(newStatus, order.id)} 
+                      />
+                    </td>
+                    <td>
+                      {getFormattedOrderCode(order.id)}
+                    </td>
+                    <td>
+                      {getFormattedOrderItems(order.items)}
+                    </td>
+                    <td>
+                      {getFormattedDateTime(order.created_at)}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td className="desktop-no-order-found">{user.isAdmin ? "Nenhum pedido encontrado" : "Você ainda não realizou nenhum pedido"}</td>
                 </tr>
-              ))
+              )
+              
             }
           </tbody>
         </ContentDesktop>

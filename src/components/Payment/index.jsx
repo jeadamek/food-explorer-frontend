@@ -29,6 +29,11 @@ export function Payment() {
   const [creditCard, setCreditCard] = useState(null);
   const [cardExpirationDate, setCardExpirationDate] = useState(null);
 
+  const [cvcCodeClass, setCvcCodeClass] = useState("");
+  const [creditCardClass, setCreditCardClass] = useState("");
+  const [cardExpirationDateClass, setCardExpirationDateClass] = useState("");
+
+
   const [paymentMethod, setPaymentMethod] = useState('pix');
 
   const [isPaid, setIsPaid] = useState();
@@ -55,8 +60,37 @@ export function Payment() {
 
   async function handlePurchase() {
     if (!creditCard || !cardExpirationDate || !cvcCode) {
-      toast.warn("Preencha todos os dados do cartão");
+      !cvcCode && setCvcCodeClass("invalid");
+      !creditCard && setCreditCardClass("invalid");
+      !cardExpirationDate && setCardExpirationDateClass("invalid");
+      
+      toast.error("Preencha todos os dados do cartão");
       return;
+    }
+
+    const cvcCodeWithoutMask = cvcCode.replace(/[_\s]/g, '');
+    const cardNumberWithoutMask = creditCard.replace(/[_\s]/g, '');
+    const cardExpirationDateWithoutMask = cardExpirationDate.replace(/[/_\s]/g, '');
+    
+    if (cardNumberWithoutMask.length !== 16){
+      setCreditCardClass("invalid");
+      return toast.error("Cartão Inválido");
+    } else {
+      setCreditCardClass("valid");
+    }
+
+    if (cardExpirationDateWithoutMask.length !== 4){
+      setCardExpirationDateClass("invalid");
+      return toast.error("Validade Inválida");
+    } else {
+      setCardExpirationDateClass("valid");
+    }
+
+    if (cvcCodeWithoutMask.length !== 3){
+      setCvcCodeClass("invalid");
+      return toast.error("CVC Inválido");
+    } else {
+      setCvcCodeClass("valid");
     }
 
     setStatus("processing");
@@ -163,8 +197,12 @@ export function Payment() {
                     format="#### #### #### ####"
                     mask="_"
                     placeholder="0000 0000 0000 0000"
+                    className={creditCardClass}
                     required
-                    onChange={e => setCreditCard(e.target.value)}
+                    onChange={(e) => {
+                      setCreditCard(e.target.value);
+                      setCreditCardClass("");
+                    }}
                   />
                 </div>
                 <div className="card-confirmation-wrapper">
@@ -177,7 +215,11 @@ export function Payment() {
                       format="##/##"
                       mask="_"
                       placeholder="04/05"
-                      onChange={e => setCardExpirationDate(e.target.value)}
+                      className={cardExpirationDateClass}
+                      onChange={(e) => {
+                        setCardExpirationDate(e.target.value);
+                        setCardExpirationDateClass("");
+                      }}
                       required
                     />
                   </div>
@@ -190,7 +232,11 @@ export function Payment() {
                       format="###"
                       mask="_"
                       placeholder="000"
-                      onChange={e => setCvcCode(e.target.value)}
+                      className={cvcCodeClass}
+                      onChange={(e) => {
+                        setCvcCode(e.target.value);
+                        setCvcCodeClass("");
+                      }}
                       onKeyDown={handleKeyDown}
                       required
                     />

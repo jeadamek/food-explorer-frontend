@@ -55,8 +55,8 @@ export function SignIn() {
     const error = await signIn({ email, password });
 
     if (error) {
-      setEmailClass("invalid");
-      setPasswordClass("invalid");
+      setEmailClass("");
+      setPasswordClass("");
     }
 
     setIsLoading(false);

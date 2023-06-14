@@ -37,21 +37,21 @@ export function SignUp() {
 
     if (!name) {
       setNameClass("invalid");
-      return toast.error("Campo nome é obrigatório!");
+      return toast.error("Campo nome é obrigatório!", { autoClose: 3000 });
     } else {
       setNameClass("valid");
     }
 
     if (!emailRegex.test(email)) {
       setEmailClass("invalid");
-      return toast.error("Email inválido!");
+      return toast.error("Email inválido!", { autoClose: 3000 });
     } else {
       setEmailClass("valid");
     }
 
     if (password.length < 6) {
       setPasswordClass("invalid");
-      return toast.error("Senha deve ter no minimo 6 caracteres")
+      return toast.error("Senha deve ter no minimo 6 caracteres", { autoClose: 3000 })
     } else {
       setPasswordClass("valid");
     }
@@ -68,13 +68,13 @@ export function SignUp() {
         if(error.response) {
           setEmailClass("invalid");
           
-          toast.error(error.response.data.message);
+          toast.error(error.response.data.message, { autoClose: 3000 });
         } else {          
           setNameClass("");
           setEmailClass("");
           setPasswordClass("");
 
-          toast.error("Não foi possível cadastrar");
+          toast.error("Não foi possível cadastrar. Tente novamente mais tarde.", { autoClose: 3000 });
         }
       })
       .finally(() => {

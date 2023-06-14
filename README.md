@@ -32,12 +32,13 @@ The project's preview can be seen below:<br/>
 ### Tablet and Mobile
 
 <div>
-  <img src="https://github.com/jeadamek/food-explorer-frontend/assets/78454317/41a868e9-69e1-412a-a32e-5a409a03e1c5" height='400' alt="Preview">
+  <img src="https://github.com/jeadamek/food-explorer-frontend/assets/78454317/c21e1b67-ab9e-4460-ac2c-49fe8bcef231" height='400' alt="Food Explorer preview mobile admin">
+
 </div>
 
-<!-- ### Mobile 
+<!-- ### Tablet 
 
-<img src="https://github.com/jeadamek/food-explorer-frontend/assets/78454317/c21e1b67-ab9e-4460-ac2c-49fe8bcef231" height='400' alt="Food Explorer preview mobile admin"> -->
+  <img src="https://github.com/jeadamek/food-explorer-frontend/assets/78454317/41a868e9-69e1-412a-a32e-5a409a03e1c5" height='400' alt="Preview"> -->
 
 ## ✨ Features
 

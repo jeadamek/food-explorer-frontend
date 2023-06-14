@@ -22,17 +22,34 @@ export function Profile() {
   const [newPassword, setNewPassword] = useState("");
   const [oldPassword, setOldPassword] = useState("");
 
+  const [nameClass, setNameClass] = useState("");
+  const [emailClass, setEmailClass] = useState("");
+  const [newPasswordClass, setNewPasswordClass] = useState("");
+  const [oldPasswordClass, setOldPasswordClass] = useState(""); 
+
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleUpdate() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailRegex.test(email)) {
-      return toast.error("Email inválido!");
+    setNameClass("");
+    setEmailClass("");
+    setNewPasswordClass("");
+    setOldPasswordClass("");
+
+    if (!name) {
+      setNameClass("invalid");
+      return toast.error("Nome é obrigatório!", { autoClose: 3000 });
     }
 
+    if (!emailRegex.test(email)) {
+      setEmailClass("invalid");
+      return toast.error("Email inválido!", { autoClose: 3000 });
+    }
+    
     if (newPassword && newPassword.length < 6) {
-      return toast.error("Senha deve ter no minimo 6 caracteres")
+      setNewPasswordClass("invalid");
+      return toast.error("Senha deve ter no minimo 6 caracteres", { autoClose: 3000 })
     }
 
     const updated = {
@@ -46,7 +63,21 @@ export function Profile() {
 
     setIsLoading(true);
 
-    await updateProfile({ user: userUpdated });
+    const error = await updateProfile({ user: userUpdated });
+
+    if(error) {
+      if(error === "server error") {
+        setNameClass("invalid");
+        setEmailClass("invalid");
+        setOldPasswordClass("invalid");
+        setNewPasswordClass("invalid");
+      } else if (error === "Este e-mail já está em uso.") {
+        setEmailClass("invalid");
+      } else {
+        setOldPasswordClass("invalid");
+        setNewPasswordClass("invalid");
+      }
+    }
 
     setOldPassword("");
     setNewPassword("");
@@ -70,8 +101,12 @@ export function Profile() {
                 <Input
                   id="name"
                   type="text"
+                  validation={nameClass}
                   value={name}
-                  onChange={e => setName(e.target.value)}
+                  onChange={(e) => {
+                    setNameClass("");
+                    setName(e.target.value);
+                  }}
                   required
                 />
               </div>
@@ -81,8 +116,12 @@ export function Profile() {
                 <Input
                   id="email"
                   type="email"
+                  validation={emailClass}
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmailClass("");
+                    setEmail(e.target.value);
+                  }}
                   required
                 />
               </div>
@@ -92,9 +131,13 @@ export function Profile() {
                 <Input
                   id="old-password"  
                   type="password"
+                  validation={oldPasswordClass}
                   value={oldPassword}
                   placeholder="Necessário para atualizar a senha"
-                  onChange={e => setOldPassword(e.target.value)}
+                  onChange={(e) => {
+                    setOldPasswordClass("");
+                    setOldPassword(e.target.value);
+                  }}
                 />
               </div>
 
@@ -104,9 +147,13 @@ export function Profile() {
                   id="new-password"
                   type="password"
                   minLength="6"
+                  validation={newPasswordClass}
                   value={newPassword}
                   placeholder="Mínimo 6 caracteres"
-                  onChange={e => setNewPassword(e.target.value)}
+                  onChange={(e) => {
+                    setNewPasswordClass("");
+                    setNewPassword(e.target.value);
+                  }}
                 />
               </div>
 

@@ -58,8 +58,10 @@ function AuthProvider({ children }) {
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data.message,  { autoClose: 3000 });
+        return error.response.data.message;
       } else {
-        toast.error("Não foi possível atualizar o perfil.",  { autoClose: 3000 });
+        toast.error("Não foi possível atualizar o perfil. Tente novamente mais tarde.",  { autoClose: 3000 });
+        return "server error";
       }
     }
   }

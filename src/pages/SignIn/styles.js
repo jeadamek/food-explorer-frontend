@@ -92,7 +92,7 @@ export const Form = styled.form`
     animation: ${InputField} .5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
   }
 
-  .input-wrapper:nth-child(2) {
+  > label:nth-child(2), div:nth-child(2) {
     animation: ${InputField} 1s cubic-bezier(0.45, 0.05, 0.55, 0.95);
   }
 

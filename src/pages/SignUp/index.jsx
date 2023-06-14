@@ -25,14 +25,10 @@ export function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
 
   const navegate = useNavigate();
-
-  function handleKeyDown(event) {
-    if (event.keyCode === 13) {
-      handleSignUp();
-    }
-  }
   
-  async function handleSignUp() {
+  async function handleSignUp(event) {
+    event.preventDefault();
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     setNameClass("");
@@ -90,7 +86,7 @@ export function SignUp() {
     <Container>
       <img src={Logo} alt="Logo Food Explorer" />
 
-      <Form>
+      <Form onSubmit={handleSignUp}>
         <h2>Crie sua conta</h2>
 
         <div className="input-wrapper">
@@ -135,15 +131,14 @@ export function SignUp() {
               setPassword(e.target.value);
               setPasswordClass("");
             }}
-            onKeyDown={handleKeyDown}
           />
         </div>
 
         <Button 
+          type="submit"
           title="Criar conta" 
           className="primary" 
           loading={isLoading}
-          onClick={handleSignUp}
         />
 
         <Link to="/">

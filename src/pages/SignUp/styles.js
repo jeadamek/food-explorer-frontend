@@ -88,7 +88,7 @@ export const Form = styled.form`
     animation: ${fadeIn} 2s ease-in-out;
   }
 
-  > label:first-child, div:first-child {
+  .input-wrapper:first-child {
     animation: ${InputField} .5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
   }
 

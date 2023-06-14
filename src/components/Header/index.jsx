@@ -57,6 +57,7 @@ export function Header({ onSearch }) {
 
   function handleClearSearch() {
     setSearch("");  
+    onSearch && onSearch("");
   }
 
   function handleKeyDown(event) {

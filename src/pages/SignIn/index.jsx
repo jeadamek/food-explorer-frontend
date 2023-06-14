@@ -34,14 +34,14 @@ export function SignIn() {
 
     if(!emailRegex.test(email)) {
       setEmailClass("invalid");
-      return toast.error("E-mail inválido!");
+      return toast.error("E-mail inválido!",  { autoClose: 3000 });
     } else {
       setEmailClass("valid");
     }
 
     if (!password) {
       setPasswordClass("invalid");
-      return toast.error("Campo senha é obrigatório!");
+      return toast.error("Campo senha é obrigatório!",  { autoClose: 3000 });
     } else {
       setPasswordClass("valid");
     }

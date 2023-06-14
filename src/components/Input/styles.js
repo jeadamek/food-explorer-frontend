@@ -51,6 +51,15 @@ export const Container = styled.div`
     &.invalid {
       border: 1px solid ${({ theme }) => theme.COLORS.TOMATO_300};
     }
+
+    &[type=number]::-webkit-inner-spin-button { 
+      -webkit-appearance: none;
+    }
+
+    &[type=number] { 
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
   }
 
   > svg { 

@@ -108,7 +108,7 @@ export function OrdersHistory() {
                 <Input 
                   id="search"
                   name="search"
-                  type="text"
+                  type="number"
                   placeholder="Buscar pedido por código"
                   icon={FiSearch}
                   value={searchValue}

@@ -27,6 +27,7 @@ function AuthProvider({ children }) {
       } else {
         toast.error("Não foi possível entrar.");
       }
+      return error;
     }
   }
 

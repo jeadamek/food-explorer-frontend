@@ -15,7 +15,11 @@ import Logo from "../../assets/logo-user.svg"
 
 export function SignIn() {
   const [email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [emailClass, setEmailClass] = useState("");
+  const [passwordClass, setPasswordClass] = useState("");
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const { signIn } = useAuth();
@@ -26,14 +30,34 @@ export function SignIn() {
     }
   }
 
-  function handleSignIn() {
-    if (!email, !password) {
-      return toast.warn("Preencha todos os campos!");
+  async function handleSignIn() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    setEmailClass('');
+    setPasswordClass('');
+
+    if(!emailRegex.test(email)) {
+      setEmailClass("invalid");
+      return toast.error("E-mail inválido!");
+    } else {
+      setEmailClass("valid");
+    }
+
+    if (!password) {
+      setPasswordClass("invalid");
+      return toast.error("Campo senha é obrigatório!");
+    } else {
+      setPasswordClass("valid");
     }
 
     setIsLoading(true);
 
-    signIn({ email, password });
+    const error = await signIn({ email, password });
+
+    if (error) {
+      setEmailClass("");
+      setPasswordClass("");
+    }
 
     setIsLoading(false);
   }
@@ -52,7 +76,11 @@ export function SignIn() {
             placeholder="Exemplo: exemplo@exemplo.com.br"
             id="email"
             name="email"
-            onChange={e => setEmail(e.target.value)}
+            validation={emailClass}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailClass("");
+            }}
           />
         </div>
 
@@ -63,7 +91,11 @@ export function SignIn() {
             placeholder="No mínimo 6 caracteres"
             id="password"
             name="password"
-            onChange={e => setpassword(e.target.value)}
+            validation={passwordClass}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setPasswordClass("");
+            }}
             onKeyDown={handleKeyDown}
           />
         </div>

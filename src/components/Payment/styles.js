@@ -118,6 +118,14 @@ export const Content = styled.div`
         &:focus {
           border: 1px solid ${({ theme }) => theme.COLORS.CAKE_200};
         }
+
+        &.invalid {
+          border: 2px solid ${({ theme }) => theme.COLORS.TOMATO_300};
+        }
+
+        &.valid {
+          border: 2px solid ${({ theme }) => theme.COLORS.MINT_100};
+        }
       }
     }
 

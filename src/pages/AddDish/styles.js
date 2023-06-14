@@ -62,11 +62,6 @@ export const Form = styled.form`
       padding: 12px 32px;
       margin-top: .8rem;
 
-      font-family: 'Poppins', sans-serif;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 24px;
-
       background-color: ${({ theme }) => theme.COLORS.DARK_900};
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
@@ -77,6 +72,18 @@ export const Form = styled.form`
       gap: .8rem;
 
       cursor: pointer;
+
+      > span {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 24px;
+
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
       
       > input {
         display: none;
@@ -111,6 +118,10 @@ export const Form = styled.form`
       row-gap: .8rem;
       flex-wrap: wrap;
     }
+  }
+
+  .invalid {
+    border: 1px solid ${({ theme }) => theme.COLORS.TOMATO_300};
   }
 
   @media ${device.laptop} {

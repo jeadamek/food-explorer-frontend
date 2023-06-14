@@ -22,13 +22,21 @@ import { SlArrowLeft } from "react-icons/sl";
 
 export function AddDish() {
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("default");
   const [price, setPrice] = useState(null);
-  const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const [category, setCategory] = useState("default");
+  const [description, setDescription] = useState("");
 
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
+
+  const [nameClass, setNameClass] = useState("");
+  const [priceClass, setPriceClass] = useState("");
+  const [imageClass, setImageClass] = useState("");
+  const [categoryClass, setCategoryClass] = useState("");
+  const [descriptionClass, setDescriptionClass] = useState("");
+  const [ingredientClass, setIngredientClass] = useState("");
+
 
   const [isLoading, setIsLoading] = useState(false);
   const navegate = useNavigate();
@@ -48,32 +56,54 @@ export function AddDish() {
 
   function handleNewIngredient() {
     if (!newIngredient) {
-      return toast.warn("Digite um ingrediente antes de adicioná-lo")
+      return toast.error("Digite um ingrediente antes de adicioná-lo")
     }
     
     setIngredients(prevState => [...prevState, newIngredient]);
     setNewIngredient("");
+    setIngredientClass("");
   }
 
   function handleRemoveIngredient(deleted) {
     setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
   }
 
-  async function handleAddDish() {
+  async function handleAddDish(event) {
+    event.preventDefault();
+
     if(!image) {
-      return toast.warn("Faça upload da foto do prato");
+      setImageClass("invalid");
+      return toast.error("Faça upload da foto do prato");
     } 
-    
-    if(!name || category == "default" || !price || !description) {
-      return toast.warn("Todos os campos devem ser preenchidos");
+
+    if (!name) {
+      setNameClass("invalid");
+      return toast.error("Nome do prato é obrigatório");
+    }
+
+    if (category == "default") {
+      setCategoryClass("invalid");
+      return toast.error("Categoria inválida");
     }
 
     if(ingredients.length == 0) {
-      return toast.warn("Adicione os ingredientes do prato");
+      setIngredientClass("invalid");
+      return toast.error("Adicione os ingredientes do prato");
     }
 
     if(newIngredient) {
-      return toast.warn(`Clique em "+" para adicionar o ingrediente: ${newIngredient}, ou deixe o campo vázio.`);
+      setIngredientClass("invalid");
+      return toast.error(`Clique em "+" para adicionar o ingrediente: ${newIngredient}, ou deixe o campo vázio.`);
+    }
+
+    if (!price) {
+      setPriceClass("invalid");
+      return toast.error("Preço do prato é obrigatório");
+    }
+
+    if (!description) {
+      setDescriptionClass("invalid");
+      return toast.error("Descrição é obrigatória");
     }
 
     setIsLoading(true);
@@ -125,14 +155,17 @@ export function AddDish() {
             <div className="dish-image">
               <label>
                 Imagem do prato
-                <div>
+                <div className={imageClass ? imageClass : ""}>
                   <FiUpload size={24}/>
-                  {image ? image.name : "Selecionar Imagem"}
+                  <span>{image ? image.name : "Selecionar Imagem"}</span>
                   <input 
                     type="file" 
                     id="image"
                     name="image"
-                    onChange={e => setImage(e.target.files[0])}
+                    onChange={(e) => {
+                      setImage(e.target.files[0]);
+                      setImageClass("");
+                    }}
                   />
                 </div>
               </label>
@@ -143,7 +176,11 @@ export function AddDish() {
               <Input 
                 placeholder="Ex.: Salada Ceasar" 
                 id="name"
-                onChange={e => setName(e.target.value)}
+                validation={nameClass}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  setNameClass("");
+                }}
                 autoFocus
               />
             </div>
@@ -155,7 +192,11 @@ export function AddDish() {
                 id="category" 
                 value={category}
                 options={options}
-                onChange={e => setCategory(e.target.value)}
+                className={categoryClass}
+                onChange={(e) => {
+                  setCategory(e.target.value);
+                  setCategoryClass("");
+                }}
               />
             </div>
           </div>
@@ -179,7 +220,11 @@ export function AddDish() {
                   placeholder="Adicionar"
                   value={newIngredient}
                   size={9} 
-                  onChange={e => setNewIngredient(e.target.value)}
+                  validation={ingredientClass}
+                  onChange={(e) => {
+                    setNewIngredient(e.target.value);
+                    setIngredientClass("");
+                  }}
                   onClick={handleNewIngredient} 
                   onKeyDown={handleKeyDown}
                 />
@@ -196,10 +241,12 @@ export function AddDish() {
                 decimalSeparator=","
                 groupSeparator="."
                 id="price"
+                className={priceClass}
                 onValueChange={(value) => {
                   const formattedValue = value.replace(',', '.');
-                  const valueAsFloat = parseFloat(formattedValue)
-                  setPrice(valueAsFloat)
+                  const valueAsFloat = parseFloat(formattedValue);
+                  setPrice(valueAsFloat);
+                  setPriceClass("");
                 }}
               />
             </div>
@@ -210,7 +257,11 @@ export function AddDish() {
             <Textarea 
               id="description" 
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" 
-              onChange={e => setDescription(e.target.value)}
+              className={descriptionClass}
+              onChange={(e) => {
+                setDescription(e.target.value);
+                setDescriptionClass("");
+              }}
             />
           </div>
           

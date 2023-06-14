@@ -30,6 +30,8 @@ export function EditDish() {
   const [newIngredient, setNewIngredient] = useState("");
   const [ingredients, setIngredients] = useState([]);
 
+  const [ingredientClass, setIngredientClass] = useState("");
+
   const [image, setImage] = useState("");
   const [imageFile, setImageFile] = useState(null);
 
@@ -58,6 +60,7 @@ export function EditDish() {
 
     setIngredients(prevState => [...prevState, newIngredient]);
     setNewIngredient("");
+    setIngredientClass("");
   }
 
   function handleRemoveIngredient(deleted) {
@@ -83,15 +86,17 @@ export function EditDish() {
     } 
     
     if(!name || !category || !price || !description) {
-      return toast.warn("Todos os campos devem ser preenchidos");
+      return toast.error("Todos os campos devem ser preenchidos");
     }
 
     if(ingredients.length == 0) {
-      return toast.warn("Adicione os ingredientes do prato");
+      setIngredientClass("invalid");
+      return toast.error("Adicione os ingredientes do prato");
     }
 
     if(newIngredient) {
-      return toast.warn(`Clique em "+" para adicionar o ingrediente: ${newIngredient}, ou deixe o campo vázio.`);
+      setIngredientClass("invalid");
+      return toast.error(`Clique em "+" para adicionar o ingrediente: ${newIngredient}, ou deixe o campo vázio.`);
     }
 
     const formattedPrice = typeof price == 'string' ? parseFloat(price.replace(",", ".")) : price
@@ -172,6 +177,7 @@ export function EditDish() {
                     id="image"
                     name="image"
                     onChange={e => setImageFile(e.target.files[0])}
+                    required
                   />
                 </div>
               </label>
@@ -184,6 +190,7 @@ export function EditDish() {
                 id="name"
                 value={name}
                 onChange={e => setName(e.target.value)}
+                required
               />
             </div>
             
@@ -195,6 +202,7 @@ export function EditDish() {
                 options={options} 
                 value={category}
                 onChange={e => setCategory(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -220,7 +228,11 @@ export function EditDish() {
                       placeholder="Adicionar"
                       value={newIngredient}
                       size={9} 
-                      onChange={e => setNewIngredient(e.target.value)}
+                      validation={ingredientClass}
+                      onChange={(e) => {
+                        setNewIngredient(e.target.value);
+                        setIngredientClass("");
+                      }}
                       onClick={handleNewIngredient}
                       onKeyDown={handleKeyDown}
                     />  
@@ -236,6 +248,7 @@ export function EditDish() {
                 id="price"
                 value={price}
                 onValueChange={(value) => setPrice(value)}
+                required
               />
             </div>
           </div>
@@ -247,6 +260,7 @@ export function EditDish() {
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" 
               value={description}  
               onChange={e => setDescription(e.target.value)}
+              required
             />
           </div>
           

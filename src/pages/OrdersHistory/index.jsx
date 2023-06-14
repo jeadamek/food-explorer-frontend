@@ -39,6 +39,11 @@ export function OrdersHistory() {
     return formattedDate;
   }
 
+  function handleOrderCodeSearch(event) {
+    const newValue = event.target.value.replace(/\D/g, ''); // Remove non numeric character
+    setSearchValue(newValue);
+  }
+
   function handleClearSearch() {
     setSearchValue("");  
   }
@@ -108,12 +113,12 @@ export function OrdersHistory() {
                 <Input 
                   id="search"
                   name="search"
-                  type="number"
+                  type="text"
                   placeholder="Buscar pedido por código"
                   icon={FiSearch}
                   value={searchValue}
                   search
-                  onChange={e => setSearchValue(e.target.value)}
+                  onChange={handleOrderCodeSearch}
                   onClear={handleClearSearch}
                 />
 

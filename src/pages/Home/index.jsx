@@ -10,6 +10,8 @@ import { Footer } from "../../components/Footer";
 import { Loading } from "../../components/Loading";
 import { Carousel } from "../../components/Carousel";
 
+import BannerImg from "../../assets/banner.png";
+
 export function Home() {
   const location = useLocation();
   const searchParam = new URLSearchParams(location.search).get('search');
@@ -66,7 +68,7 @@ export function Home() {
             (
               <Banner>
                 <div className="banner">
-                  <img src={"/src/assets/banner.png"} alt="Banner: foto de macarons de cores variadas, framboesas, mirtilos e folhas como se estivessem flutuando no ar" />
+                  <img src={BannerImg} alt="Banner: foto de macarons de cores variadas, framboesas, mirtilos e folhas como se estivessem flutuando no ar" />
     
                   <div className="banner-info">
                     <div className="banner-title">

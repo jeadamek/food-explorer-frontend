@@ -11,7 +11,7 @@ import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
-import Logo from "../../assets/logo-user.svg"
+import Logo from "../../assets/logo-user.svg";
 
 export function SignIn() {
   const [email, setEmail] = useState("");

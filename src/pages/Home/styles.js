@@ -18,7 +18,7 @@ export const Container = styled.div`
 
     width: 100%;
     max-width: 70rem;
-    min-width: 40rem;
+    min-width: 32rem;
 
     margin: 0 auto;
 

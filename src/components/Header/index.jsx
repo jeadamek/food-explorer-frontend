@@ -182,7 +182,7 @@ export function Header({ onSearch }) {
       </MobileOrder>
       
       <Label 
-        title="Buscar pedido por código"
+        title="Busque por pratos ou ingredientes"
         htmlFor="search" 
         className="sr-only"
       />

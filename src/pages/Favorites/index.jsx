@@ -6,11 +6,14 @@ import { Container } from "./styles";
 
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
+import { Loading } from "../../components/Loading";
 import { CardFavorites } from "../../components/CardFavorites";
 
 
 export function Favorites() {
   const [favorites, setFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   function handleRemoveFavorite(id) {
     const newFavorites = favorites.filter(favorite => favorite.id !== id);
@@ -19,8 +22,12 @@ export function Favorites() {
   
   useEffect(() => {
     async function fetchFavorites() {
+      setIsLoading(true);
+
       const response = await api.get(`/favorites`);
       setFavorites(response.data);
+
+      setIsLoading(false);
     }
 
     fetchFavorites();
@@ -42,8 +49,13 @@ export function Favorites() {
                 />
               ))
             ) : (
+              isLoading ? (
+                <div className="loading-wrapper"> 
+                  <Loading className="loading" />
+                </div> 
+              ) : (
               <p>Você não possui pratos favoritos</p>
-            )
+            ))
           }
         </div>
       </main>

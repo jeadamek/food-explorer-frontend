@@ -35,6 +35,18 @@ export const Container = styled.div`
         text-align: center;
         margin-top: 5rem;
       }
+
+      .loading-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        }
+
+        .loading {
+          width: 5rem;
+          height: 5rem;
+          align-items: center;
+        }
     }
   } 
 

@@ -17,7 +17,7 @@ import { Label } from "../../components/Label";
 export function OrdersHistory() {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
-  const [searchCode, setSearchCode] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
   function getFormattedOrderCode(number) {
     return number.toString().padStart(8, '0');
@@ -39,14 +39,8 @@ export function OrdersHistory() {
     return formattedDate;
   }
 
-  function handleOrderSearch(event) {
-    const value = event.target.value
-    const parsedValue = value ? parseInt(value, 10) : '';
-    setSearchCode(parsedValue)
-  }
-
   function handleClearSearch() {
-    setSearchCode("");  
+    setSearchValue("");  
   }
 
   async function handleOrderUpdate(option, orderId) {
@@ -75,12 +69,14 @@ export function OrdersHistory() {
       if (user.isAdmin) {
         const response = await api.get("orders/admin");
 
-        if (searchCode) {
-          const searchOrder = searchCode && response.data.filter( order => order.id === searchCode)
-          setOrders(searchOrder);
-        } else {
-          setOrders(response.data);
-        }
+        const trimmedValue = searchValue.replace(/^0+/, '');
+        const searchCode = parseInt(trimmedValue, 10);
+
+        const searchOrder = searchCode
+          ? response.data.filter(order => order.id === searchCode)
+          : response.data;
+        
+        setOrders(searchOrder);
 
       } else {
         const response = await api.get("orders/");
@@ -89,7 +85,7 @@ export function OrdersHistory() {
     }
 
     fetchOrders();
-  }, [user, searchCode]);
+  }, [user, searchValue]);
 
   return(
     <Container>
@@ -115,9 +111,9 @@ export function OrdersHistory() {
                   type="text"
                   placeholder="Buscar pedido por código"
                   icon={FiSearch}
-                  value={searchCode}
+                  value={searchValue}
                   search
-                  onChange={handleOrderSearch}
+                  onChange={e => setSearchValue(e.target.value)}
                   onClear={handleClearSearch}
                 />
 

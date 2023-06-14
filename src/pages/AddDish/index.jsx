@@ -39,7 +39,7 @@ export function AddDish() {
 
 
   const [isLoading, setIsLoading] = useState(false);
-  const navegate = useNavigate();
+  const navigate = useNavigate();
 
   const options = [
     { value: 'default', label: 'Selecione uma opção'},
@@ -122,7 +122,7 @@ export function AddDish() {
     await api.post("/dishes", formData)
       .then( () => {
         toast.success("Prato adicionado com sucesso!");
-        navegate(-1);
+        navigate("/");
       })
       .catch((error) => {
         if (error.response) {
@@ -137,7 +137,7 @@ export function AddDish() {
   }
 
   function handleBack(){
-    navegate(-1);
+    navigate(-1);
   }
 
   return(

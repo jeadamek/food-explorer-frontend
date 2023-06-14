@@ -24,13 +24,9 @@ export function SignIn() {
 
   const { signIn } = useAuth();
 
-  function handleKeyDown(event) {
-    if (event.keyCode === 13) {
-      handleSignIn();
-    }
-  }
+  async function handleSignIn(event) {
+    event.preventDefault();
 
-  async function handleSignIn() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     setEmailClass('');
@@ -55,8 +51,8 @@ export function SignIn() {
     const error = await signIn({ email, password });
 
     if (error) {
-      setEmailClass("");
-      setPasswordClass("");
+      setEmailClass("invalid");
+      setPasswordClass("invalid");
     }
 
     setIsLoading(false);
@@ -66,7 +62,7 @@ export function SignIn() {
     <Container>
       <img src={Logo} alt="Logo Food Explorer" />
 
-      <Form>
+      <Form onSubmit={handleSignIn}>
         <h2>Faça login</h2>
 
         <div className="input-wrapper">
@@ -96,15 +92,14 @@ export function SignIn() {
               setPassword(e.target.value);
               setPasswordClass("");
             }}
-            onKeyDown={handleKeyDown}
           />
         </div>
 
         <Button 
+          type="submit"
           title="Entrar" 
           className="primary"
           loading={isLoading}
-          onClick={handleSignIn}
         />
 
         <Link to="/register">

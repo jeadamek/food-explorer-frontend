@@ -25,7 +25,7 @@ function AuthProvider({ children }) {
       if(error.response) {
         toast.error(error.response.data.message);
       } else {
-        toast.error("Não foi possível entrar.");
+        toast.error("Não foi possível entrar. Tente novamente mais tarde.");
       }
       return error;
     }

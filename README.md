@@ -24,9 +24,8 @@ Food Explorer is a responsive web application that allows admins to manage dishe
 
 The project's preview can be seen below:<br/>
 
-![preview](#)
-
-![preview](#)
+![Food Explorer preview desktop client](https://github.com/jeadamek/food-explorer-frontend/assets/78454317/0292e855-f6c4-438e-8ac8-a9d570f56864)
+![Food Explorer preview desktop admin](https://github.com/jeadamek/food-explorer-frontend/assets/78454317/b45f78a8-6fa4-4347-b65e-93ea776a32b0)
 
 
 ## ✨ Features

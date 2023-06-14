@@ -32,7 +32,7 @@ The project's preview can be seen below:<br/>
 ### Tablet and Mobile
 
 <div>
-  <img src="https://github.com/jeadamek/food-explorer-frontend/assets/78454317/c21e1b67-ab9e-4460-ac2c-49fe8bcef231" height='400' alt="Food Explorer preview mobile admin">
+  <img src="https://github.com/jeadamek/food-explorer-frontend/assets/78454317/c21e1b67-ab9e-4460-ac2c-49fe8bcef231" height='600' alt="Food Explorer preview mobile admin">
 
 </div>
 

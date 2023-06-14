@@ -34,9 +34,8 @@ export function Home() {
       setIsLoading(true);
       const response = await api.get(`/dishes?search=${search}`);
       const dishes = response.data;
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 5000)
+
+      setIsLoading(false);
 
       const mealItems = dishes.filter((dish) => {
         return dish.category === 'refeição';

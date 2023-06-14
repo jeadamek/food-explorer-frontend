@@ -74,16 +74,27 @@ export const Form = styled.form`
       cursor: pointer;
 
       > span {
+        width: 18rem;
+        
+        flex-shrink: 1;
         font-family: 'Poppins', sans-serif;
         font-weight: 500;
         font-size: 14px;
         line-height: 24px;
 
-        max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        @media ${device.mobileL} {
+          width: 26rem;
+        }
+
+        @media ${device.tablet} {
+          width: 100%;
+        }
       }
+    
 
       > input {
         display: none;

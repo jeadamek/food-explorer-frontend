@@ -23,9 +23,9 @@ function AuthProvider({ children }) {
 
     } catch (error) {
       if(error.response) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message,  { autoClose: 3000 });
       } else {
-        toast.error("Não foi possível entrar. Tente novamente mais tarde.");
+        toast.error("Não foi possível entrar. Tente novamente mais tarde.",  { autoClose: 3000 });
       }
       return error;
     }
@@ -57,9 +57,9 @@ function AuthProvider({ children }) {
       toast.success("Perfil Atualizado");
     } catch (error) {
       if (error.response) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message,  { autoClose: 3000 });
       } else {
-        toast.error("Não foi possível atualizar o perfil.");
+        toast.error("Não foi possível atualizar o perfil.",  { autoClose: 3000 });
       }
     }
   }

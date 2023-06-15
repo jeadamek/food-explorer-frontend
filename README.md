@@ -4,13 +4,13 @@
 <h3 align="center">🚀 Final Project | Frontend - Explorer</h3>
 
 <div align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jeadamek/rocketMovies_backend">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jeadamek/food-explorer-frontend">
 
-  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/jeadamek/rocketMovies_backend">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/jeadamek/food-explorer-frontend">
   
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jeadamek/rocketMovies_backend?color=%231280BF">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jeadamek/food-explorer-frontend?color=%231280BF">
 
- <a href="#"> ▶️ Access Deploy </a>
+ <a href="https://food-explorer-deploy.vercel.app/" target="_blank"> ▶️ Access Deploy </a>
 </div>  
 </br>
 
@@ -26,8 +26,9 @@ The project's preview can be seen below:<br/>
 
 ### Desktop
 
-<!-- ![Food Explorer preview desktop client](https://github.com/jeadamek/food-explorer-frontend/assets/78454317/0292e855-f6c4-438e-8ac8-a9d570f56864) -->
-![Food Explorer preview desktop admin](https://github.com/jeadamek/food-explorer-frontend/assets/78454317/b45f78a8-6fa4-4347-b65e-93ea776a32b0)
+
+![Food Explorer preview desktop client](https://github.com/jeadamek/food-explorer-frontend/assets/78454317/0883613c-c6c7-41ae-9894-8c2689e8f7a8)
+<!-- ![Food Explorer preview desktop admin](https://github.com/jeadamek/food-explorer-frontend/assets/78454317/b45f78a8-6fa4-4347-b65e-93ea776a32b0) -->
 
 ### Tablet and Mobile
 

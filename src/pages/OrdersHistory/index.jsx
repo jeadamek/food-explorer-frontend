@@ -55,10 +55,6 @@ export function OrdersHistory() {
     await api.put("/orders/", {id: orderId, order_status: status})
       .then(() => {
         toast.success(`Pedido ${orderCode} atualizado com sucesso!`)
-
-        setTimeout(() => {
-          window.location.reload();
-        }, 4000);
       })
       .catch(error => {
         if(error.response) {
